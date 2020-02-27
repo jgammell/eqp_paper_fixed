@@ -113,6 +113,7 @@ Biological neurons are known to communicate through spikes with binary values, s
 The method presented in this paper allows networks with multiple layers to train effectively through a biologically-plausible tweak to their topology. Layer-skipping connections have been documented in biological brains \cite{bullmore2009}.
 
 \subsection{Vanishing gradient problem}
+\label{sec:vangrad}
 
 It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem: the magnitude of the weight correction matrix to weights between a pair of layers attenuates exponentially with the number of layers between that pair and the output layer. This problem is familiar in the context of conventional networks trained through backpropagation, where if the magnitude of the correction matrix to weights connecting the output layer to the last hidden layer is $\Delta W$ and if the expected magnitude of the derivative of neurons' activation function is $\alpha<1$, then the magnitude of the correction matrix to weights connecting layers $l$ and $l-1$ from the output is expected to be $\alpha^l\Delta W$. In conventional networks, the vanishing gradient problem can be effectively addressed by initializing weights to make activation variances and backpropagated gradient variances approximately uniform with respect to depth as described in \cite{glorot2010} and by using activation functions with unity derivatives (**find reference), such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids (equation \ref{eqn:hardened_sigmoid}).
 \npar
@@ -126,13 +127,13 @@ Assume that a typical neuron in the network changes by a small constant amount $
 \end{equation}
 and similarly a typical neuron from the deep layer will be corrected by 
 \begin{equation}
-\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta,
+\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta)
 \end{equation}
-so the ratio of these corrections will be
+(where we have approximated $N\approx N-1$ and $N-l+1\approx N-l$), so the ratio of these corrections will be
 \begin{equation}
-\frac{\Delta w^l}{\Delta w^{\text{output}}}\approx \frac{(N-l)^2\delta^2-2s_0(N-l)\delta}{N^2\delta^2+2s_0N\delta}=\frac{N-l}{N}\frac{(N-l)\delta+2s_0}{N\delta+2s_0}\approx 1-\frac{l}{N}.
+\frac{\Delta w^l}{\Delta w^{\text{output}}}\approx \frac{(N-l)^2\delta^2-2s_0(N-l)\delta}{N^2\delta^2+2s_0N\delta}=\frac{N-l}{N}\frac{(N-l)\delta+2s_0}{N\delta+2s_0}\approx 1-\frac{l}{N}
 \end{equation}
-We have observed that
+(where we have approximated $\frac{(N-l)\delta +2s_0}{N\delta+2s_0}\approx 1$). We have observed that
 \begin{equation}
 \frac{\Delta w^l}{\Delta w^{\text{output}}}\sim e^{-l},
 \end{equation}
@@ -145,26 +146,27 @@ In the original paper the vanishing gradient problem was solved by using unique 
 \subsection{Small-world networks}
 \label{sec:sw_background}
 
-Our topology was inspired by small-world graph topology as described in \cite{watts98}. Qualitatively, small-world topology is appealing because it is characterized by a small mean shortest path between a pair of nodes (neurons) in a graph (network) with a large amount of clustering, which seems likely to reduce attenuation to the gradient of parameters of deep neurons by providing a low-attenuation path to the output layer, while largely preserving the regimented structure that has contributed to the success of deep neural networks. The topology is also appealing because it has been observed to occur in biological brains \cite{bullmore2009}.
+Our topology was inspired by small-world graph topology as described in \cite{watts98}. Qualitatively, small-world topology is appealing because it is characterized by a small mean shortest path between a pair of vertices (neurons) in a graph (network) with a large amount of clustering, which seems likely to reduce attenuation to the gradient of parameters of deep neurons by providing a low-attenuation path to the output layer, while largely preserving the regimented structure that has contributed to the success of deep neural networks. The topology is also appealing because it has been observed to occur in biological brains \cite{bullmore2009}.
 \npar
-The small-worldness of a network is typically characterized by a characteristic path length $L$ and a clustering coefficient $C$. The characteristic path length is the minimal number of edges in a path joining a pair of nodes, averaged over all pairs of nodes in the network. Specifically, for a graph with $N$ nodes where $l_{ij}$ denotes the smallest number of edges needed to connect the two nodes, 
+The small-worldness of a network is typically characterized by a characteristic path length $L$ and a clustering coefficient $C$. A graph is small-world if $L$ is small relative to the $L$ of a random network with the same number of vertices and edges and $C$ is not substantially smaller than the $C$ of that random network. The characteristic path length is the minimal number of edges in a path joining a pair of vertices, averaged over all pairs of vertices in the network. Specifically, for a graph with $N$ vertices where $l_{ij}$ denotes the smallest number of edges needed to connect the two vertices, 
 \begin{equation}
 \label{eqn:charpathlength}
-L:=\frac{1}{N(N-1)}\sum_{i=1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N}l_{ij}.
+L=\frac{1}{N(N-1)}\sum_{i=1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N}l_{ij}.
 \end{equation}
-The neighborhood of a node is the set of nodes with which it shares an edge. The clustering coefficient is the proportion of nodes in the neighborhood of a given node that share an edge, averaged over all nodes in the network. Specifically, for a graph with $N$ nodes, if $\text{Nbhd}(n_i)$ denotes the neighborhood of node $n_i$, $N_i$ denotes the number of nodes in $\text{Nbhd}(n_i)$, and $c_{jk}=\begin{cases}1 & n_k\in\text{Nbhd}(n_j)\\0 & \text{else}\end{cases}$,
+The neighborhood of a vertex is the set of vertices with which it shares an edge. The clustering coefficient is the proportion of pairs of vertices in the neighborhood of a given vertex that share an edge, averaged over all vertices in the network. Specifically, for a graph with $N$ vertices, if $\text{Nbhd}(v_i)$ denotes the neighborhood of vertex $v_i$, $N_i$ denotes the number of vertices in $\text{Nbhd}(v_i)$, and $c(v_j,v_k)=\begin{cases}1 & v_k\in\text{Nbhd}(v_j)\\0 & \text{else}\end{cases}$,
 \begin{equation}
 \label{eqn:clustcoeff}
-C:=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{N_i}\sum_{\substack{n_j\in\\\text{Nbhd}(n_i)}}\sum_{\substack{n_k\in\\\text{Nbhd}(n_i),\\ k\neq j}}c_{jk}.
+C=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{N_i}\sum_{\substack{v_j\in\\\text{Nbhd}(v_i)}}\sum_{\substack{v_k\in\\\text{Nbhd}(v_i),\\ k\neq j}}c(v_j,v_k).
 \end{equation}
 \npar
 An algorithm was introduced in \cite{watts98} to convert a regimented graph into a small-world graph
 \footnote{Our algorithm is actually slightly different: instead of replacing each edge with a probability $p$, we replace a specific number $n$ of the edges currently in the network. Therefore, for a network with $N$ edges our algorithm is equivalent to the one from \cite{watts98} with $p=1-(\frac{N-1}{N})^n$. For ease of comparison with other work and to contextualize how many edges have been replaced, we will henceforth describe networks using our topology in terms of $p$ and not $n$.}.
- For each edge in the network, with probability $p$: randomly pick a pair of nodes that do not share an edge. Add an edge between these nodes, and remove the existing edge. $p$ is typically tuned so that the graph will have a large clustering coefficient.
+ For each edge in the network, with probability $p$: randomly pick a pair of vertices that do not share an edge. Add an edge between these vertices, and remove the existing edge. As $p$ is increased $L$ decreases more-quickly than $C$, and $p$ is typically chosen so that $L$ has decreased substantially and $C$ has just begun to decrease.
 \npar
-We have found that the performance of a network does not track closely with its clustering coefficient or its characteristic path length. We believe this to be because the characteristic path length depends only on the path to a neuron that attenuates the gradient the least, but in actuality attenuation to the gradient also heavily depends on the number of paths it can take in parallel to a destination. We have had success using networks with around $p=8\%$ of their edges replaced, which is far more than is necessary to make the network small-world; nonetheless, we believe that the success of this topology is for reasons similar to those listed above.
+We have found that the performance of a network does not track closely with its clustering coefficient or its characteristic path length. We believe this to be mainly because the characteristic path length depends only on the path to a neuron that attenuates the gradient the least, but in actuality attenuation to the gradient also heavily depends on the number of paths it can take in parallel to a destination. We have had success using networks with $p\approx 8\%$, which is far more than necessary to make the network small-world; nonetheless, we believe that the success of this topology is for reasons similar to those listed above. It is possible that there are multiple factors influencing the performance of a network as connections are replaced - e.g. layer-skipping connections constitute a linear transformation in parallel with hidden layers constituting a nonlinear transformation (described in section \ref{sec:residuals}), or layer-skipping connections partially counteract the trend described in section \ref{sec:vangrad}.
 
 \subsection{Nonlinearities learning residuals}
+\label{sec:residuals}
 
 In previous work layer-skipping connections have been used to alter the task of nonlinear layers from matching the desired output to matching the residual between the desired output and the output of a previous layer \cite{he2015}, \cite{ioffe2015}. This has proven extremely successful for training very-deep networks using backpropagation. If the underlying function describing a training dataset is $\mtx{y}=f(\mtx{x})$, layer-skipping connections can be run in parallel with a collection of nonlinear layers so that they need only match the function $f(\mtx{x})-\mtx{x}$. The rationale behind this technique is that not all nonlinearities are useful for approximating $f$, and if a nonlinearity is not useful it must be trained to approximate an identity mapping, which may be difficult. By adding a parallel identity mapping or linear mapping it becomes easy to minimize the contribution by a set of nonlinearities - their weights can simply be driven towards zero.
 \npar
@@ -231,7 +233,7 @@ To provide a reference point for our topology we ran tests on a network that is 
 \subsection{Our topology}
 \label{sec:our_topology}
 
-To generate a network with our topology we use as a starting point the topology described in section \ref{sec:basic_topology}. We then connect every pair of neurons in a given layer. Finally, for a given number of connections, we remove an existing connection at random and replace it with a random connection between two unconnected neurons in the network. \footnote{We have also tried adding new connections without replacing existing ones, and observed roughly the same performance. In this paper we replace connections to limit the number of free parameters added to the network and avoid the possibility of conflating improvement due to the changed topology with that due to additional parameters.} We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results when replacing around $8\%$ of a network's connections in this manner.
+To generate a network with our topology we use as a starting point the topology described in section \ref{sec:basic_topology}. We then connect every pair of neurons in a given layer. Finally, for a given number of connections, we remove an existing connection at random and replace it with a random connection between two unconnected neurons in the network. \footnote{We have also tried adding new connections without replacing existing ones, and observed roughly the same performance. In this paper we replace connections to limit the number of free parameters added to the network and avoid the possibility of conflating improvement due to the changed topology with that due to additional parameters.} We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results with $p\approx 8\%$ of a network's connections in this manner.
 \npar
 This topology allows us to train the network with a uniform learning rate of .02 across the entire network. Weights of connections between pairs of neurons in adjacent layers are still initialized based on (\ref{eqn:gb_init}). Weights of intralayer connections and layer-skipping connections are drawn from $U[-.05,.05]$,where the value .05 was chosen empirically. While we do not theoretically justify this initialization, it allows for good performance.
 
@@ -272,7 +274,7 @@ Note that this metric ignores the difference between deep pairs and the pair con
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/MNIST_network_comparison.pdf}
-  \caption{Comparison of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with a standard multilayer feedforward topology and a single learning rate. In blue is a network with the same multilayer feedforward topology and unique learning rates for each layer, tuned to promote uniformity in the extent to which each pair of layers trains, as described in \cite{scellier17}. In green is a network with a multilayer feedforward topology with fully connected layers and with around $8\%$ of its connections replaced by random layer-skipping connections.}
+  \caption{Comparison of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with a standard multilayer feedforward topology and a single learning rate. In blue is a network with the same multilayer feedforward topology and unique learning rates for each layer, tuned to promote uniformity in the extent to which each pair of layers trains, as described in \cite{scellier17}. In green is a network with a multilayer feedforward topology with fully connected layers and $p=7.56\%$.}
   \label{fig:mnist_comparison}
 \end{figure}
 
@@ -283,7 +285,7 @@ Note that this metric ignores the difference between deep pairs and the pair con
 Network topology & Learning rate(s) & $\epsilon$ & $\beta$ & $N_{free}$ & $N_{weakly-clamped}$\\\hline\hline
 Basic, unique learning rates & .128, .032, .008, .002 & .5 & 1.0 & 500 & 8 \\\hline
 Basic, one learning rate & .02 & .5 & 1.0 & 500 & 8  \\\hline
-Our topology & .02 & .5 & 1.0 & 500 & 8 \\\hline
+Our topology, $p=7.56\%$ & .02 & .5 & 1.0 & 500 & 8 \\\hline
 \end{tabular}
 \end{center}
 \caption{Hyperparameters of networks tested on MNIST dataset}
@@ -305,7 +307,7 @@ We tracked the error rates of the three networks as they were trained and found 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/MNIST_individual_layers.pdf}
-  \caption{Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref{fig:mnist_comparison}, and have been averaged as described in (\ref{eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite{scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and with around $8\%$ of its connections replaced by random layer-skipping connections.}
+  \caption{Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref{fig:mnist_comparison}, and have been averaged as described in (\ref{eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite{scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and $p=7.56\%$.}
   \label{fig:mnist_layers}
 \end{figure}
 
