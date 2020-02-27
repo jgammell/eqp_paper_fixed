@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  27 FEB 2020 10:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  27 FEB 2020 11:08
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -365,30 +365,30 @@ cmm/b/it/10 b\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y[]\OT1/cmr/m/n/10 )$;
 
 [3] [4] [5]
 
-LaTeX Warning: Citation `???' on page 6 undefined on input line 166.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 176.
 
 
-LaTeX Warning: Citation `???' on page 6 undefined on input line 172.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 182.
 
 [6]
 <figures/basic_topology_illustration.pdf, id=41, 845.07718pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
- line 181.
+ line 191.
 (pdftex.def)             Requested size: 202.93097pt x 122.22983pt.
 <figures/topology_changes_illustration.pdf, id=42, 839.05469pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
-ut line 187.
+ut line 197.
 (pdftex.def)             Requested size: 202.93097pt x 123.10751pt.
 
 
-LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 195.
+LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 205.
 
 
-LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 209.
+LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 219.
 
 [7 <./figures/basic_topology_illustration.pdf
 
@@ -405,30 +405,30 @@ ay>); ignored.
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 264.
+ne 274.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
  [9 <./figures/MNIST_network_comparison.pdf>]
 <figures/MNIST_individual_layers.pdf, id=162, 1927.2pt x 953.5625pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
-e 297.
+e 307.
 (pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
-ne 298.
+ne 308.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
-ne 298.
+ne 308.
 
 [10 <./figures/MNIST_individual_layers.pdf>]
 <figures/MNIST_one_epoch_performance.pdf, id=233, 1927.2pt x 993.7125pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
- line 311.
+ line 321.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
  [11 <./figures/MNIST_one_epoch_performance.pdf>] (eqp_paper_fixed.bbl
 Underfull \hbox (badness 1629) in paragraph at lines 94--97
@@ -440,14 +440,11 @@ Underfull \hbox (badness 1629) in paragraph at lines 94--97
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
  4926 strings out of 492945
  76188 string characters out of 3127140
- 154301 words of memory out of 3000000
+ 154303 words of memory out of 3000000
  8726 multiletter control sequences out of 15000+200000
  19226 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -480,7 +477,7 @@ ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jig
 /AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
 /Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
 i10.pfb>
-Output written on eqp_paper_fixed.pdf (13 pages, 603269 bytes).
+Output written on eqp_paper_fixed.pdf (13 pages, 602955 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

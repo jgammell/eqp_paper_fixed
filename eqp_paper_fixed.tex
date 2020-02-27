@@ -122,13 +122,23 @@ One factor that probably contributes to the vanishing gradient problem is that w
 \npar
 Assume that a typical neuron in the network changes by a small constant amount $\delta$ after each iteration of equation \ref{eqn:dynamics} (this is reasonable because we run only the early stages of evolution to the weakly-clamped equilibrium), and assume that the typical neuron is in state $s_0$ at the end of the free phase. After $N$ iterations, a neuron in the output layer will have changed by $N\delta$ and one in a deep layer $l$ layers from the output will have changed by $(N-l)\delta$. Assume further that $s_0$ is in the middle of the support of $\rho'$ where $\rho$ is the hardened sigmoid function from equation \ref{eqn:hardened_sigmoid}, so that we can replace $\rho(x)$ by $x$. Then it follows from equation \ref{eqn:weight_correction} that a typical neuron in the output layer will be corrected by 
 \begin{equation}
-\Delta w^\text{output}=\frac{\alpha}{\beta}((N\delta + s_0)((N-1)\delta + s_0)-s_0^2)\approx \frac{\alpha}{\beta}(N^2\delta^2+2s_0N\delta).
+\Delta w^\text{output}=\frac{\alpha}{\beta}((N\delta + s_0)((N-1)\delta + s_0)-s_0^2)\approx \frac{\alpha}{\beta}(N^2\delta^2+2s_0N\delta)
 \end{equation}
-
-
- If we assume that the activation of a typical neuron in a layer changes by a constant amount $\delta$ after each iteration (which is reasonable because we are only running the early stages of evolution to the weakly-clamped equilibrium), then after $N$ iterations a layer $l$ layers from the output layer will only have been influenced for $N-l$ iterations. Then we expect the activations of the output layer to change by $N\delta$ and the activations of the deeper layer to change by $N\delta\frac{N-l}{N}$. It follows from equation \ref{eqn:weight_correction} that the weights connecting the output layer to the first hidden layer would be corrected by $\frac{\alpha}{\beta}\delta ^2 N(N-1)$ and those connecting the deeper layer and the layer in front of it would be corrected by $\frac{\alpha}{\beta}\delta ^2 (N-l)(N-l+1)$, giving a ratio $\frac{(N-l)(N-l+1)}{(N)(N-1)}$. This would not account for the exponential attenuation we observe. Also, increasing the number of weakly-clamped iterations does not significantly affect network performance. Therefore, we do not believe that this factor is a significant contributor to the vanishing gradient problem we observe.
+and similarly a typical neuron from the deep layer will be corrected by 
+\begin{equation}
+\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta,
+\end{equation}
+so the ratio of these corrections will be
+\begin{equation}
+\frac{\Delta w^l}{\Delta w^{\text{output}}}\approx \frac{(N-l)^2\delta^2-2s_0(N-l)\delta}{N^2\delta^2+2s_0N\delta}=\frac{N-l}{N}\frac{(N-l)\delta+2s_0}{N\delta+2s_0}\approx 1-\frac{l}{N}.
+\end{equation}
+We have observed that
+\begin{equation}
+\frac{\Delta w^l}{\Delta w^{\text{output}}}\sim e^{-l},
+\end{equation}
+so it seems unlikely that this phenomenon is a primary cause of the vanishing gradient problem.
 \npar
-The vanishing gradient problem causes deep networks to train very slowly, which is obviously undesirable. It also causes the magnitudes of corrections to weights between pairs of layers to differ by many orders of magnitude; this would be problematic to an analog implementation of the framework where neurons' activations have limited numerical precision.
+The vanishing gradient problem causes deep networks to train very slowly, which is obviously undesirable. It also causes the magnitudes of corrections to weights between pairs of layers to differ by many orders of magnitude, which would be problematic in an analog implementation of the framework using neurons with limited numerical precision.
 \npar
 In the original paper the vanishing gradient problem was solved by using unique learning rates for each layer, chosen to make the magnitudes of corrections to neurons' parameters uniform regardless of depth in the network. While this method was effective, it is unappealing because it seems unlikely to take place in a biological brain, it would add complexity to an analog implementation of the framework, and it introduces more hyperparameters that must be tuned to train a network. Our topology solves the problem without these unappealing characteristics.
 
