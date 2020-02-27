@@ -23,6 +23,7 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Implementation in a continuous Hopfield network}{2}\protected@file@percent }
 \newlabel{eqn:hardened_sigmoid}{{1}{2}}
 \newlabel{eqn:dynamics}{{6}{3}}
+\newlabel{eqn:weight_correction}{{7}{3}}
 \citation{lillicrap2014}
 \citation{oconnor2018}
 \citation{bullmore2009}
@@ -33,12 +34,11 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Vanishing gradient problem}{4}\protected@file@percent }
 \citation{watts98}
 \citation{bullmore2009}
-\citation{watts98}
-\citation{watts98}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Small-world networks}{5}\protected@file@percent }
 \newlabel{sec:sw_background}{{2.3}{5}}
 \newlabel{eqn:charpathlength}{{12}{5}}
-\newlabel{eqn:clustcoeff}{{13}{5}}
+\citation{watts98}
+\citation{watts98}
 \citation{he2015}
 \citation{ioffe2015}
 \citation{lee2015}
@@ -59,14 +59,13 @@
 \citation{ioffe2015}
 \citation{glorot2010}
 \citation{???}
+\newlabel{eqn:clustcoeff}{{13}{6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Nonlinearities learning residuals}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Related work}{6}\protected@file@percent }
 \citation{scellier17}
 \citation{pytorch}
 \citation{scellier17}
 \citation{mnist1998}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Nonlinearities learning residuals}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Related work}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{6}\protected@file@percent }
-\newlabel{eqn:hardened_sigmoid}{{14}{6}}
 \citation{scellier17}
 \citation{glorot10}
 \citation{scellier17}
@@ -77,38 +76,42 @@
 \newlabel{sub@fig:top_sw}{{b}{7}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \relax }}{7}\protected@file@percent }
 \newlabel{fig:topology_illus}{{1}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Basic topology with unique learning rates}{7}\protected@file@percent }
 \newlabel{sec:basic_topology}{{4.1}{7}}
 \newlabel{eqn:gb_init}{{16}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Basic topology with single learning rate}{7}\protected@file@percent }
-\newlabel{sec:basic_topology_uniform}{{4.2}{7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Our topology}{7}\protected@file@percent }
-\newlabel{sec:our_topology}{{4.3}{7}}
-\citation{scellier17}
-\citation{scellier17}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Basic topology with single learning rate}{8}\protected@file@percent }
+\newlabel{sec:basic_topology_uniform}{{4.2}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Our topology}{8}\protected@file@percent }
+\newlabel{sec:our_topology}{{4.3}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tracking the training rates of individual pairs of layers}{8}\protected@file@percent }
 \newlabel{eqn:rms_correction}{{17}{8}}
 \newlabel{eqn:running_avg}{{18}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Tracking the spread of training rates as a scalar}{8}\protected@file@percent }
-\newlabel{eqn:training_sum}{{19}{8}}
-\newlabel{eqn:spread}{{20}{8}}
+\citation{scellier17}
+\citation{scellier17}
 \citation{mnist1998}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with a standard multilayer feedforward topology and a single learning rate. In blue is a network with the same multilayer feedforward topology and unique learning rates for each layer, tuned to promote uniformity in the extent to which each pair of layers trains, as described in \cite  {scellier17}. In green is a network with a multilayer feedforward topology with fully connected layers and with around $8\%$ of its connections replaced by random layer-skipping connections.\relax }}{9}\protected@file@percent }
 \newlabel{fig:mnist_comparison}{{2}{9}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameters of networks tested on MNIST dataset\relax }}{9}\protected@file@percent }
-\newlabel{table:hyperparameters}{{1}{9}}
+\newlabel{eqn:training_sum}{{19}{9}}
+\newlabel{eqn:spread}{{20}{9}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results}{9}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}MNIST dataset}{9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Network performance comparison}{9}\protected@file@percent }
-\newlabel{sec:network_performance}{{5.1.1}{9}}
 \citation{scellier17}
 \citation{scellier17}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameters of networks tested on MNIST dataset\relax }}{10}\protected@file@percent }
+\newlabel{table:hyperparameters}{{1}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure 2\hbox {}, and have been averaged as described in (\G@refundefinedtrue \text  {\normalfont  \bfseries  ??}\GenericWarning  {               }{LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite  {scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and with around $8\%$ of its connections replaced by random layer-skipping connections.\relax }}{10}\protected@file@percent }
 \newlabel{fig:mnist_layers}{{3}{10}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.1}Network performance comparison}{10}\protected@file@percent }
+\newlabel{sec:network_performance}{{5.1.1}{10}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.2}Training rates of individual pairs of layers}{10}\protected@file@percent }
 \newlabel{sec:mnist_perlayer}{{5.1.2}{10}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Error rate after one epoch as connections are added}{10}\protected@file@percent }
-\newlabel{sec:mnist_1epoch}{{5.1.3}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The training error after one epoch of a network with our topology, as connections are replaced.\relax }}{11}\protected@file@percent }
+\newlabel{fig:mnist_1epoch}{{4}{11}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.1.3}Error rate after one epoch as connections are added}{11}\protected@file@percent }
+\newlabel{sec:mnist_1epoch}{{5.1.3}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}\protected@file@percent }
 \bibstyle{plain}
 \citation{*}
 \bibdata{references}
@@ -116,9 +119,6 @@
 \bibcite{bartunov2018}{2}
 \bibcite{bengio2015}{3}
 \bibcite{bullmore2009}{4}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The training error after one epoch of a network with our topology, as connections are replaced.\relax }}{11}\protected@file@percent }
-\newlabel{fig:mnist_1epoch}{{4}{11}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}\protected@file@percent }
 \bibcite{davies2018}{5}
 \bibcite{glorot2010}{6}
 \bibcite{he2015}{7}

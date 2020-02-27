@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  26 FEB 2020 21:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  27 FEB 2020 10:30
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
-LaTeX2e <2019-10-01> patch level 3
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
-Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size10.clo"
-File: size10.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
+LaTeX2e <2018-12-01>
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size10.clo"
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
 \c@part=\count80
 \c@section=\count81
@@ -20,27 +20,26 @@ File: size10.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
-sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.st
+y"
 Package: geometry 2018/04/16 v5.8 Page Geometry
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
-y"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifpdf.sty"
-Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
-Package: iftex 2019/11/07 v1.0c TeX engine tests
-))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifvtex.sty
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty
 "
-Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifxetex.st
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifvtex.st
 y"
-Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ifxetex\ifxetex.st
+y"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 \Gm@cnth=\count88
 \Gm@cntv=\count89
@@ -55,87 +54,76 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 \Gm@layoutvoffset=\dimen110
 \Gm@dimlist=\toks15
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.
-cfg"))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cite\cite.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.cf
+g")) ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cite\cite.sty"
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
 Package: cite 2015/02/27  v 5.5
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
-sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.st
+y"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
-sty"
-Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.st
+y"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+ ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
-ics.cfg"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graphic
+s.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 105.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
-x.def"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdftex.
+def"
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
-)
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\bm.sty"
-Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+) ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\bm.sty"
+Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
 \symboldsymbols=\mathgroup6
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
-LaTeX Info: Redefining \bm on input line 209.
+LaTeX Info: Redefining \bm on input line 207.
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.st
-y"
-Package: amsmath 2019/04/01 v2.17c AMS math features
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
+Package: amsmath 2018/12/01 v2.17b AMS math features
 \@mathmargin=\skip43
-
 For additional information on amsmath, use the `?' option.
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.st
-y"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.sty"
 Package: amstext 2000/06/29 v2.01 AMS text
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty
-"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen113
-))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty
-"
+)) ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.st
+y"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 LaTeX Info: Redefining \boldsymbol on input line 28.
 \pmbraise@=\dimen114
-)
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
+) ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty
 "
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count91
-LaTeX Info: Redefining \frac on input line 227.
+LaTeX Info: Redefining \frac on input line 223.
 \uproot@=\count92
 \leftroot@=\count93
-LaTeX Info: Redefining \overline on input line 389.
+LaTeX Info: Redefining \overline on input line 385.
 \classnum@=\count94
 \DOTSCASE@=\count95
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
 \Mathstrutbox@=\box27
 \strutbox@=\box28
 \big@size=\dimen115
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \macc@depth=\count96
 \c@MaxMatrixCols=\count97
 \dotsspace@=\muskip10
@@ -156,33 +144,30 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2855.
-LaTeX Info: Redefining \] on input line 2856.
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.s
-ty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb.sty
+"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.
-sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.st
+y"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup7
 \symAMSb=\mathgroup8
-LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption
-.sty"
-Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.st
-y"
-Package: caption 2019/10/18 v3.4a Customizing captions (AR)
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.s
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcaption.s
 ty"
-Package: caption3 2019/09/09 v1.8e caption3 kernel (AR)
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.sty"
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3.sty
+"
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
 \captionmargin=\dimen122
 \captionmargin@=\dimen123
@@ -191,19 +176,17 @@ Package caption3 Info: TeX engine: e-TeX on input line 64.
 \caption@indent=\dimen126
 \caption@parindent=\dimen127
 \caption@hangindent=\dimen128
-Package caption Info: Standard document class detected.
 )
 \c@caption@flags=\count103
-\c@continuedfloat=\count104
+\c@ContinuedFloat=\count104
 )
 \c@subfigure=\count105
 \c@subtable=\count106
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mathtool
-s.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mathtools.
+sty"
 Package: mathtools 2020/01/17 v1.23 mathematical typesetting tools
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\calc.sty"
+ ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\calc.sty"
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count107
 \calc@Bcount=\count108
@@ -216,8 +199,8 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count109
 \calc@Cskip=\skip48
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mhsetup.
-sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/mathtools\mhsetup.st
+y"
 Package: mhsetup 2017/03/31 v1.3 programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\('isalreadyrobust on input line 129.
@@ -234,17 +217,13 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen136
 \l_MT_below_shortintertext_sep=\dimen137
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/appendix\appendix.
-sty"
-Package: appendix 2009/09/02 v1.2b extra appendix facilities
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/appendix\appendix.st
+y"
+Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@pps=\count111
 \c@@ppsavesec=\count112
 \c@@ppsaveapp=\count113
-) (eqp_paper_fixed.aux
-
-LaTeX Warning: Label `eqn:hardened_sigmoid' multiply defined.
-
-)
+) (eqp_paper_fixed.aux)
 \openout1 = `eqp_paper_fixed.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -295,8 +274,8 @@ LaTeX Font Info:    ... okay on input line 20.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
-df.mkii"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pdf
+.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count114
 \scratchdimen=\dimen138
@@ -310,45 +289,45 @@ df.mkii"
 \makeMPintoPDFobject=\count119
 \everyMPtoPDFconversion=\toks22
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-
-base.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-ba
+se.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infware
-rr.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infwarerr
+.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.st
-y"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvdefin
-ekeys.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvdefinek
+eys.sty"
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds
-.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.s
+ty"
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptions
-.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.s
+ty"
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvsetke
-ys.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys
+.sty"
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\etexcmd
-s.sty"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.
+sty"
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifluatex.s
-ty"
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.
+sty"
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
 ))))
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\pdftexc
-mds.sty"
-Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmd
+s.sty"
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
@@ -364,19 +343,19 @@ G,.JBIG2,.JB2,.eps]
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 21.
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
 
-
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
-("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+[1
 
-{C:/Users/jgamm/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+{C:/Users/jig/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 Overfull \hbox (17.18289pt too wide) in paragraph at lines 63--65
 \OT1/cmr/m/n/10 This ini-tial prediction-generating evo-lu-tion is de-noted the
  free phase. Con-sider some cost func-tion $\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (
@@ -386,29 +365,30 @@ cmm/b/it/10 b\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y[]\OT1/cmr/m/n/10 )$;
 
 [3] [4] [5]
 
-LaTeX Warning: Citation `???' on page 6 undefined on input line 157.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 166.
 
 
-LaTeX Warning: Citation `???' on page 6 undefined on input line 163.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 172.
 
-<figures/basic_topology_illustration.pdf, id=38, 845.07718pt x 509.0217pt>
+[6]
+<figures/basic_topology_illustration.pdf, id=41, 845.07718pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
- line 172.
+ line 181.
 (pdftex.def)             Requested size: 202.93097pt x 122.22983pt.
-<figures/topology_changes_illustration.pdf, id=39, 839.05469pt x 509.0217pt>
+<figures/topology_changes_illustration.pdf, id=42, 839.05469pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
-ut line 178.
+ut line 187.
 (pdftex.def)             Requested size: 202.93097pt x 123.10751pt.
 
-LaTeX Warning: Citation `pytorch' on page 6 undefined on input line 186.
 
-[6]
+LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 195.
 
-LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 201.
+
+LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 209.
 
 [7 <./figures/basic_topology_illustration.pdf
 
@@ -420,37 +400,37 @@ inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
 F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
 ay>); ignored.
->]
-<figures/MNIST_network_comparison.pdf, id=103, 1927.2pt x 953.5625pt>
+>] [8]
+<figures/MNIST_network_comparison.pdf, id=108, 1927.2pt x 993.7125pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 256.
-(pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
- [8] [9 <./figures/MNIST_network_comparison.pdf>]
-<figures/MNIST_individual_layers.pdf, id=161, 1927.2pt x 953.5625pt>
+ne 264.
+(pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
+ [9 <./figures/MNIST_network_comparison.pdf>]
+<figures/MNIST_individual_layers.pdf, id=162, 1927.2pt x 953.5625pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
-e 289.
+e 297.
 (pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
-ne 290.
+ne 298.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
-ne 290.
+ne 298.
 
-<figures/MNIST_one_epoch_performance.pdf, id=162, 1927.2pt x 953.5625pt>
+[10 <./figures/MNIST_individual_layers.pdf>]
+<figures/MNIST_one_epoch_performance.pdf, id=233, 1927.2pt x 993.7125pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
- line 303.
-(pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
-[10 <./figures/MNIST_individual_layers.pdf>] (eqp_paper_fixed.bbl [11 <./figure
-s/MNIST_one_epoch_performance.pdf>]
+ line 311.
+(pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
+ [11 <./figures/MNIST_one_epoch_performance.pdf>] (eqp_paper_fixed.bbl
 Underfull \hbox (badness 1629) in paragraph at lines 94--97
 []\OT1/cmr/m/n/10 Benjamin Scel-lier and Yoshua Ben-gio.  To-wards a bi-o-log-i
 -cally plau-si-ble back-prop.  \OT1/cmr/m/it/10 CoRR\OT1/cmr/m/n/10 ,
@@ -461,48 +441,48 @@ Underfull \hbox (badness 1629) in paragraph at lines 94--97
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 5232 strings out of 492450
- 79713 string characters out of 3120004
- 155400 words of memory out of 3000000
- 9495 multiletter control sequences out of 15000+200000
+ 4926 strings out of 492945
+ 76188 string characters out of 3127140
+ 154301 words of memory out of 3000000
+ 8726 multiletter control sequences out of 15000+200000
  19226 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,10n,46p,2098b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmbx10.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmbx12.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/jgamm/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jgamm/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jga
-mm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><
-C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmmi6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/amsfonts/cm/cmmi7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/jgamm/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jgamm/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Us
-ers/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
-7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmr5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/jgamm/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/jgamm/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/jgamm/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/U
-sers/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jgamm/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on eqp_paper_fixed.pdf (13 pages, 596989 bytes).
+ 42i,10n,40p,2098b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmbx9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jig/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jig/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/jig
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:
+/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
+i7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmmib10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jig/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jig/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/jig/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/j
+ig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C
+:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/jig/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jig/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jig
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
+/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb>
+Output written on eqp_paper_fixed.pdf (13 pages, 603269 bytes).
 PDF statistics:
- 374 PDF objects out of 1000 (max. 8388607)
+ 377 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

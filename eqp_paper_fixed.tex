@@ -80,6 +80,7 @@ The states of the network after the free and weakly-clamped phases are used to c
 \item Perform the weakly-clamped evolution; evolve for a short amount of time towards equilibrium on the energy function $F(\mtx{u},\mtx{y}_d,\beta)$, again according to equation \ref{eqn:dynamics}, using $\mtx{s}^0$ as a starting point. Record the equilibrium state $\mtx{s}^{\beta}$.
 \item Compute the correction to each weight in the network using the function 
 \begin{equation}
+\label{eqn:weight_correction}
 \Delta W_{ij}=\alpha \frac{1}{\beta}(\rho(u_i^\beta)\rho(u_j^\beta)-\rho(u_i^0)\rho(u_j^0))
 \end{equation}
 where $\alpha$, the learning rate, is a positive constant. Adjust the weights using $W_{ij}:=W_{ij}+\Delta W_{ij}$.
@@ -113,11 +114,19 @@ The method presented in this paper allows networks with multiple layers to train
 
 \subsection{Vanishing gradient problem}
 
-It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem: the correction to a weight parameter of a given neuron attenuates exponentially with that neuron's distance from the output layer. This problem is familiar in the context of conventional networks; the gradient of a parameter of a given neuron with respect to a cost function wil attenuate exponentially with distance from the output layer when the expected value of the derivative of neurons' activation function is less than 1, leading shallow layers to train substantially faster than deep layers. In conventional networks trained using backpropagation, the vanishing gradient problem can be effectively addressed by initializing weights as described in \cite{glorot2010} and by using activation functions with uniform derivatives, such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids as described in equation \ref{eqn:hardened_sigmoid}.
+It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem: the magnitude of the weight correction matrix to weights between a pair of layers attenuates exponentially with the number of layers between that pair and the output layer. This problem is familiar in the context of conventional networks trained through backpropagation, where if the magnitude of the correction matrix to weights connecting the output layer to the last hidden layer is $\Delta W$ and if the expected magnitude of the derivative of neurons' activation function is $\alpha<1$, then the magnitude of the correction matrix to weights connecting layers $l$ and $l-1$ from the output is expected to be $\alpha^l\Delta W$. In conventional networks, the vanishing gradient problem can be effectively addressed by initializing weights to make activation variances and backpropagated gradient variances approximately uniform with respect to depth as described in \cite{glorot2010} and by using activation functions with unity derivatives (**find reference), such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids (equation \ref{eqn:hardened_sigmoid}).
 \npar
-Neither of these approaches are effective at solving the problem in continuous Hopfield networks trained through equilibrium propagation. While the symptom of the problem is the same as in conventional networks, it is unclear that its cause is the same, as there is not a straightforward causal relationship between the activations of a pair of neurons, and the fact that conventional solutions are ineffective suggests that the cause is different.
+Neither of these approaches are effective at solving the vanishing gradient problem in the context of equilibrium propagation. In the context of energy-based networks the situation is more-complicated because there is no straightforward causal relationship between the activations of two given neurons; instead, neurons evolve as a system. The fact that conventional approaches are ineffective suggests that the cause of the problem is different than in conventional networks.
 \npar
-One factor that likely contributes to a vanishing gradient in these networks is that it takes multiple iterations of the differential equation for clamping to perturb neurons in deep layers; since the cost function affects only the output layer, the shallowest hidden layer is not effected until the second iteration, the next layer until the third iteration, and so on. The correction to a given neuron is proportional to the extent to which it is perturbed in the weakly-clamped phase. Therefore, if a typical neuron in the output layer is corrected by $\delta$, neglecting other factors a typical neuron $l$ layers from the output would be corrected by \begin{equation}\delta\frac{N_{weakly-clamped}-l}{N_{weakly-clamped}}.\end{equation} Since the observed attenuation to corrections is exponential with respect to distance from the output, it seems unlikely that this is a major contributor to the vanishing gradient problem.
+One factor that probably contributes to the vanishing gradient problem is that when the output layer of neurons is perturbed at the beginning of the weakly-clamped phase, it takes an additional iteration of the approximation of equation \ref{eqn:dynamics} for the perturbation to influence the last hidden layer, then an additional iteration for the second-to-last hidden layer, and so on. We do not believe this factor to be a significant contributor to the vanishing gradient problem because increasing $N_{weakly-clamped}$ does not significantly affect network performance. This is supported by the following rough theoretical formulation:
+\npar
+Assume that a typical neuron in the network changes by a small constant amount $\delta$ after each iteration of equation \ref{eqn:dynamics} (this is reasonable because we run only the early stages of evolution to the weakly-clamped equilibrium), and assume that the typical neuron is in state $s_0$ at the end of the free phase. After $N$ iterations, a neuron in the output layer will have changed by $N\delta$ and one in a deep layer $l$ layers from the output will have changed by $(N-l)\delta$. Assume further that $s_0$ is in the middle of the support of $\rho'$ where $\rho$ is the hardened sigmoid function from equation \ref{eqn:hardened_sigmoid}, so that we can replace $\rho(x)$ by $x$. Then it follows from equation \ref{eqn:weight_correction} that a typical neuron in the output layer will be corrected by 
+\begin{equation}
+\Delta w^\text{output}=\frac{\alpha}{\beta}((N\delta + s_0)((N-1)\delta + s_0)-s_0^2)\approx \frac{\alpha}{\beta}(N^2\delta^2+2s_0N\delta).
+\end{equation}
+
+
+ If we assume that the activation of a typical neuron in a layer changes by a constant amount $\delta$ after each iteration (which is reasonable because we are only running the early stages of evolution to the weakly-clamped equilibrium), then after $N$ iterations a layer $l$ layers from the output layer will only have been influenced for $N-l$ iterations. Then we expect the activations of the output layer to change by $N\delta$ and the activations of the deeper layer to change by $N\delta\frac{N-l}{N}$. It follows from equation \ref{eqn:weight_correction} that the weights connecting the output layer to the first hidden layer would be corrected by $\frac{\alpha}{\beta}\delta ^2 N(N-1)$ and those connecting the deeper layer and the layer in front of it would be corrected by $\frac{\alpha}{\beta}\delta ^2 (N-l)(N-l+1)$, giving a ratio $\frac{(N-l)(N-l+1)}{(N)(N-1)}$. This would not account for the exponential attenuation we observe. Also, increasing the number of weakly-clamped iterations does not significantly affect network performance. Therefore, we do not believe that this factor is a significant contributor to the vanishing gradient problem we observe.
 \npar
 The vanishing gradient problem causes deep networks to train very slowly, which is obviously undesirable. It also causes the magnitudes of corrections to weights between pairs of layers to differ by many orders of magnitude; this would be problematic to an analog implementation of the framework where neurons' activations have limited numerical precision.
 \npar
@@ -185,7 +194,6 @@ The vanishing gradient problem was a big obstacle to the training of conventiona
 
 We implemented the equilibrium propagation learning framework \cite{scellier17} using the Pytorch library \cite{pytorch}, and verified that we could recreate the experiments run in \cite{scellier17}. All of our networks use a hardened sigmoid activation function 
 \begin{equation}
-\label{eqn:hardened_sigmoid}
 \rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\}
 \end{equation} with 
 \begin{equation}\rho'(x):=\begin{cases}1 & 0\leq x \leq 1 \\ 0 & \text{else}\end{cases}\end{equation}
@@ -262,7 +270,7 @@ Note that this metric ignores the difference between deep pairs and the pair con
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
 \hline
-Network & Learning rate(s) & $\epsilon$ & $\beta$ & $N_{free}$ & $N_{weakly-clamped}$\\\hline\hline
+Network topology & Learning rate(s) & $\epsilon$ & $\beta$ & $N_{free}$ & $N_{weakly-clamped}$\\\hline\hline
 Basic, unique learning rates & .128, .032, .008, .002 & .5 & 1.0 & 500 & 8 \\\hline
 Basic, one learning rate & .02 & .5 & 1.0 & 500 & 8  \\\hline
 Our topology & .02 & .5 & 1.0 & 500 & 8 \\\hline
