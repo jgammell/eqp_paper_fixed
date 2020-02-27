@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  24 FEB 2020 20:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  26 FEB 2020 21:41
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -240,7 +240,11 @@ Package: appendix 2009/09/02 v1.2b extra appendix facilities
 \c@@pps=\count111
 \c@@ppsavesec=\count112
 \c@@ppsaveapp=\count113
-) (eqp_paper_fixed.aux)
+) (eqp_paper_fixed.aux
+
+LaTeX Warning: Label `eqn:hardened_sigmoid' multiply defined.
+
+)
 \openout1 = `eqp_paper_fixed.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -373,110 +377,101 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/jgamm/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (23.35976pt too wide) in paragraph at lines 68--69
-[]\OT1/cmr/m/n/10 Perform the weakly-clamped evo-lu-tion; evolve for a short am
-ount of time to equi-lib-rium on $\OML/cmm/m/it/10 F\OT1/cmr/m/n/10 (\OML/cmm/b
-/it/10 u\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y\OML/cmm/m/it/10 ; \OML/cmm/b/it/1
-0 y[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 )$,
+Overfull \hbox (17.18289pt too wide) in paragraph at lines 63--65
+\OT1/cmr/m/n/10 This ini-tial prediction-generating evo-lu-tion is de-noted the
+ free phase. Con-sider some cost func-tion $\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (
+\OML/cmm/b/it/10 u\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 W\OML/cmm/m/it/10 ; \OML/
+cmm/b/it/10 b\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y[]\OT1/cmr/m/n/10 )$;
  []
 
-[3] [4]
+[3] [4] [5]
 
-LaTeX Warning: Citation `???' on page 5 undefined on input line 145.
-
-
-LaTeX Warning: Citation `???' on page 5 undefined on input line 151.
-
-[5]
-<figures/scellier_network_default.png, id=38, 703.62875pt x 473.77pt>
-File: figures/scellier_network_default.png Graphic file (type png)
-<use figures/scellier_network_default.png>
-Package pdftex.def Info: figures/scellier_network_default.png  used on input li
-ne 160.
-(pdftex.def)             Requested size: 202.93097pt x 136.63794pt.
-<figures/scellier_network_skconns.png, id=40, 703.62875pt x 473.77pt>
-File: figures/scellier_network_skconns.png Graphic file (type png)
-<use figures/scellier_network_skconns.png>
-Package pdftex.def Info: figures/scellier_network_skconns.png  used on input li
-ne 166.
-(pdftex.def)             Requested size: 202.93097pt x 136.63794pt.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 157.
 
 
-LaTeX Warning: Citation `pytorch' on page 6 undefined on input line 174.
+LaTeX Warning: Citation `???' on page 6 undefined on input line 163.
 
+<figures/basic_topology_illustration.pdf, id=38, 845.07718pt x 509.0217pt>
+File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
+<use figures/basic_topology_illustration.pdf>
+Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
+ line 172.
+(pdftex.def)             Requested size: 202.93097pt x 122.22983pt.
+<figures/topology_changes_illustration.pdf, id=39, 839.05469pt x 509.0217pt>
+File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
+<use figures/topology_changes_illustration.pdf>
+Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
+ut line 178.
+(pdftex.def)             Requested size: 202.93097pt x 123.10751pt.
 
-LaTeX Warning: Citation `glorot10' on page 6 undefined on input line 189.
+LaTeX Warning: Citation `pytorch' on page 6 undefined on input line 186.
 
-[6 <./figures/scellier_network_default.png> <./figures/scellier_network_skconns
-.png>] [7]
-<figures/MNIST_network_comparison.pdf, id=53, 1927.2pt x 993.7125pt>
+[6]
+
+LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 201.
+
+[7 <./figures/basic_topology_illustration.pdf
+
+pdfTeX warning: pdflatex (file ./figures/basic_topology_illustration.pdf): PDF 
+inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
+>); ignored.
+> <./figures/topology_changes_illustration.pdf
+
+pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
+F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
+ay>); ignored.
+>]
+<figures/MNIST_network_comparison.pdf, id=103, 1927.2pt x 953.5625pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 251.
-(pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
- [8]
-<figures/per_layer.pdf, id=58, 1305.87875pt x 407.5225pt>
-File: figures/per_layer.pdf Graphic file (type pdf)
-<use figures/per_layer.pdf>
-Package pdftex.def Info: figures/per_layer.pdf  used on input line 284.
-(pdftex.def)             Requested size: 469.75502pt x 146.58983pt.
-
-
-LaTeX Warning: Reference `eqn:layer_averaging' on page 9 undefined on input lin
-e 285.
-
-
-LaTeX Warning: Reference `eqn:layer_averaging' on page 9 undefined on input lin
-e 285.
-
-<figures/MNIST_linear_sweep_error_vs_replaced_conns.pdf, id=59, 433.62pt x 287.
-0725pt>
-File: figures/MNIST_linear_sweep_error_vs_replaced_conns.pdf Graphic file (type
- pdf)
-<use figures/MNIST_linear_sweep_error_vs_replaced_conns.pdf>
-Package pdftex.def Info: figures/MNIST_linear_sweep_error_vs_replaced_conns.pdf
-  used on input line 298.
-(pdftex.def)             Requested size: 469.75502pt x 311.0105pt.
-[9 <./figures/MNIST_network_comparison.pdf>] [10 <./figures/per_layer.pdf> <./f
-igures/MNIST_linear_sweep_error_vs_replaced_conns.pdf
-
-pdfTeX warning: pdflatex (file ./figures/MNIST_linear_sweep_error_vs_replaced_c
-onns.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
-ge
->]
-<figures/Linear_individual_layer_training.pdf, id=202, 1927.2pt x 993.7125pt>
-File: figures/Linear_individual_layer_training.pdf Graphic file (type pdf)
-<use figures/Linear_individual_layer_training.pdf>
-Package pdftex.def Info: figures/Linear_individual_layer_training.pdf  used on 
-input line 317.
-(pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
- [11 <./figures/Linear_individual_layer_training.pdf>]
-<figures/Linear_spread_vs_conns.pdf, id=254, 1927.2pt x 953.5625pt>
-File: figures/Linear_spread_vs_conns.pdf Graphic file (type pdf)
-<use figures/Linear_spread_vs_conns.pdf>
-Package pdftex.def Info: figures/Linear_spread_vs_conns.pdf  used on input line
- 332.
+ne 256.
 (pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
- [12 <./figures/Linear_spread_vs_conns.pdf>] (eqp_paper_fixed.bbl
+ [8] [9 <./figures/MNIST_network_comparison.pdf>]
+<figures/MNIST_individual_layers.pdf, id=161, 1927.2pt x 953.5625pt>
+File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
+<use figures/MNIST_individual_layers.pdf>
+Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
+e 289.
+(pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
+
+
+LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
+ne 290.
+
+
+LaTeX Warning: Reference `eqn:layer_averaging' on page 10 undefined on input li
+ne 290.
+
+<figures/MNIST_one_epoch_performance.pdf, id=162, 1927.2pt x 953.5625pt>
+File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
+<use figures/MNIST_one_epoch_performance.pdf>
+Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
+ line 303.
+(pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
+[10 <./figures/MNIST_individual_layers.pdf>] (eqp_paper_fixed.bbl [11 <./figure
+s/MNIST_one_epoch_performance.pdf>]
 Underfull \hbox (badness 1629) in paragraph at lines 94--97
 []\OT1/cmr/m/n/10 Benjamin Scel-lier and Yoshua Ben-gio.  To-wards a bi-o-log-i
 -cally plau-si-ble back-prop.  \OT1/cmr/m/it/10 CoRR\OT1/cmr/m/n/10 ,
  []
 
-[13]) [14] (eqp_paper_fixed.aux)
+[12]) [13] (eqp_paper_fixed.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 5246 strings out of 492450
- 80226 string characters out of 3120004
- 154377 words of memory out of 3000000
- 9506 multiletter control sequences out of 15000+200000
+ 5232 strings out of 492450
+ 79713 string characters out of 3120004
+ 155400 words of memory out of 3000000
+ 9495 multiletter control sequences out of 15000+200000
  19226 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,10n,46p,1682b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 51i,10n,46p,2098b,500s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
 /cm/cmbx10.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmbx12.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/f
@@ -489,28 +484,25 @@ C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /amsfonts/cm/cmmi7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/jgamm/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Users/jg
-amm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr12.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmr17.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/jgamm/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/jgamm/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/j
-gamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-<C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jgamm/AppData/Local/
-Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jgamm/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/U
-sers/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbol
-s/msbm10.pfb>
-Output written on eqp_paper_fixed.pdf (14 pages, 1002267 bytes).
+Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jgamm/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Us
+ers/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr1
+7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmr5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/jgamm/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/jgamm/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/jgamm/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/U
+sers/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y5.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy6.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/jgamm/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on eqp_paper_fixed.pdf (13 pages, 596989 bytes).
 PDF statistics:
- 391 PDF objects out of 1000 (max. 8388607)
+ 374 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

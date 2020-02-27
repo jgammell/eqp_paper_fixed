@@ -14,86 +14,98 @@
 \newcommand{\rms}[1]{<{#1}>}
 \newcommand{\npar}{\\\indent}
 
-\title{Layer-skipping connections facilitate training of deep networks using equilibrium propagation.}
+\title{Layer-skipping connections facilitate training of layered networks using equilibrium propagation.}
 \author{Jimmy Gammell, Adam McCaughan}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Equilibrium propagation is a learning framework for energy-based networks that is an appealing candidate for implementation through neuromorphic analog hardware and is a step forward in the search for a biologically-plausible way to implement deep learning, because it can be implemented with neurons that need perform only one type of computation in the prediction and correction phases of training and because a correction to a parameter of a neuron can be computed with knowledge only of the activations of neurons to which it is directly connected. However, networks of any depth suffer a vanishing gradient problem that has not yet been solved in a simple or biologically-plausible way. In this paper we present a modification that can be made to a network's topology that counteracts the vanishing gradient problem to facilitate training, that is biologically-plausible and would be convenient to implement in analog hardware.
+
+Equilibrium propagation is a learning framework for energy-based networks that can be implemented by neurons that perform only one type of computation in the prediction and correction phases of training, and that computes parameter corrections for a given neuron using only the activation values of directly-connected neurons. This makes it an appealing candidate for implementation in neuromorphic analog hardware, and marks a step forward in the search for a biologically-plausible implementation of deep learning. However, in previous implementations of equilibrium propagation, layered networks of any depth suffered from a vanishing gradient problem that has not yet been solved in a simple or biologically-plausible way. In this paper, we demonstrate that modifying the layered topology by adding random layer-skipping connections in a manner inspired by small-world networks can counteract the vanishing gradient problem to significantly facilitate training. This approach could be conveniently implemented in neuromorphic analog hardware and is biologically-plausible.
+
 \end{abstract}
 
 \section{Introduction}
 
-The equilibrium propagation learning framework \cite{scellier17} is a method for training a class of energy-based networks, the prototype for which is the continuous Hopfield network \cite{hopfield1984}. It is appealing as a framework that could be implemented in neuromorphic analog hardware because unlike in backpropagation, neurons are required to perform only one type of computation in the prediction of correction phases of training, and the parameters of a neuron can be updated using only the activations of neurons to which it is directly connected - there is no need for a feedback path through which to transmit information about the parameters and states of neurons across the entire network. These traits also address several of the problems \cite{bengio2015} that make backpropagation biologically-implausible.
+The equilibrium propagation learning framework \cite{scellier17} is a method for training a class of energy-based networks, the prototype for which is the continuous Hopfield network \cite{hopfield1984}. It is appealing as a framework that could be implemented in neuromorphic analog hardware because unlike in backpropagation, neurons are required to perform only one type of computation in the prediction of correction phases of training, and the parameters of a neuron can be updated using only the activations of neurons to which it is directly connected - there is no need for feedback paths through which to transmit information about the parameters and states of neurons across the entire network. Backpropagation is not biologically plausible, and a major reason is that credit assignment to a given neuron requires precise knowledge of the nonlinearities and derivatives of all neurons in the feedforward path between that neuron and the output\cite{bengio2015}; equilibrium propagation avoids this issue. Another major reason is that it is implausible for the forward and backwards propagation phases to use different computations requiring different computational circuits \cite{scellier17}; equilibrium propagation also avoids this issue.
 \npar
-It has been demonstrated that a continuous Hopfield network with a basic multilayer topology can be trained on MNIST \cite{mnist1998}. However, previous implementations encountered a vanishing gradient problem that significantly impedes training of networks with several hidden layers. Given that network depth has been critical to recent advancements in other fields of deep learning, and that MNIST is an easy dataset to train on, this is a significant issue with the learning framework. It has been demonstrated that the problem can be solved by using a unique learning rate for weight parameters at different depths in the network, with deeper parameters trained to a greater extent, to counteract attenuation of the gradient with network depth and to make its layers train uniformly. This approach is unappealing because (1) it introduces additional hyperparameters that must be tuned, (2) it would be inconvenient to implement and tune unique learning rates in analog hardware, and (3) it seems unlikely that the approach is biologically plausible.
+It has been demonstrated \cite{scellier17} that a continuous Hopfield network with a basic multilayer topology can be trained on MNIST \cite{mnist1998} through the equilibrium propagation framework. However, previous implementations encountered a vanishing gradient problem that significantly impedes training of networks with several hidden layers. Given that network depth is critical for performance on difficult datasets \cite{simonyan2014, srivastava2015tvdn}, and that convergence to a low error rate on MNIST is a low bar for a network to meet, this is a nontrivial issue. It has been demonstrated \cite{scellier17} that the problem can be solved by using a unique learning rate for parameters at different depths in the network, with deeper parameters trained with larger learning rates to counteract gradient attenuation with depth. This approach is unappealing because (1) it introduces additional hyperparameters that must be tuned, (2) it would be inconvenient to implement and tune unique learning rates in analog hardware, and (3) it seems unlikely that it is biologically plausible.
 \npar
-The purpose of this paper is to introduce a modification to the basic multilayer topology that can counteract the vanishing gradient problem in the context of energy-based networks trained using equilibrium propagation. We replace a small portion of a network's connections by random layer-skipping connections in a manner inspired by small-world network theory \cite{watts98}. We achieve 0\% training error and under 2.5\% test error on MNIST using a network with 3 hidden layers and no regularization term in its cost function. These error rates are competitive (**this may be too generous) in the context of similar biologically-motivated networks \cite{bartunov2018} and are the same as those achieved by a similar network in the original paper using a basic topology and unique learning rates, albiet they are achieved after around 25\% more epochs. The method requires only one additional hyperparameter - the number of connections to randomly replace - and could be implemented with relative ease in analog hardware. Layer-skipping connections are also documented in biological brains \cite{bullmore2009}, so it is biologically-plausible. Similar techniques have been used with some success in convolutional (\cite{he2015}, \cite{srivastava2015}) and multilayer feedforward (\cite{xiaohu2011}, \cite{krishnan2019}) networks with varying degrees of success. Our findings here show that layer-skipping connections are effective enough to be appealing in contexts where simplicity and biological plausibility are important, but would likely not make sense for use in a digital implementation where performance is a primary consideration.
+The purpose of this paper is to introduce a modification to the basic multilayer topology that can counteract the vanishing gradient problem in the context of energy-based networks trained using equilibrium propagation. We fully connect a network's layers, then replace a small portion of its connections with random layer-skipping connections, in a manner inspired by small-world networks \cite{watts98}. We achieve 0\% training error and under 2.5\% test error on MNIST using a network with 3 hidden layers and no regularization term in its cost function. These error rates are competitive (**this may be too generous) in the context of similar biologically-motivated networks \cite{bartunov2018} and are the same as those achieved by a basic multilayer network with 3 hidden layers in the original paper using a basic topology and unique learning rates \cite{scellier17}, albiet they are achieved after around 25\% more epochs. Our method adds only one additional hyperparameter
+\footnote{In our current implementation we tune the initial weights for added connections independently of those of preexisting connections. We have found that networks are not very sensitive to these initializations and that performance is good if they are in the same ballpark as initializations of preexisting connections (though we have no mathematical justification for this); thus, we do not consider this to be an additional hyperparameter.}
+ - the number of connections to randomly replace - and could be implemented with relative ease in analog hardware. Layer-skipping connections seem biologically-plausible, and small-world networks have been documented in biological brains \cite{bullmore2009}. Similar techniques have been used with some success in convolutional \cite{he2015, srivastava2015} and basic multilayer feedforward \cite{xiaohu2011, krishnan2019} networks with varying degrees of success. Our findings in this paper show that layer-skipping connections are effective enough to be appealing in contexts where simplicity and biological plausibility are important, but would likely not make sense for use in a digital implementation of equilibrium propagation where performance is a primary consideration.
 
 
 \section{Background and Theory}
 
 \subsection{Equilibrium propagation}
 
-Equilibrium propagation \cite{scellier17} is a learning framework for energy-based networks that approximates gradient descent on an arbitrary cost function. It is applicable to any network with dynamics characterized by evolution to a fixed point of an associated energy function; in this and in the original paper, it is implemented on a continuous Hopfield network \cite{hopfield1984}. For a variety of reasons outlined in \cite{bengio2015}, backpropagation is not biologically plausible. One of the major reasons is that to correct the parameters of a given neuron, it would be necessary to have a feedback mechanism providing specific information about the activations and parameters of all neurons between that neuron and the output layer, and no such path has been observed. Equilibrium propagation avoids this problem by approximating the gradient of an arbitrary cost function with respect to a neuron's parameters using only the activations of neurons to which it directly connects. It also requires neurons to perform only a single type of cpmputation in the prediction and correction phases of training. In addition to making equilibrium propagation more biologically-plausible, these characteristics also make it appealing as a candidate to implement in neuromorphic analog hardware by limiting the complexity and scope required of it.
+Equilibrium propagation \cite{scellier17} is a learning framework for energy-based networks that trains their parameters by approximating gradient descent on some arbitrary cost function. It is applicable to any network with dynamics characterized by evolution to a fixed point of an associated energy function; in this and in the original paper, it is implemented on a continuous Hopfield network \cite{hopfield1984}. For a variety of reasons outlined in \cite{bengio2015}, backpropagation is not biologically-plausible. One of the major reasons is that to correct the parameters of a given neuron, backpropagation requires precise information about the activations and nonlinearities of all neurons in the corresponding feedforward path, and no mechanism capable of delivering this information has been observed in biological brains. Equilibrium propagation avoids this problem by approximating the gradient of an arbitrary cost function with respect to a neuron's parameters using only the activations of neurons to which it directly connects. Another major reason backpropagation is not biologically-plausible is that it requires neurons to perform distinct computations (implemented using distinct circuitry) in the forward and backward propagation phases of training, and no evidence suggests that biological neurons perform distinct computations during distinct phases of learning. In contrast, equilibrium propagation requires only one behavior of neurons in both the prediction (free) and correction (weakly-clamped) phases of training: that over time they adjust their activation functions to perform gradient descent on an associated energy function (though this is still biologically-implausible because it requires two distinct phases of training). In addition to enhancing its biological plausibility, these traits also make equilibrium propagation appealing as a framework to implement on neuromorphic analog hardware because they would limit the complexity required of neurons and the amount of infrastructure needed to operate and train them.
 
 \subsubsection{Implementation in a continuous Hopfield network}
 
-Here we summarize the dynamics of a continuous Hopfield network trained using equilibrium propagation; a thorough and more-general treatment is given in the original paper \cite{scellier17}.
+Here we summarize the dynamics of a continuous Hopfield network trained using equilibrium propagation; a more-thorough and more-general treatment, on which this summary is based, is given in the original paper \cite{scellier17}.
 \npar
-Consider an arbitrary network with two subsets of its neurons designated as an input and output layer. Let $\mtx{x}$, $\mtx{h}$, and $\mtx{y}$ denote, respectively, vectors representing the activations of the input, hidden and output layers of a network. Let $\mtx{s}=\{\mtx{x},\mtx{h},\mtx{y}\}$ denote the state of the full network and $\mtx{u}=\{\mtx{h},\mtx{y}\}$ denote the state of its non-input neurons. Let $\mtx{W}$ and $\mtx{b}$ denote the network's weights and biases and $\mtx{v}$ the set of external influences to the network (inputs $\mtx{x}$ and target outputs $\mtx{y}_{target}$ in a training dataset). Let $\rho$ denote the activation function of a neuron; in this paper it is a hardened sigmoid function $\rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\}$.
+Consider an arbitrary network with two subsets of its neurons designated as an input and output layer. Let $\mtx{x}$, $\mtx{h}$, and $\mtx{y}$ denote, respectively, vectors containing the activations of its input, hidden and output layers, $\mtx{s}=\{\mtx{h},\mtx{y}\}$ denote its state and $\mtx{u}=\{\mtx{x}, \mtx{h},\mtx{y}\}$ denote its full set of neurons. Let $\mtx{W}$ and $\mtx{b}$ denote its weights and biases and $\rho$ denote the activation function of a neuron; here and in the original paper it is a hardened sigmoid function 
+\begin{equation}
+\label{eqn:hardened_sigmoid}
+\rho(x)=\begin{cases}0&x<0 \\ x&0\leq x \leq 1 \\ 1&x>1\end{cases}
+\end{equation} with
+\begin{equation}
+\rho'(x):=\begin{cases}0&x<0\\1&0\leq x \leq 1\\0&x>1\end{cases}
+\end{equation}
+where the derivative is defined to be 1 at endpoints of its support to avoid saturation. Let $\mtx{x}_d$ and $\mtx{y}_d$ denote the input and target output from a training dataset during a given batch.
 \npar
-A prediction of $\mtx{y}_{target}$ given $\mtx{x}$ is generated by clamping the network's input layer to $\mtx{x}$, then evolving to a local minimum of an energy function
+A prediction $\mtx{y}$ of $\mtx{y}_d$ is generated by clamping $\mtx{x}$ to $\mtx{x}_d$, then evolving to a local minimum of an energy function
 \begin{equation}
 E(\mtx{u})=\frac{1}{2}\sum_iu_i^2-\frac{1}{2}\sum_{i\neq j}W_{ij}\rho(u_i)\rho(u_j)-\sum_ib_i\rho(u_i).
 \end{equation}
-This evolution is denoted the free phase. Consider a cost function $C$; in this and in the original paper it is a quadratic error term
+This initial prediction-generating evolution is denoted the free phase. Consider some cost function $C(\mtx{u}, \mtx{W}, \mtx{b}, \mtx{y}_d)$; in this and in the original paper it is a quadratic error function
 \begin{equation}
-C(\mtx{y},\mtx{y}_{target})=\frac{1}{2}||\mtx{y}-\mtx{y}_{target}||^2,
+C(\mtx{y},\mtx{y}_d)=\frac{1}{2}||\mtx{y}-\mtx{y}_d||_2^2,
 \end{equation}
-but the algorithm is applicable to an arbitrary cost function - for example, one with a regularization term. After the free phase, the network is then evolved to a local minimum of a new energy function
+but the algorithm is applicable to an arbitrary cost function - for example, one including a regularization term. After the free phase, the network is then evolved to a local minimum of a total energy function
 \begin{equation}
-F(\mtx{u},\mtx{y},\mtx{y}_{target}, \beta)=E(\mtx{u})+\beta C(\mtx{y},\mtx{y}_{target})
+F(\mtx{u},\mtx{y}_d, \beta)=E(\mtx{u})+\beta C(\mtx{y},\mtx{y}_{target})
 \end{equation}
-where $\beta$, called the clamping factor, is a small constant with a random sign. This is called the weakly-clamped phase and can be interpreted as weakly-clamping the network's output neurons to the target output \footnote{For a cost function dependent on neurons outside of the output layer, this interpretation is complicated.}. Note that $E(\mtx{u})=F(\mtx{u},\mtx{y},\mtx{y}_{target},0)$. The network evolves to local minima of $F$ by performing gradient descent on it through the equation of motion
+where $\beta$, called the clamping factor, is a small constant. Note that $E(\mtx{u})=F(\mtx{u},\mtx{y}_d,0)$; therefore, the free phase can (and, henceforth, will) be interpreted as evolution to equilibrium on $F(\mtx{u},\mtx{y}_d,0)$. This second phase is denoted the weakly-clamped phase, and can be interpreted as first nudging the output neurons in the direction of the target output, then allowing remaining neurons to adjust towards a configuration that would have predicted the more-correct nudged output (though it is unclear that this interpretation would hold if a regularization term were added to the cost function). The network evolves to equilibrium by performing gradient descent on $F$ through the equation of motion
 \begin{equation}
 \label{eqn:dynamics}
 \frac{d\mtx{s}}{dt}=-\frac{\partial F}{\partial \mtx{s}}.
 \end{equation}
-The states of the network after the free and weakly-clamped phases are used to compute correction terms so must be saved; after evolution on some batch we will denote these states, respectively, as $\mtx{s}^0$ and $\mtx{s}^{\beta}$. The process for training over one batch is as follows:
+The states of the network after the free and weakly-clamped phases are used to compute correction terms so must be saved; after evolution on some set of training data we will denote these states, respectively, $\mtx{s}^0$ and $\mtx{s}^{\beta}$. The process for training over a set of data is as follows:
 \begin{enumerate}
-\item Perform the free-phase evolution; evolve to equilibrium on energy function $F(\mtx{u}, \mtx{y}, \mtx{y}_{target}, 0)$ by updating $\mtx{s}$ based on equation \ref{eqn:dynamics}. Record the state $\mtx{s}^0$.
-\item Perform the weakly-clamped evolution; evolve for a short amount of time to equilibrium on $F(\mtx{u},\mtx{y},\mtx{y}_{target},\beta)$, again based on equation \ref{eqn:dynamics}, using $\mtx{s}^0$ as a starting point. Record the state $\mtx{s}^{\beta}$.
+\item Perform the free-phase evolution; evolve to equilibrium on the energy function $F(\mtx{u}, \mtx{y}_d, 0)$ by updating $\mtx{s}$ according to equation \ref{eqn:dynamics}. Record the equilibrium state $\mtx{s}^0$.
+\item Perform the weakly-clamped evolution; evolve for a short amount of time towards equilibrium on the energy function $F(\mtx{u},\mtx{y}_d,\beta)$, again according to equation \ref{eqn:dynamics}, using $\mtx{s}^0$ as a starting point. Record the equilibrium state $\mtx{s}^{\beta}$.
 \item Compute the correction to each weight in the network using the function 
 \begin{equation}
 \Delta W_{ij}=\alpha \frac{1}{\beta}(\rho(u_i^\beta)\rho(u_j^\beta)-\rho(u_i^0)\rho(u_j^0))
 \end{equation}
-where $\alpha$, the learning rate, is a positive constant. Adjust the weights as $W_{ij}:=W_{ij}+\Delta W_{ij}$. (Recall that $\mtx{u}$ is contained in $\mtx{s}$).
+where $\alpha$, the learning rate, is a positive constant. Adjust the weights using $W_{ij}:=W_{ij}+\Delta W_{ij}$.
 \item Compute the correction to each bias in the network using the function
 \begin{equation}
 \Delta b_i=\alpha \frac{1}{\beta}(\rho(u_i^{\beta})-\rho(u_i^0))
 \end{equation}
-and adjust the biases as $b_i:=b_i+\Delta b_i$.
+and adjust the biases using $b_i:=b_i+\Delta b_i$.
 \end{enumerate}
-Note that the correction to a weight depends only on the activations of neurons to which it connects, and the correction to a bias depends only on the activation of the neuron it affects. This is in contrast to backpropagation, where information would be required about the parameters and error terms of all neurons in shallower layers.
+Note that the correction to a weight depends only on the activations of neurons it directly affects, and the correction to a bias depends only on the activation of the neuron it directly affects. This is in contrast to backpropagation, where to correct a weight or bias $l$ layers from the output it would be necessary to know the activations, derivatives and weights of all neurons between $0$ and $l-1$ layers from the output.
 
 \subsubsection{Approximation of the equation of motion}
 
-On analog hardware, the dynamics described by equation \ref{eqn:dynamics} could be implemented efficiently using leaky integrator neurons. On digital hardware, however, it is necessary to discretize and approximate the differential equation of motion. Let $\mtx{s}[n]$ denote the state of the network after $n$ iterations of the approximation, $N$ denote the number of iterations and $\epsilon$ the size of each iteration. $\mtx{s}[0]$ is the initial state of the network; this may be random or, as in this and the original paper, zero. The state of the network after time $\tau=\epsilon N$ is given by
-\begin{equation}
-\int_0^\tau\frac{d\mtx{s}}{dt}dt\approx \mtx{s}[N]
-\end{equation}
- where
+In analog hardware, the dynamics described by equation \ref{eqn:dynamics} could be implemented efficiently using leaky integrator neurons. On digital hardware, however, it is necessary to discretize and approximate the differential equation of motion; we now describe the approximation used here and in the original paper. Let $\mtx{s}[n]$ denote the state of the network after $n$ iterations of the approximation, $N$ denote the total number of iterations and $\epsilon$ the size of each iteration. $\mtx{s}[0]$ is the initial state of the network; this may be random or, as in this and the original paper, zero.  Let 
  \begin{equation}
- s_i[n]=s_i[n-1]-\epsilon \frac{\partial F}{\partial s_i}(\mtx{u},\mtx{y},\mtx{y}_{target},\beta),\;n=1,\hdots,N.
+ s_i[n]=s_i[n-1]-\epsilon \frac{\partial F}{\partial s_i}(\mtx{u},\mtx{y}_d,\beta),\;n=1,\hdots,N.
  \end{equation}
- We denote the number of iterations in the free and weakly-clamped phases $N_{free}$ and $N_{weakly-clamped}$, respectively. It is only necessary to run the weakly-clamped phase long enough to observe the initial direction in which the network evolves, so typically $N_{free}>>N_{weakly-clamped}$.
+ Then the state of the network after time $\tau=\epsilon N$ is given by
+\begin{equation}
+\int_0^\tau\frac{d\mtx{s}}{dt}dt\approx \mtx{s}[N].
+\end{equation}
+ We denote the number of iterations in the free and weakly-clamped phases $N_{free}$ and $N_{weakly-clamped}$, respectively. It is only necessary to run the weakly-clamped phase long enough to observe the initial direction in which the network evolves and to allow the perturbation of the output to influence all layers in the network, so typically for a network with $L$ layers $N_{free}>>N_{weakly-clamped}>L$.
  
-\subsubsection{Other relevant methods for biological plausibility}
+\subsubsection{Applicable methods for enhanced biological-plausibility}
 
-An additional reason backpropagation is not biologically plausible is that it implies a weight matrix with feedback connections identical in weight and destination to its feedforward connections \cite{bengio2015}; this is a problem not addressed in the original paper. However, recent work \cite{lillicrap2014} has shown that networks can still train if feedback weights are initialized randomly instead of symmetrically with feedforward connections. These findings could potentially be applied to an energy-based network trained using equilibrium propagation.
+A major reason backpropagation is not biologically-plausible is that it implies a set of feedback connections with weights and destinations identical to the feedforward connections; this is also an issue in equilibrium propagation. However, recent work \cite{lillicrap2014} has shown that networks can still train if feedback weights are initialized randomly instead of symmetrically with feedforward connections, and that with training their weights will become similar to forward weights. These findings could be applied to an energy-based network trained using equilibrium propagation.
 \npar
 Biological neurons are known to communicate through spikes with binary values, suggesting that a spike timing based activation function for neurons is more biologically-plausible than popular functions. It has been shown \cite{oconnor2018} that an energy-based network with a spike timing-based activation function can be trained using equilibrium propagation.
 \npar
@@ -101,7 +113,7 @@ The method presented in this paper allows networks with multiple layers to train
 
 \subsection{Vanishing gradient problem}
 
-It has been observed that networks with a layered topology suffer a vanishing gradient problem. This problem is familiar in the context of conventional networks, where it is caused by an expected value of an activation function's derivative that is less than 1, causing an exponential attenuation to the gradient of the cost function with respect to distance from the output layer (or, similarly, an exploding gradient problem if the derivative is greater than 1). The problem in that context has been successfully addressed by initializing a network's weights as described in \cite{glorot2010} and by using activation functions with uniform derivatives, such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids $\rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\}$.
+It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem: the correction to a weight parameter of a given neuron attenuates exponentially with that neuron's distance from the output layer. This problem is familiar in the context of conventional networks; the gradient of a parameter of a given neuron with respect to a cost function wil attenuate exponentially with distance from the output layer when the expected value of the derivative of neurons' activation function is less than 1, leading shallow layers to train substantially faster than deep layers. In conventional networks trained using backpropagation, the vanishing gradient problem can be effectively addressed by initializing weights as described in \cite{glorot2010} and by using activation functions with uniform derivatives, such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids as described in equation \ref{eqn:hardened_sigmoid}.
 \npar
 Neither of these approaches are effective at solving the problem in continuous Hopfield networks trained through equilibrium propagation. While the symptom of the problem is the same as in conventional networks, it is unclear that its cause is the same, as there is not a straightforward causal relationship between the activations of a pair of neurons, and the fact that conventional solutions are ineffective suggests that the cause is different.
 \npar
@@ -157,13 +169,13 @@ The vanishing gradient problem was a big obstacle to the training of conventiona
 \begin{figure}
   \centering
   \begin{subfigure}[t]{.48\textwidth}
-    \includegraphics[width=.9\textwidth]{figures/scellier_network_default.png}
+    \includegraphics[width=.9\textwidth]{figures/basic_topology_illustration.pdf}
     \caption{Topology of the basic multilayer network. There is a connection between every pair of neurons in adjacent layers. There are no connections between neurons in the same layer. There are no layer-skipping connections. To combat the vanishing gradient problem, the learning rate is higher for weights deeper in the network.}
     \label{fig:top_basic}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{.48\textwidth}
-    \includegraphics[width=.9\textwidth]{figures/scellier_network_skconns.png}
+    \includegraphics[width=.9\textwidth]{figures/topology_changes_illustration.pdf}
     \caption{Changes in our topology with respect to the basic topology. Green connections were added to connect every pair of neurons within a layer. Red connections ($8\%$ of existing connections) were chosen at random and removed. Blue connections were chosen at random and added to replace removed connections. These changes allow a uniform learning rate regardless of a weight's depth in the network.}
     \label{fig:top_sw}
   \end{subfigure}
@@ -204,13 +216,6 @@ To provide a reference point for our topology we ran tests on a network that is 
 To generate a network with our topology we use as a starting point the topology described in section \ref{sec:basic_topology}. We then connect every pair of neurons in a given layer. Finally, for a given number of connections, we remove an existing connection at random and replace it with a random connection between two unconnected neurons in the network. \footnote{We have also tried adding new connections without replacing existing ones, and observed roughly the same performance. In this paper we replace connections to limit the number of free parameters added to the network and avoid the possibility of conflating improvement due to the changed topology with that due to additional parameters.} We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results when replacing around $8\%$ of a network's connections in this manner.
 \npar
 This topology allows us to train the network with a uniform learning rate of .02 across the entire network. Weights of connections between pairs of neurons in adjacent layers are still initialized based on (\ref{eqn:gb_init}). Weights of intralayer connections and layer-skipping connections are drawn from $U[-.05,.05]$,where the value .05 was chosen empirically. While we do not theoretically justify this initialization, it allows for good performance.
-
-\subsection{Deep network on a linear dataset}
-\label{sec:linear_implementation}
-
-We also ran a variety of simpler experiments to assess the scalability of our findings. To do this we generated a dataset consisting of outputs that are a fixed linear combination of a collection of random inputs. To generate a linear dataset with $N$ datapoints, $m$ input dimensions and $n$ output dimensions, we first generate $N$ inputs $\mtx{x_i}\in \mathbb{R}^m$, $i=1,\hdots n$, with elements independently drawn from $U[0, 1]$. We then generate a matrix $\mtx{T}\in \mathbb{R}^{n\times m}$ with elements independently drawn from $U[0, \frac{1}{7}]$. Finally we create $N$ pairs $(\mtx{x_i}, \mtx{T}\mtx{x_i})$. We have observed that it is nontrivial for a network to represent such a relationship using a hardened sigmoid activation function (\ref{eqn:hardened_sigmoid}), so this simple dataset is still indicative of the effectiveness of a network topology.
-\npar
-We ran experiments on this dataset with networks consisting of 12 layers of 50 neurons, with variable numbers of replaced connections, and otherwise generated identically to the network described in section \ref{sec:our_topology}.
 
 \subsection{Tracking the training rates of individual pairs of layers}
 
@@ -281,7 +286,7 @@ We tracked the error rates of the three networks as they were trained and found 
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{figures/per_layer.pdf}
+  \includegraphics[width=\textwidth]{figures/MNIST_individual_layers.pdf}
   \caption{Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref{fig:mnist_comparison}, and have been averaged as described in (\ref{eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite{scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and with around $8\%$ of its connections replaced by random layer-skipping connections.}
   \label{fig:mnist_layers}
 \end{figure}
@@ -295,7 +300,7 @@ Notice in the basic network with one learning rate that there is a significant s
 
 \begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{figures/MNIST_linear_sweep_error_vs_replaced_conns.pdf}
+  \includegraphics[width=\textwidth]{figures/MNIST_one_epoch_performance.pdf}
   \caption{The training error after one epoch of a network with our topology, as connections are replaced.}
   \label{fig:mnist_1epoch}
 \end{figure}
@@ -306,37 +311,6 @@ The error rate drops quickly as connections are replaced early on. We believe th
 \npar
 We found that our topology performs significantly worse than the basic topology with one learning rate when few connections are replaced, possibly due to inappropriate hyperparameter choices for intraconnected layers. We have seen some evidence that replacement of connections makes a network more-forgiving of poor weight matrix initialization, but have not thoroughly probed the issue.
 
-\subsection{Linear dataset}
-
-We ran trials using a 15-layer network with 50 neurons per layer and with a varying number of replaced connections, on linear datasets as described in section \ref{sec:linear_implementation}. We used a learning rate of .01, $\epsilon=.5$, $\beta=2.0$, $N_{free}=20$, $N_{weakly-clamped}=4$, 10,000 training examples and no test examples, and a batch size of 20.
-
-\subsubsection{Training rates of individual pairs of layers}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figures/Linear_individual_layer_training.pdf}
-  \caption{Training rates of pairs of layers in a 15-layer network trained on a linear dataset. To the left is a network with no replaced connections. To the right is a network with 10\% of its connections replaced. Trace color changes from yellow for shallow layer pairs to purple for deep layer pairs.}
-  \label{fig:linear_layers}
-\end{figure}
-
-We observed the training rates of individual pairs of layers as described in (\ref{eqn:rms_correction}) and (\ref{eqn:running_avg}) and found that the qualities observed in section \ref{sec:mnist_perlayer} are still present in this much-deeper network. These results are shown in figure \ref{fig:linear_layers}.
-\npar
-Observe that the training rate of the output layer is around an order of magnitude higher than that of deeper layers both in a network with no replaced connections and in a network with 10\% of its connections replaced. Also observe that the variation in training rates of pairs of layers is around 4 orders of magnitude higher in the network with no connections replaced than it is in the network with 10\% of its connections replaced. Both of these observations are consistent with results seen in section \ref{sec:mnist_perlayer}.
-\npar
-An interesting feature of the graphs for which we do not have an explanation is that the training rate of a layer pair does not strictly decrease with its depth; instead it is minimal approximately at the center of the network and increases with proximity to the input or output layer.
-
-\subsubsection{Spread, cost after one epoch, and small-world metrics}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{figures/Linear_spread_vs_conns.pdf}
-  \caption{Spread, cost function after one epoch, and small-world metrics of a 15-layer network trained on a linear dataset with a varying proportion of its connections replaced. Green: spread of training rates of layer pairs. Red: cost function after training for 1 epoch. Blue: characteristic path length. Red: clustering coefficient.}
-  \label{fig:linear_spread}
-\end{figure}
-
-We observed that the spread (\ref{eqn:spread}) of training rates decreases exponentially with the number of replaced connections and that the cost function after one epoch decreases linearly. There is not a strong apparent correlation with the small-world metrics described in section \ref{sec:sw_background}. These results are shown in figure \ref{fig:linear_spread}.
-\npar
-We believe the relationship between the spread and the number of replaced connections is due to the same reasons as the relationship between the error rate after 1 epoch and the number of replaced connections discussed in section \ref{sec:mnist_1epoch}. We believe the reason for the lack of correlation with the characteristic path length is that it is based on the shortest path between a given pair of neurons, but the attenuation to the gradient as it travels between the pair also depends strongly on the number of low-attenuation paths that it can take in parallel. We expect that a lower clustering coefficient will correlate with overtraining as a network behaves with increasing similarity to a single-layer network, but that is beyond the scope of this paper. We did not expect it to correlate with the spread or cost function of a network after one epoch, and it does not appear to.
 
 
 \section{Conclusion}

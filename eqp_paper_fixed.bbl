@@ -102,6 +102,15 @@ Jeffrey~M. {Shainline}, Sonia~M. {Buckley}, Adam~N. {McCaughan}, Jeffrey~T.
 \newblock {Superconducting optoelectronic loop neurons}.
 \newblock {\em Journal of Applied Physics}, 126(4):044902, Jul 2019.
 
+\bibitem{simonyan2014}
+Karen Simonyan and Andrew Zisserman.
+\newblock Very deep convolutional networks for large-scale image recognition,
+  2014.
+
+\bibitem{srivastava2015tvdn}
+Rupesh~Kumar Srivastava, Klaus Greff, and Jürgen Schmidhuber.
+\newblock Training very deep networks, 2015.
+
 \bibitem{srivastava2015}
 Rupesh~Kumar Srivastava, Klaus Greff, and J{\"{u}}rgen Schmidhuber.
 \newblock Highway networks.
