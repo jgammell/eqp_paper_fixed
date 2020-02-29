@@ -92,7 +92,7 @@ and adjust the biases using $b_i:=b_i+\Delta b_i$.
 \end{enumerate}
 Note that the correction to a weight depends only on the activations of neurons it directly affects, and the correction to a bias depends only on the activation of the neuron it directly affects. This is in contrast to backpropagation, where to correct a weight or bias $l$ layers from the output it would be necessary to know the activations, derivatives and weights of all neurons between $0$ and $l-1$ layers from the output.
 
-\subsubsection{Approximation of the equation of motion}
+\subsubsection{Approximation of equation of motion}
 
 In analog hardware, the dynamics described by equation \ref{eqn:dynamics} could be implemented efficiently using leaky integrator neurons. On digital hardware, however, it is necessary to discretize and approximate the differential equation of motion; we now describe the approximation used here and in the original paper. Let $\mtx{s}[n]$ denote the state of the network after $n$ iterations of the approximation, $N$ denote the total number of iterations and $\epsilon$ the size of each iteration. $\mtx{s}[0]$ is the initial state of the network; this may be random or, as in this and the original paper, zero.  Let 
  \begin{equation}
@@ -119,6 +119,12 @@ It has been observed \cite{scellier17} that energy-based networks with a layered
 \npar
 Neither of these approaches are effective at solving the vanishing gradient problem in the context of equilibrium propagation. In the context of energy-based networks the situation is more-complicated because there is no straightforward causal relationship between the activations of two given neurons; instead, neurons evolve as a system. The fact that conventional approaches are ineffective suggests that the cause of the problem is different than in conventional networks.
 \npar
+The vanishing gradient problem causes deep networks to train very slowly, which is obviously undesirable. It also causes the magnitudes of corrections to weights between pairs of layers to differ by many orders of magnitude, which would be problematic in an analog implementation of the framework using neurons with limited numerical precision.
+\npar
+In the original paper the vanishing gradient problem was solved by using unique learning rates for each layer, chosen to make the magnitudes of corrections to neurons' parameters uniform regardless of depth in the network. While this method was effective, it is unappealing because it seems unlikely to take place in a biological brain, it would add complexity to an analog implementation of the framework, and it introduces more hyperparameters that must be tuned to train a network. Our topology solves the problem without these unappealing characteristics.
+
+\subsubsection{Contribution by approximation of equation of motion}
+
 One factor that probably contributes to the vanishing gradient problem is that when the output layer of neurons is perturbed at the beginning of the weakly-clamped phase, it takes an additional iteration of the approximation of equation \ref{eqn:dynamics} for the perturbation to influence the last hidden layer, then an additional iteration for the second-to-last hidden layer, and so on. We do not believe this factor to be a significant contributor to the vanishing gradient problem because increasing $N_{weakly-clamped}$ does not significantly affect network performance. This is supported by the following rough theoretical formulation:
 \npar
 Assume that a typical neuron in the network changes by a small constant amount $\delta$ after each iteration of equation \ref{eqn:dynamics} (this is reasonable because we run only the early stages of evolution to the weakly-clamped equilibrium), and assume that the typical neuron is in state $s_0$ at the end of the free phase. After $N$ iterations, a neuron in the output layer will have changed by $N\delta$ and one in a deep layer $l$ layers from the output will have changed by $(N-l)\delta$. Assume further that $s_0$ is in the middle of the support of $\rho'$ where $\rho$ is the hardened sigmoid function from equation \ref{eqn:hardened_sigmoid}, so that we can replace $\rho(x)$ by $x$. Then it follows from equation \ref{eqn:weight_correction} that a typical neuron in the output layer will be corrected by 
@@ -135,42 +141,40 @@ and similarly a typical neuron from the deep layer will be corrected by
 \end{equation}
 (where we have approximated $\frac{(N-l)\delta +2s_0}{N\delta+2s_0}\approx 1$). We have observed that
 \begin{equation}
-\frac{\Delta w^l}{\Delta w^{\text{output}}}\sim e^{-l},
+\frac{\Delta w^l}{\Delta w^{\text{output}}}\sim 4^{-l},
 \end{equation}
-so it seems unlikely that this phenomenon is a primary cause of the vanishing gradient problem.
-\npar
-The vanishing gradient problem causes deep networks to train very slowly, which is obviously undesirable. It also causes the magnitudes of corrections to weights between pairs of layers to differ by many orders of magnitude, which would be problematic in an analog implementation of the framework using neurons with limited numerical precision.
-\npar
-In the original paper the vanishing gradient problem was solved by using unique learning rates for each layer, chosen to make the magnitudes of corrections to neurons' parameters uniform regardless of depth in the network. While this method was effective, it is unappealing because it seems unlikely to take place in a biological brain, it would add complexity to an analog implementation of the framework, and it introduces more hyperparameters that must be tuned to train a network. Our topology solves the problem without these unappealing characteristics.
+for the type of networks we tested, so it seems unlikely that this phenomenon is a primary cause of the vanishing gradient problem.
 
 \subsection{Small-world networks}
 \label{sec:sw_background}
 
-Our topology was inspired by small-world graph topology as described in \cite{watts98}. Qualitatively, small-world topology is appealing because it is characterized by a small mean shortest path between a pair of vertices (neurons) in a graph (network) with a large amount of clustering, which seems likely to reduce attenuation to the gradient of parameters of deep neurons by providing a low-attenuation path to the output layer, while largely preserving the regimented structure that has contributed to the success of deep neural networks. The topology is also appealing because it has been observed to occur in biological brains \cite{bullmore2009}.
-\npar
-The small-worldness of a network is typically characterized by a characteristic path length $L$ and a clustering coefficient $C$. A graph is small-world if $L$ is small relative to the $L$ of a random network with the same number of vertices and edges and $C$ is not substantially smaller than the $C$ of that random network. The characteristic path length is the minimal number of edges in a path joining a pair of vertices, averaged over all pairs of vertices in the network. Specifically, for a graph with $N$ vertices where $l_{ij}$ denotes the smallest number of edges needed to connect the two vertices, 
+Our topology was inspired by small-world graph topology as described in \cite{watts98}. We have observed that energy-based networks with layered topology experience exponential attenuation of the gradient of a given parameter as its depth in the network increases, so it seems reasonable to expect that the vanishing gradient problem can be reduced by decreasing the number of connections needed to move between a given neuron and the output layer. Small-world topology offers a way to do this while largely preserving clustering between neurons within the same layer. It is also a topology that has been observed in biological brains \cite{bullmore2009}. Essentially, a layered network with fully-connected layers can be viewed as a network with a large typical path length between pairs of neurons and a large amount of clustering between nearby neurons. By randomly replacing a small proportion of its connections, its typical path length can be greatly reduced without significantly affecting its clustering.
+\subsubsection{Small-world metrics}
+The small-worldness of a network is typically characterized by two metrics: a characteristic path length $L$ and a clustering coefficient $C$. A graph is small-world if $L$ is small relative to the $L$ of a random network with the same number of vertices and edges and $C$ is not substantially smaller than the $C$ of that random network. The characteristic path length is the minimal number of edges in a path joining a pair of vertices, averaged over all pairs of vertices in the network. Specifically, for a graph with $N$ vertices where $l(v_i,v_j)$ denotes the smallest number of edges needed to connect vertex $v_i$ to vertex $v_j$, 
 \begin{equation}
 \label{eqn:charpathlength}
-L=\frac{1}{N(N-1)}\sum_{i=1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N}l_{ij}.
+L=\frac{1}{N(N-1)}\sum_{i=1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N}l(v_i,v_j).
 \end{equation}
-The neighborhood of a vertex is the set of vertices with which it shares an edge. The clustering coefficient is the proportion of pairs of vertices in the neighborhood of a given vertex that share an edge, averaged over all vertices in the network. Specifically, for a graph with $N$ vertices, if $\text{Nbhd}(v_i)$ denotes the neighborhood of vertex $v_i$, $N_i$ denotes the number of vertices in $\text{Nbhd}(v_i)$, and $c(v_j,v_k)=\begin{cases}1 & v_k\in\text{Nbhd}(v_j)\\0 & \text{else}\end{cases}$,
+The neighborhood of a vertex is the set of vertices with which it shares an edge. The clustering coefficient is the proportion of pairs of vertices in the neighborhood of a given vertex that share an edge, averaged over all vertices in the network. Specifically, for a graph with $N$ vertices, if $\text{N}(v_i)$ denotes the neighborhood of vertex $v_i$ and $c(v_j,v_k)=\begin{cases}1 & v_k\in\text{N}(v_j)\\0 & \text{else}\end{cases}$,
 \begin{equation}
 \label{eqn:clustcoeff}
-C=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{N_i}\sum_{\substack{v_j\in\\\text{Nbhd}(v_i)}}\sum_{\substack{v_k\in\\\text{Nbhd}(v_i),\\ k\neq j}}c(v_j,v_k).
+C=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{|\text{N}(v_i)|}\sum_{\substack{v_j\in \text{N}(v_i)\\v_k\in\text{N}(v_i)\\j\neq k}}c(v_j,v_k)
 \end{equation}
 \npar
 An algorithm was introduced in \cite{watts98} to convert a regimented graph into a small-world graph
-\footnote{Our algorithm is actually slightly different: instead of replacing each edge with a probability $p$, we replace a specific number $n$ of the edges currently in the network. Therefore, for a network with $N$ edges our algorithm is equivalent to the one from \cite{watts98} with $p=1-(\frac{N-1}{N})^n$. For ease of comparison with other work and to contextualize how many edges have been replaced, we will henceforth describe networks using our topology in terms of $p$ and not $n$.}.
- For each edge in the network, with probability $p$: randomly pick a pair of vertices that do not share an edge. Add an edge between these vertices, and remove the existing edge. As $p$ is increased $L$ decreases more-quickly than $C$, and $p$ is typically chosen so that $L$ has decreased substantially and $C$ has just begun to decrease.
+\footnote{Our algorithm is actually slightly different: instead of replacing each edge with probability $p$, at each step we randomly select $n$ of the existing edges and replace them with random edges. For a network with $N$ edges our algorithm is equivalent to the one from \cite{watts98} with $p=1-(\frac{N-1}{N})^n$. For ease of comparison with other work and to contextualize how many edges have been replaced, we will henceforth describe networks using our topology in terms of $p$ and not $n$.}.
+ For each existing edge in the network, with probability $p$: randomly pick a pair of vertices that do not share an edge. Add an edge between these vertices, and remove the existing edge. As $p\approx 0$ is increased, $L$ initially decreases much more quickly than $C$. $p$ is typically chosen so that $L$ has decreased substantially and $C$ has just begun to decrease.
+\subsubsection{Small-world metrics have little correlation with network performance}
+Contrary to our expectations, we found that a network's performance does not track closely with its clustering coefficient or characteristic path length, and that good performance is achieved when the above algorithm is executed with $p\approx 8\%$, which is substantially higher than the value of $p$ that would make its topology small-world. We believe that our qualitative arguments about the merits of a small-world network are sound, but that the characteristic path length and clustering coefficient are poor predictors of the performance of a deep neural network. The characteristic path length does not take into account the number of low-attenuation paths a neuron can take to the output layer, but clearly this is an important factor, since a neuron's behavior is dictated by an affine combination of all its inputs. While it is important for a network to retain its layered nature in order to generalize well, the clustering coefficient does not appear to be a good metric for this - e.g. a layered network without intralayer connections has a small clustering coefficient because the neighbors of a given neuron are not connected to one-another.
 \npar
-We have found that the performance of a network does not track closely with its clustering coefficient or its characteristic path length. We believe this to be mainly because the characteristic path length depends only on the path to a neuron that attenuates the gradient the least, but in actuality attenuation to the gradient also heavily depends on the number of paths it can take in parallel to a destination. We have had success using networks with $p\approx 8\%$, which is far more than necessary to make the network small-world; nonetheless, we believe that the success of this topology is for reasons similar to those listed above. It is possible that there are multiple factors influencing the performance of a network as connections are replaced - e.g. layer-skipping connections constitute a linear transformation in parallel with hidden layers constituting a nonlinear transformation (described in section \ref{sec:residuals}), or layer-skipping connections partially counteract the trend described in section \ref{sec:vangrad}.
+There are several factors other than path length that we expect have an effect on performance as the value of $p$ is changed, and it is possible that they disguise relationships with the small-world metrics. It has been shown \cite{he2015} that in deep convolutional networks, performance can be improved by using layer-skipping connections to create a linear transformation (e.g. an identity mapping) in parallel with sets of nonlinear layers to reframe their task as learning the residual of the output of earlier layers; in our implementation layer-skipping connections form a linear transformation of earlier layers, and this fact may improve performance even though only some of the dimensions of the deeper layers are transferred. We discussed in section \ref{sec:vangrad} that deep layers experience less evolution than shallow layers during the weakly-clamped phase; since layer-skipping connections allow deeper layers to begin to evolve sooner, we expect that they reduce this effect. As connections are replaced, a network looks less layered and more like a sparsely-connected single-layer network, so we expect that there is a tradeoff between the rate at which a network trains and its ability to generalize. In this paper our topology did not deteriorate test error relative to the original layered network, but it is highly possible that a network on a harder dataset (e.g. CIFAR or ImageNet) or with a higher value of $p$ would see deterioration as its topology deviates from a layered topology.
 
 \subsection{Nonlinearities learning residuals}
 \label{sec:residuals}
 
-In previous work layer-skipping connections have been used to alter the task of nonlinear layers from matching the desired output to matching the residual between the desired output and the output of a previous layer \cite{he2015}, \cite{ioffe2015}. This has proven extremely successful for training very-deep networks using backpropagation. If the underlying function describing a training dataset is $\mtx{y}=f(\mtx{x})$, layer-skipping connections can be run in parallel with a collection of nonlinear layers so that they need only match the function $f(\mtx{x})-\mtx{x}$. The rationale behind this technique is that not all nonlinearities are useful for approximating $f$, and if a nonlinearity is not useful it must be trained to approximate an identity mapping, which may be difficult. By adding a parallel identity mapping or linear mapping it becomes easy to minimize the contribution by a set of nonlinearities - their weights can simply be driven towards zero.
+It has been shown \cite{he2015, ioffe2015} that the performance of very-deep convolutional networks can be improved by using layer-skipping connections to create an identity mapping or other dimension-preserving linear transformation in parallel with groups of layers constituting nonlinear transformations. For a network without layer-skipping connections on a dataset $\{\mtx{x}_d,f(\mtx{x}_d)\}$, consider a group of layers. If the output of preceding layers is $g(\mtx{x}_d)$, the task of those layers is to learn $f(g^{-1}(\mtx{x}))\approx \mtx{x}$ since the preceding layers have presumably trained to approximate $f$. Therefore, this task can be made easier by adding an identity mapping or linear transformation in parallel with the group of layers to reframe their task as finding the residual of the preceding layers $f(g^{-1}(\mtx{x}))-\mtx{x}$, since it is easier to drive the output of a group of neurons towards zero than it is to make it approximate an arbitrary transformation.
 \npar
-This is a possible explanation for the effectiveness of our topology. While we do not explicitly structure layer-skipping connections as identity mappings, they could potentially provide a means for the output of a deep layer to at-least partially pass an unhelpful nonlinear transformation.
+Since layer-skipping connections constitute a linear transformation of a deep layer into a shallower layer, the above is a possible contributor to the effectiveness of layer-skipping connections; the MNIST dataset has a significant linear component, and of the hardened sigmoid activation function does a poor job of representing the underlying function, the network's effectiveness may be improved by skipping some of its hardened-sigmoid-based transformations using linear layer-skipping connections.
 
 
 \section{Related work}
@@ -269,7 +273,6 @@ Note that this metric ignores the difference between deep pairs and the pair con
 
 
 \section{Results}
-\subsection{MNIST dataset}
 
 \begin{figure}
   \centering
@@ -294,14 +297,14 @@ Our topology, $p=7.56\%$ & .02 & .5 & 1.0 & 500 & 8 \\\hline
 
 We compared the three network topologies described in sections \ref{sec:basic_topology}, \ref{sec:basic_topology_uniform}, and \ref{sec:our_topology} on the MNIST dataset \cite{mnist1998}. The hyperparameters for the networks are shown in table \ref{table:hyperparameters}. All networks were trained for 250 epochs with 50,000 training examples, 10,000 test examples and a batch size of 20.
 
-\subsubsection{Network performance comparison}
+\subsection{Network performance comparison}
 \label{sec:network_performance}
 
 We tracked the error rates of the three networks as they were trained and found that the network with our topology significantly outperforms the basic network with one learning rate, and achieves the same error rates as the basic network with unique learning rates in around 25\% more epochs. These results are shown in figure \ref{fig:mnist_comparison}.
 \npar
  Notice that the basic network with unique learning rates converges to 0\% training error and 2.5\% test error in around 150 epochs and the network with our topology converges to 0\% training error and 2.5\% test error in around 190 epochs, whereas the basic network with one learning rate fails to converge in 250 epochs and has training and test error around .5\% higher than the other two networks. While it is possible that the basic network with one learning rate would converge given enough time, it is clearly inferior to the other two networks. It is also apparent that in the context of the MNIST dataset, our network with a single learning rate is practically interchangeable with the basic network with unique learning rates.
 
-\subsubsection{Training rates of individual pairs of layers}
+\subsection{Training rates of individual pairs of layers}
 \label{sec:mnist_perlayer}
 
 \begin{figure}
@@ -315,7 +318,7 @@ We tracked the training rates of individual pairs of layers as described in (\re
 \npar
 Notice in the basic network with one learning rate that there is a significant spread in the training rates of pairs of layers, with the deepest pair training at around 1\% of the rate of the shallowest pair. This problem is solved very effectively in the basic network with unique learning rates. The problem appears to be solved effectively for the deepest 3 pairs in the network with our topology, but the output layer still trains significantly faster than the deeper 3 layers. This makes sense if we assume that the important factor in a layer's training rate is its expected path length to the target layer, because every neuron in the output layer connects to the target layer through a single connection, whereas paths starting at deeper neurons must first pass through the output layer before connecting to the target layer.
 
-\subsubsection{Error rate after one epoch as connections are added}
+\subsection{Error rate after one epoch as connections are added}
 \label{sec:mnist_1epoch}
 
 \begin{figure}

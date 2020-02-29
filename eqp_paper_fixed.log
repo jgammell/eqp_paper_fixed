@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  27 FEB 2020 12:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  28 FEB 2020 18:10
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -353,74 +353,9 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-LaTeX Warning: Citation `scellier17' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation `hopfield1984' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation `bengio2015' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation `scellier17' on page 1 undefined on input line 31.
-
-
-LaTeX Warning: Citation `scellier17' on page 1 undefined on input line 33.
-
-
-LaTeX Warning: Citation `mnist1998' on page 1 undefined on input line 33.
-
-
-LaTeX Warning: Citation `simonyan2014' on page 1 undefined on input line 33.
-
-
-LaTeX Warning: Citation `srivastava2015tvdn' on page 1 undefined on input line 
-33.
-
-
-LaTeX Warning: Citation `scellier17' on page 1 undefined on input line 33.
-
-
-LaTeX Warning: Citation `watts98' on page 1 undefined on input line 35.
-
-
-LaTeX Warning: Citation `bartunov2018' on page 1 undefined on input line 35.
-
-
-LaTeX Warning: Citation `scellier17' on page 1 undefined on input line 35.
-
-
-LaTeX Warning: Citation `bullmore2009' on page 1 undefined on input line 37.
-
-
-LaTeX Warning: Citation `he2015' on page 1 undefined on input line 37.
-
-
-LaTeX Warning: Citation `srivastava2015' on page 1 undefined on input line 37.
-
-
-LaTeX Warning: Citation `xiaohu2011' on page 1 undefined on input line 37.
-
-
-LaTeX Warning: Citation `krishnan2019' on page 1 undefined on input line 37.
-
 [1
 
-{C:/Users/jig/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
-
-LaTeX Warning: Citation `scellier17' on page 2 undefined on input line 44.
-
-
-LaTeX Warning: Citation `hopfield1984' on page 2 undefined on input line 44.
-
-
-LaTeX Warning: Citation `bengio2015' on page 2 undefined on input line 44.
-
-
-LaTeX Warning: Citation `scellier17' on page 2 undefined on input line 48.
-
-[2]
+{C:/Users/jig/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 Overfull \hbox (17.18289pt too wide) in paragraph at lines 63--65
 \OT1/cmr/m/n/10 This ini-tial prediction-generating evo-lu-tion is de-noted the
  free phase. Con-sider some cost func-tion $\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (
@@ -428,130 +363,33 @@ Overfull \hbox (17.18289pt too wide) in paragraph at lines 63--65
 cmm/b/it/10 b\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y[]\OT1/cmr/m/n/10 )$;
  []
 
-[3]
+[3] [4] [5] [6]
 
-LaTeX Warning: Citation `lillicrap2014' on page 4 undefined on input line 109.
-
-
-LaTeX Warning: Citation `oconnor2018' on page 4 undefined on input line 111.
+LaTeX Warning: Citation `???' on page 7 undefined on input line 182.
 
 
-LaTeX Warning: Citation `bullmore2009' on page 4 undefined on input line 113.
+LaTeX Warning: Citation `???' on page 7 undefined on input line 188.
 
-
-LaTeX Warning: Citation `scellier17' on page 4 undefined on input line 118.
-
-
-LaTeX Warning: Citation `glorot2010' on page 4 undefined on input line 118.
-
-[4]
-
-LaTeX Warning: Citation `watts98' on page 5 undefined on input line 149.
-
-
-LaTeX Warning: Citation `bullmore2009' on page 5 undefined on input line 149.
-
-[5]
-
-LaTeX Warning: Citation `watts98' on page 6 undefined on input line 162.
-
-
-LaTeX Warning: Citation `watts98' on page 6 undefined on input line 163.
-
-
-LaTeX Warning: Citation `he2015' on page 6 undefined on input line 171.
-
-
-LaTeX Warning: Citation `ioffe2015' on page 6 undefined on input line 171.
-
-
-LaTeX Warning: Citation `lee2015' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `xie2003' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `pineda1987' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `lillicrap2014' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `oconnor2018' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `bengio2015' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `???' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `bartunov2018' on page 6 undefined on input line 178.
-
-
-LaTeX Warning: Citation `shainline2019' on page 6 undefined on input line 180.
-
-
-LaTeX Warning: Citation `davies2018' on page 6 undefined on input line 180.
-
-
-LaTeX Warning: Citation `nahmias2013' on page 6 undefined on input line 180.
-
-
-LaTeX Warning: Citation `he2015' on page 6 undefined on input line 182.
-
-
-LaTeX Warning: Citation `srivastava2015' on page 6 undefined on input line 182.
-
-
-
-LaTeX Warning: Citation `xiaohu2011' on page 6 undefined on input line 182.
-
-
-LaTeX Warning: Citation `krishnan2019' on page 6 undefined on input line 182.
-
-
-LaTeX Warning: Citation `ioffe2015' on page 6 undefined on input line 184.
-
-
-LaTeX Warning: Citation `glorot2010' on page 6 undefined on input line 184.
-
-
-LaTeX Warning: Citation `???' on page 6 undefined on input line 184.
-
-[6]
-<figures/basic_topology_illustration.pdf, id=43, 845.07718pt x 509.0217pt>
+<figures/basic_topology_illustration.pdf, id=42, 845.07718pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
- line 193.
+ line 197.
 (pdftex.def)             Requested size: 202.93097pt x 122.22983pt.
-<figures/topology_changes_illustration.pdf, id=44, 839.05469pt x 509.0217pt>
+<figures/topology_changes_illustration.pdf, id=43, 839.05469pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
-ut line 199.
+ut line 203.
 (pdftex.def)             Requested size: 202.93097pt x 123.10751pt.
 
+LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 211.
 
-LaTeX Warning: Citation `scellier17' on page 7 undefined on input line 207.
+[7]
 
+LaTeX Warning: Citation `glorot10' on page 8 undefined on input line 225.
 
-LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 207.
-
-
-LaTeX Warning: Citation `scellier17' on page 7 undefined on input line 207.
-
-
-LaTeX Warning: Citation `mnist1998' on page 7 undefined on input line 212.
-
-
-LaTeX Warning: Citation `scellier17' on page 7 undefined on input line 217.
-
-
-LaTeX Warning: Citation `glorot10' on page 7 undefined on input line 221.
-
-[7 <./figures/basic_topology_illustration.pdf
+[8 <./figures/basic_topology_illustration.pdf
 
 pdfTeX warning: pdflatex (file ./figures/basic_topology_illustration.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
@@ -562,138 +400,83 @@ pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
 F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
 ay>); ignored.
 >]
-
-LaTeX Warning: Citation `scellier17' on page 8 undefined on input line 226.
-
-[8]
-<figures/MNIST_network_comparison.pdf, id=109, 1927.2pt x 993.7125pt>
+<figures/MNIST_network_comparison.pdf, id=107, 1927.2pt x 993.7125pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 276.
+ne 279.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
-
-
-LaTeX Warning: Citation `scellier17' on page 9 undefined on input line 277.
-
-
-LaTeX Warning: Citation `scellier17' on page 9 undefined on input line 277.
-
-
-LaTeX Warning: Citation `mnist1998' on page 9 undefined on input line 295.
-
-
-LaTeX Warning: Reference `table:hyperparameters' on page 9 undefined on input l
-ine 295.
-
-
-LaTeX Warning: Reference `fig:mnist_comparison' on page 9 undefined on input li
-ne 300.
-
-<figures/MNIST_individual_layers.pdf, id=110, 1927.2pt x 953.5625pt>
+ [9] [10 <./figures/MNIST_network_comparison.pdf>]
+<figures/MNIST_individual_layers.pdf, id=165, 1927.2pt x 953.5625pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
-e 309.
+e 312.
 (pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
 
-LaTeX Warning: Reference `fig:mnist_comparison' on page 9 undefined on input li
-ne 310.
+
+LaTeX Warning: Reference `eqn:layer_averaging' on page 11 undefined on input li
+ne 313.
 
 
-LaTeX Warning: Reference `eqn:layer_averaging' on page 9 undefined on input lin
-e 310.
+LaTeX Warning: Reference `eqn:layer_averaging' on page 11 undefined on input li
+ne 313.
 
-
-LaTeX Warning: Citation `scellier17' on page 9 undefined on input line 310.
-
-
-LaTeX Warning: Reference `fig:mnist_comparison' on page 9 undefined on input li
-ne 310.
-
-
-LaTeX Warning: Reference `eqn:layer_averaging' on page 9 undefined on input lin
-e 310.
-
-
-LaTeX Warning: Citation `scellier17' on page 9 undefined on input line 310.
-
-[9]
-
-LaTeX Warning: Reference `sec:network_performance' on page 10 undefined on inpu
-t line 314.
-
-
-LaTeX Warning: Reference `fig:mnist_layers' on page 10 undefined on input line 
-314.
-
-<figures/MNIST_one_epoch_performance.pdf, id=114, 1927.2pt x 993.7125pt>
+[11 <./figures/MNIST_individual_layers.pdf>]
+<figures/MNIST_one_epoch_performance.pdf, id=236, 1927.2pt x 993.7125pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
- line 323.
+ line 326.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
-
-LaTeX Warning: Reference `fig:mnist_1epoch' on page 10 undefined on input line 
-328.
-
-[10 <./figures/MNIST_network_comparison.pdf>] [11 <./figures/MNIST_individual_l
-ayers.pdf> <./figures/MNIST_one_epoch_performance.pdf
-
-pdfTeX warning: pdflatex (file ./figures/MNIST_one_epoch_performance.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
->] (eqp_paper_fixed.bbl [12]
+ [12 <./figures/MNIST_one_epoch_performance.pdf>] (eqp_paper_fixed.bbl
 Underfull \hbox (badness 1629) in paragraph at lines 94--97
 []\OT1/cmr/m/n/10 Benjamin Scel-lier and Yoshua Ben-gio.  To-wards a bi-o-log-i
 -cally plau-si-ble back-prop.  \OT1/cmr/m/it/10 CoRR\OT1/cmr/m/n/10 ,
  []
 
-) [13] (eqp_paper_fixed.aux)
+[13]) [14] (eqp_paper_fixed.aux)
 
 LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
  4928 strings out of 492945
  76216 string characters out of 3127140
- 153144 words of memory out of 3000000
+ 154318 words of memory out of 3000000
  8728 multiletter control sequences out of 15000+200000
  19226 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,40p,2099b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,10n,40p,2098b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmbx8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/jig/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jig/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jig
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:
+ype1/public/amsfonts/cm/cmbx9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/jig/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/jig/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/jig
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:
 /Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i6.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmmi7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmi8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/jig/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jig/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jig/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/
-jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><
-C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mr6.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmr7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 
-2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jig/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/jig/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jig
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:
-/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
-y8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmti10.pfb>
-Output written on eqp_paper_fixed.pdf (13 pages, 612694 bytes).
+i7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmmi8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmmib10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jig/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jig/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/jig/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/j
+ig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C
+:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/jig/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jig/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jig
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
+/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb>
+Output written on eqp_paper_fixed.pdf (14 pages, 605116 bytes).
 PDF statistics:
  380 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
