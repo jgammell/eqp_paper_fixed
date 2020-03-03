@@ -9,6 +9,7 @@
 \usepackage{subcaption}
 \usepackage{mathtools}
 \usepackage[titletoc]{appendix}
+\usepackage[ruled,vlined]{algorithm2e}
 
 \newcommand{\mtx}[1]{\bm{#1}}
 \newcommand{\rms}[1]{<{#1}>}
@@ -40,6 +41,7 @@ The purpose of this paper is to introduce a modification to the basic multilayer
 \section{Background and Theory}
 
 \subsection{Equilibrium propagation}
+\label{sec:eqp_formulation}
 
 Equilibrium propagation \cite{scellier17} is a learning framework for energy-based networks that trains their parameters by approximating gradient descent on some arbitrary cost function. It is applicable to any network with dynamics characterized by evolution to a fixed point of an associated energy function; in this and in the original paper, it is implemented on a continuous Hopfield network \cite{hopfield1984}. For a variety of reasons outlined in \cite{bengio2015}, backpropagation is not biologically-plausible. One of the major reasons is that to correct the parameters of a given neuron, backpropagation requires precise information about the activations and nonlinearities of all neurons in the corresponding feedforward path, and no mechanism capable of delivering this information has been observed in biological brains. Equilibrium propagation avoids this problem by approximating the gradient of an arbitrary cost function with respect to a neuron's parameters using only the activations of neurons to which it directly connects. Another major reason backpropagation is not biologically-plausible is that it requires neurons to perform distinct computations (implemented using distinct circuitry) in the forward and backward propagation phases of training, and no evidence suggests that biological neurons perform distinct computations during distinct phases of learning. In contrast, equilibrium propagation requires only one behavior of neurons in both the prediction (free) and correction (weakly-clamped) phases of training: that over time they adjust their activation functions to perform gradient descent on an associated energy function (though this is still biologically-implausible because it requires two distinct phases of training). In addition to enhancing its biological plausibility, these traits also make equilibrium propagation appealing as a framework to implement on neuromorphic analog hardware because they would limit the complexity required of neurons and the amount of infrastructure needed to operate and train them.
 
@@ -63,6 +65,7 @@ E(\mtx{u})=\frac{1}{2}\sum_iu_i^2-\frac{1}{2}\sum_{i\neq j}W_{ij}\rho(u_i)\rho(u
 \end{equation}
 This initial prediction-generating evolution is denoted the free phase. Consider some cost function $C(\mtx{u}, \mtx{W}, \mtx{b}, \mtx{y}_d)$; in this and in the original paper it is a quadratic error function
 \begin{equation}
+\label{eqn:cost}
 C(\mtx{y},\mtx{y}_d)=\frac{1}{2}||\mtx{y}-\mtx{y}_d||_2^2,
 \end{equation}
 but the algorithm is applicable to an arbitrary cost function - for example, one including a regularization term. After the free phase, the network is then evolved to a local minimum of a total energy function
@@ -162,7 +165,7 @@ C=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{|\text{N}(v_i)|}\sum_{\substack{v_j\in \text
 \end{equation}
 \npar
 An algorithm was introduced in \cite{watts98} to convert a regimented graph into a small-world graph
-\footnote{Our algorithm is actually slightly different: instead of replacing each edge with probability $p$, at each step we randomly select $n$ of the existing edges and replace them with random edges. For a network with $N$ edges our algorithm is equivalent to the one from \cite{watts98} with $p=1-(\frac{N-1}{N})^n$. For ease of comparison with other work and to contextualize how many edges have been replaced, we will henceforth describe networks using our topology in terms of $p$ and not $n$.}.
+\footnote{Our algorithm is actually slightly different: instead of replacing each edge with probability $p$, at each step we randomly select $n$ of the existing edges and replace them with random edges. For a network with $N$ edges our algorithm is on average equivalent to the one from \cite{watts98} with $p=1-(\frac{N-1}{N})^n$. For ease of comparison with other work and to contextualize how many edges have been replaced, we will henceforth describe networks using our topology in terms of $p$ and not $n$.}.
  For each existing edge in the network, with probability $p$: randomly pick a pair of vertices that do not share an edge. Add an edge between these vertices, and remove the existing edge. As $p\approx 0$ is increased, $L$ initially decreases much more quickly than $C$. $p$ is typically chosen so that $L$ has decreased substantially and $C$ has just begun to decrease.
 \subsubsection{Small-world metrics have little correlation with network performance}
 Contrary to our expectations, we found that a network's performance does not track closely with its clustering coefficient or characteristic path length, and that good performance is achieved when the above algorithm is executed with $p\approx 8\%$, which is substantially higher than the value of $p$ that would make its topology small-world. We believe that our qualitative arguments about the merits of a small-world network are sound, but that the characteristic path length and clustering coefficient are poor predictors of the performance of a deep neural network. The characteristic path length does not take into account the number of low-attenuation paths a neuron can take to the output layer, but clearly this is an important factor, since a neuron's behavior is dictated by an affine combination of all its inputs. While it is important for a network to retain its layered nature in order to generalize well, the clustering coefficient does not appear to be a good metric for this - e.g. a layered network without intralayer connections has a small clustering coefficient because the neighbors of a given neuron are not connected to one-another.
@@ -195,51 +198,73 @@ The vanishing gradient problem was a big obstacle to the training of conventiona
   \centering
   \begin{subfigure}[t]{.48\textwidth}
     \includegraphics[width=.9\textwidth]{figures/basic_topology_illustration.pdf}
-    \caption{Topology of the basic multilayer network. There is a connection between every pair of neurons in adjacent layers. There are no connections between neurons in the same layer. There are no layer-skipping connections. To combat the vanishing gradient problem, the learning rate is higher for weights deeper in the network.}
+    \caption{Topology of the basic multilayer network tested in \cite{scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem (section \ref{sec:vangrad}).}
     \label{fig:top_basic}
   \end{subfigure}
   \hfill
   \begin{subfigure}[t]{.48\textwidth}
     \includegraphics[width=.9\textwidth]{figures/topology_changes_illustration.pdf}
-    \caption{Changes in our topology with respect to the basic topology. Green connections were added to connect every pair of neurons within a layer. Red connections ($8\%$ of existing connections) were chosen at random and removed. Blue connections were chosen at random and added to replace removed connections. These changes allow a uniform learning rate regardless of a weight's depth in the network.}
+    \caption{Changes we have made to the basic topology to compensate for the vanishing gradient problem (section \ref{sec:vangrad}) while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.}
     \label{fig:top_sw}
   \end{subfigure}
   \caption{}
   \label{fig:topology_illus}
 \end{figure}
 
-We implemented the equilibrium propagation learning framework \cite{scellier17} using the Pytorch library \cite{pytorch}, and verified that we could recreate the experiments run in \cite{scellier17}. All of our networks use a hardened sigmoid activation function 
-\begin{equation}
-\rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\}
-\end{equation} with 
-\begin{equation}\rho'(x):=\begin{cases}1 & 0\leq x \leq 1 \\ 0 & \text{else}\end{cases}\end{equation}
-(the derivative at $x=0$ and $x=1$ is chosen to be 1 to avoid saturation). All of our networks use a squared-error cost function with no regularization term. The bulk of our testing was done on the MNIST dataset \cite{mnist1998} with the following 3 networks.
+We implemented the equilibrium propagation learning framework \cite{scellier17} using the Pytorch library \cite{pytorch}, and verified that we could recreate the experiments run in \cite{scellier17}. We follow the procedure described in section \ref{sec:eqp_formulation}; we use a hardened sigmoid activation function (equation \ref{eqn:hardened_sigmoid}) and a squared-error cost function with no regularization term (equation \ref{eqn:cost}). Testing was done on the MNIST dataset \cite{mnist1998} with input-output pairs grouped into batches of 20; training was done on the 50,000 training pairs and testing on the 10,000 validation pairs.
+\npar
+We use two performance-boosting techniques described in \cite{scellier17}. We randomize the sign of $\beta$ at the outset of each batch, which provides a regularization effect. We use persistent particles: after the first epoch, before training on a batch the network's state is initialized to its free equilibrium state from the last time it trained on the same batch. This boosts training speed by allowing the network to reach an equilibrium with few iterations of equation \ref{eqn:dynamics}, and would be unnecessary in an analog implementation; note that training and test error rates during early epochs are likely higher than they would be in an analog implementation or with more iterations.
 
 \subsection{Basic topology with unique learning rates}
 \label{sec:basic_topology}
 
 We recreated the 5-layer network used in \cite{scellier17}. Its topology is illustrated in figure \ref{fig:top_basic}.
 \npar
-The network consists of an input layer with $28^2$ neurons, 5 hidden layers with 500 neurons, and an output layer with 10 neurons. There are connections between every pair of neurons in adjacent layers, no connections between neurons in the same layer, and no layer-skipping connections.
+The network consists of an input layer with $28^2$ neurons, 3 hidden layers with 500 neurons, and an output layer with 10 neurons. There are connections between every pair of neurons in adjacent layers, no connections between neurons in the same layer, and no layer-skipping connections.
 \npar
-The weight matrix was initialized using the Glorot-Bengio initialization scheme \cite{glorot10}: a weight connecting layer $j$ with $n_j$ neurons to layer $j+1$ with $n_{j+1}$ neurons is drawn from 
+The weight matrix was initialized using the Glorot-Bengio initialization scheme \cite{glorot2010}: a weight connecting layer $j$ with $n_j$ neurons to layer $j+1$ with $n_{j+1}$ neurons is drawn from 
 \begin{equation}
 \label{eqn:gb_init}
 U[-\frac{\sqrt{6}}{\sqrt{n_j+n_{j+1}}},\frac{\sqrt{6}}{\sqrt{n_j+n_{j+1}}}].
 \end{equation}
-For effective training it is necessary to use unique learning rates to train the weights connecting each pair of layers. We use the same learning rates that were used for experiments in \cite{scellier17}: .128, .032, .008, .002, in order of the deepest to the shallowest layer. Each neuron has a bias term that is trained using the learning rate corresponding to the weights of the neuron's input connections, e.g. the biases of the first hidden layer are trained with a learning rate of .128.
+For effective training it is necessary to use unique learning rates to train the weights connecting each pair of layers. We use the same learning rates that were used for experiments in \cite{scellier17}: .128, .032, .008, .002, in order of the deepest to the shallowest layer; to counter the vanishing gradient problem (section \ref{sec:vangrad}) the learning rate is reduced by a factor of 4 each time the distance from the output layer decreases by one layer. Each neuron has a bias term that is trained using the learning rate corresponding to the weights of the neuron's input connections, e.g. the biases of the first hidden layer are trained with a learning rate of .128.
 
 \subsection{Basic topology with single learning rate}
 \label{sec:basic_topology_uniform}
 
-To provide a reference point for our topology we ran tests on a network that is identical to that in section \ref{sec:basic_topology} except that it has a single learning rate of .02 across the entire network.
+To provide a point of reference, we ran tests on a network that is identical to that in section \ref{sec:basic_topology} except that it has a single learning rate of .02 across the entire network. It performs poorly due to the vanishing gradient problem (section \ref{sec:vangrad}).
 
 \subsection{Our topology}
 \label{sec:our_topology}
 
-To generate a network with our topology we use as a starting point the topology described in section \ref{sec:basic_topology}. We then connect every pair of neurons in a given layer. Finally, for a given number of connections, we remove an existing connection at random and replace it with a random connection between two unconnected neurons in the network. \footnote{We have also tried adding new connections without replacing existing ones, and observed roughly the same performance. In this paper we replace connections to limit the number of free parameters added to the network and avoid the possibility of conflating improvement due to the changed topology with that due to additional parameters.} We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results with $p\approx 8\%$ of a network's connections in this manner.
+To generate a network with our topology, we use the following procedure:
+
+\begin{algorithm}
+	\SetKwInOut{Input}{input}
+	\Input{$network\leftarrow$ a network with the topology described in section \ref{sec:basic_topology}.}
+	\Input{$p\leftarrow$ the probability with which to replace a given connection.}
+	\BlankLine
+	\For{$\text{layer}$ \upshape{\textbf{in}} $\textit{network}$}{
+		\For{$\text{pair of neurons}$ \upshape{\textbf{in}} $\textit{layer}$}{
+			\textbf{connect} \textit{pair of neurons}\;
+		}
+	}
+	\BlankLine
+	$N\leftarrow\lfloor\log(1-p)/\log(\frac{N-1}{N})\rfloor$\;
+	\For{$i\leftarrow 1$ \KwTo $N$}{
+		\textit{existing pair} $:=$ randomly-chosen pair of connected neurons\;
+		\textit{new pair} $:=$ randomly-chosen pair of unconnected neurons\;
+		\textbf{remove} connection between neurons in \textit{existing pair}\;
+		\textbf{add} connection between neurons in \textit{new pair}\;
+	}
+\caption{The procedure by which we modify a network's topology.}
+\label{alg:gentop}
+\end{algorithm}
+
+
+To generate a network with our topology we implement algorithm \ref{alg:gentop}. We have also tried adding new connections without removing existing ones, and observed roughly the same performance. In this paper we replace connections to limit the number of parameters added to the network. We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results with $p\approx 8\%$.
 \npar
-This topology allows us to train the network with a uniform learning rate of .02 across the entire network. Weights of connections between pairs of neurons in adjacent layers are still initialized based on (\ref{eqn:gb_init}). Weights of intralayer connections and layer-skipping connections are drawn from $U[-.05,.05]$,where the value .05 was chosen empirically. While we do not theoretically justify this initialization, it allows for good performance.
+This topology allows us to train the network with a uniform learning rate of .02 across the entire network. Weights of connections between pairs of neurons in adjacent layers are still initialized based on (\ref{eqn:gb_init}). Weights of intralayer connections and layer-skipping connections are drawn from $U[-.05,.05]$, where the value .05 was chosen empirically. While we do not theoretically justify this initialization, it allows for good performance.
 
 \subsection{Tracking the training rates of individual pairs of layers}
 
@@ -257,27 +282,12 @@ Since this measurement tends to be volatile, for clarity we plot the average of 
 \end{equation}
 Then by plotting the traces $\Delta \hat{w}^l(b)$ for each layer $l$ with respect to $b$ we can compare the extent to which each layer trained over a given span of batches.
 
-\subsection{Tracking the spread of training rates as a scalar}
-
-We observe that in networks with our topology, weights connecting to the output layer tend to train with a rate around an order of magnitude higher than deeper weights, independently of the number of replaced connections. We also note that with few replaced connections it is common for training rates to vary by several orders of magnitude. These observations informed our definition of a scalar metric of the spread of the training rates of a network's layers. For a network trained for $N$ batches with $\Delta w^l(b)$ measured every $n$ batches and where $\Delta w^l(b)$ is defined by (\ref{eqn:rms_correction}), we first define 
-\begin{equation}
-\label{eqn:training_sum}
-\Delta w^l:=\sum_{b=1}^{\lfloor N/n\rfloor}\Delta w^l(nb)
-\end{equation}
-as a metric of how much the weights between layers $l$ and $l+1$ were corrected over the course of training. For a network with $2L+2$ layers where $l_{min}(i)$ denotes the pair of layers with the $i^{th}$ smallest $\Delta w^l$, we finally define 
-\begin{equation}
-\label{eqn:spread}
-\text{Spread}:=\frac{\sum_{i=L+1}^{2L}\Delta w^{l_{min}(i)}}{\sum_{i=1}^L\Delta w^{l_{min}(i)}}.
-\end{equation}
-Note that this metric ignores the difference between deep pairs and the pair connecting to the output layer, as it is assumed to be independent of the number of replaced connections. 
-
-
 \section{Results}
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/MNIST_network_comparison.pdf}
-  \caption{Comparison of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with a standard multilayer feedforward topology and a single learning rate. In blue is a network with the same multilayer feedforward topology and unique learning rates for each layer, tuned to promote uniformity in the extent to which each pair of layers trains, as described in \cite{scellier17}. In green is a network with a multilayer feedforward topology with fully connected layers and $p=7.56\%$.}
+  \caption{Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section \ref{sec:basic_topology_uniform}). In blue is a network with the basic topology and unique learning rates (section \ref{sec:basic_topology}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \cite{scellier17}. In green is a network with our topology, $p=7.56\%$ (section \ref{sec:our_topology}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.}
   \label{fig:mnist_comparison}
 \end{figure}
 
@@ -324,7 +334,7 @@ Notice in the basic network with one learning rate that there is a significant s
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/MNIST_one_epoch_performance.pdf}
-  \caption{The training error after one epoch of a network with our topology, as connections are replaced.}
+  \caption{Performance of a network with our topology (section \ref{sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.}
   \label{fig:mnist_1epoch}
 \end{figure}
 

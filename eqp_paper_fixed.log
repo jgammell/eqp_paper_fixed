@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  28 FEB 2020 18:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  3 MAR 2020 11:58
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -223,21 +223,78 @@ Package: appendix 2020/02/08 v1.2c extra appendix facilities
 \c@@pps=\count111
 \c@@ppsavesec=\count112
 \c@@ppsaveapp=\count113
+)
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/algorithm2e\algorith
+m2e.sty"
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count114
+
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip50
+
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ifoddpage\ifoddpage.
+sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count115
+)
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\xspace.sty"
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/relsize\relsize.sty"
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip51
+\skiplinenumber=\skip52
+\skiprule=\skip53
+\skiphlne=\skip54
+\skiptext=\skip55
+\skiplength=\skip56
+\algomargin=\skip57
+\skipalgocfslide=\skip58
+\algowidth=\dimen138
+\inoutsize=\dimen139
+\inoutindent=\dimen140
+\interspacetitleruled=\dimen141
+\interspacealgoruled=\dimen142
+\interspacetitleboxruled=\dimen143
+\algocf@ruledwidth=\skip59
+\algocf@inoutbox=\box29
+\algocf@inputbox=\box30
+\AlCapSkip=\skip60
+\AlCapHSkip=\skip61
+\algoskipindent=\skip62
+\algocf@nlbox=\box31
+\algocf@hangingbox=\box32
+\algocf@untilbox=\box33
+\algocf@skipuntil=\skip63
+\algocf@capbox=\box34
+\algocf@lcaptionbox=\skip64
+\algoheightruledefault=\skip65
+\algoheightrule=\skip66
+\algotitleheightruledefault=\skip67
+\algotitleheightrule=\skip68
+\c@algocfline=\count116
+\c@algocfproc=\count117
+\c@algocf=\count118
+\algocf@algoframe=\box35
+\algocf@algobox=\box36
 ) (eqp_paper_fixed.aux)
 \openout1 = `eqp_paper_fixed.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -277,16 +334,16 @@ LaTeX Font Info:    ... okay on input line 20.
 ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pdf
 .mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count114
-\scratchdimen=\dimen138
-\scratchbox=\box29
-\nofMPsegments=\count115
-\nofMParguments=\count116
+\scratchcounter=\count119
+\scratchdimen=\dimen144
+\scratchbox=\box37
+\nofMPsegments=\count120
+\nofMParguments=\count121
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count117
-\MPscratchDim=\dimen139
-\MPnumerator=\count118
-\makeMPintoPDFobject=\count119
+\MPscratchCnt=\count122
+\MPscratchDim=\dimen145
+\MPnumerator=\count123
+\makeMPintoPDFobject=\count124
 \everyMPtoPDFconversion=\toks22
 )
 ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-ba
@@ -343,12 +400,12 @@ G,.JBIG2,.JB2,.eps]
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Try loading font information for U+msa on input line 21.
+LaTeX Font Info:    Try loading font information for U+msa on input line 22.
 
 ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 22.
 
 ("C:\Users\jig\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -356,7 +413,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/jig/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (17.18289pt too wide) in paragraph at lines 63--65
+Overfull \hbox (17.18289pt too wide) in paragraph at lines 65--67
 \OT1/cmr/m/n/10 This ini-tial prediction-generating evo-lu-tion is de-noted the
  free phase. Con-sider some cost func-tion $\OML/cmm/m/it/10 C\OT1/cmr/m/n/10 (
 \OML/cmm/b/it/10 u\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 W\OML/cmm/m/it/10 ; \OML/
@@ -365,31 +422,27 @@ cmm/b/it/10 b\OML/cmm/m/it/10 ; \OML/cmm/b/it/10 y[]\OT1/cmr/m/n/10 )$;
 
 [3] [4] [5] [6]
 
-LaTeX Warning: Citation `???' on page 7 undefined on input line 182.
+LaTeX Warning: Citation `???' on page 7 undefined on input line 185.
 
 
-LaTeX Warning: Citation `???' on page 7 undefined on input line 188.
+LaTeX Warning: Citation `???' on page 7 undefined on input line 191.
 
 <figures/basic_topology_illustration.pdf, id=42, 845.07718pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
- line 197.
+ line 200.
 (pdftex.def)             Requested size: 202.93097pt x 122.22983pt.
 <figures/topology_changes_illustration.pdf, id=43, 839.05469pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
-ut line 203.
+ut line 206.
 (pdftex.def)             Requested size: 202.93097pt x 123.10751pt.
 
-LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 211.
+LaTeX Warning: Citation `pytorch' on page 7 undefined on input line 214.
 
-[7]
-
-LaTeX Warning: Citation `glorot10' on page 8 undefined on input line 225.
-
-[8 <./figures/basic_topology_illustration.pdf
+[7] [8 <./figures/basic_topology_illustration.pdf
 
 pdfTeX warning: pdflatex (file ./figures/basic_topology_illustration.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
@@ -400,36 +453,36 @@ pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
 F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
 ay>); ignored.
 >]
-<figures/MNIST_network_comparison.pdf, id=107, 1927.2pt x 993.7125pt>
+<figures/MNIST_network_comparison.pdf, id=109, 1927.2pt x 993.7125pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 279.
+ne 289.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
  [9] [10 <./figures/MNIST_network_comparison.pdf>]
-<figures/MNIST_individual_layers.pdf, id=165, 1927.2pt x 953.5625pt>
+<figures/MNIST_individual_layers.pdf, id=168, 1927.2pt x 953.5625pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
-e 312.
+e 322.
 (pdftex.def)             Requested size: 469.75502pt x 232.42447pt.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 11 undefined on input li
-ne 313.
+ne 323.
 
 
 LaTeX Warning: Reference `eqn:layer_averaging' on page 11 undefined on input li
-ne 313.
+ne 323.
 
-[11 <./figures/MNIST_individual_layers.pdf>]
-<figures/MNIST_one_epoch_performance.pdf, id=236, 1927.2pt x 993.7125pt>
+<figures/MNIST_one_epoch_performance.pdf, id=169, 1927.2pt x 993.7125pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
- line 326.
+ line 336.
 (pdftex.def)             Requested size: 469.75502pt x 242.21075pt.
- [12 <./figures/MNIST_one_epoch_performance.pdf>] (eqp_paper_fixed.bbl
+[11 <./figures/MNIST_individual_layers.pdf>] [12 <./figures/MNIST_one_epoch_per
+formance.pdf>] (eqp_paper_fixed.bbl
 Underfull \hbox (badness 1629) in paragraph at lines 94--97
 []\OT1/cmr/m/n/10 Benjamin Scel-lier and Yoshua Ben-gio.  To-wards a bi-o-log-i
 -cally plau-si-ble back-prop.  \OT1/cmr/m/it/10 CoRR\OT1/cmr/m/n/10 ,
@@ -439,15 +492,18 @@ Underfull \hbox (badness 1629) in paragraph at lines 94--97
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 4928 strings out of 492945
- 76216 string characters out of 3127140
- 154318 words of memory out of 3000000
- 8728 multiletter control sequences out of 15000+200000
- 19226 words of font info for 71 fonts, out of 3000000 for 9000
+ 5922 strings out of 492945
+ 92362 string characters out of 3127140
+ 180832 words of memory out of 3000000
+ 9704 multiletter control sequences out of 15000+200000
+ 19924 words of font info for 73 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,10n,40p,2098b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,12n,40p,2098b,499s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmbx12.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/t
@@ -459,26 +515,28 @@ ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/jig
 /Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
 i7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmmi8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmmib10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jig/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jig/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/jig/AppDat
-a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/j
-ig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C
-:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-r7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
-lic/amsfonts/cm/cmr9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/jig/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jig/AppData/L
-ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/jig
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
-/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmt
-i10.pfb>
-Output written on eqp_paper_fixed.pdf (14 pages, 605116 bytes).
+blic/amsfonts/cm/cmmi9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/jig/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jig/AppData/Local/Pr
+ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jig/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/
+jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr6.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmr7.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/jig/AppData/Local/Progr
+ams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/jig/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/jig
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:
+/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y8.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy9.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
+blic/amsfonts/cm/cmti10.pfb>
+Output written on eqp_paper_fixed.pdf (14 pages, 620862 bytes).
 PDF statistics:
- 380 PDF objects out of 1000 (max. 8388607)
+ 388 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

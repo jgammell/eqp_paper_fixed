@@ -13,6 +13,7 @@
 \citation{bullmore2009}
 \citation{he2015,srivastava2015}
 \citation{xiaohu2011,krishnan2019}
+\providecommand \oddpage@label [2]{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}\protected@file@percent }
 \citation{scellier17}
 \citation{hopfield1984}
@@ -20,8 +21,10 @@
 \citation{scellier17}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Background and Theory}{2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Equilibrium propagation}{2}\protected@file@percent }
+\newlabel{sec:eqp_formulation}{{2.1}{2}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.1}Implementation in a continuous Hopfield network}{2}\protected@file@percent }
 \newlabel{eqn:hardened_sigmoid}{{1}{2}}
+\newlabel{eqn:cost}{{4}{3}}
 \newlabel{eqn:dynamics}{{6}{3}}
 \newlabel{eqn:weight_correction}{{7}{3}}
 \citation{lillicrap2014}
@@ -65,15 +68,18 @@
 \citation{glorot2010}
 \citation{???}
 \citation{scellier17}
+\citation{scellier17}
+\citation{scellier17}
 \citation{pytorch}
 \citation{scellier17}
 \citation{mnist1998}
+\citation{scellier17}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Nonlinearities learning residuals}{7}\protected@file@percent }
 \newlabel{sec:residuals}{{2.4}{7}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Related work}{7}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{7}\protected@file@percent }
 \citation{scellier17}
-\citation{glorot10}
+\citation{glorot2010}
 \citation{scellier17}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:top_basic}{{1a}{8}}
@@ -84,7 +90,7 @@
 \newlabel{fig:topology_illus}{{1}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Basic topology with unique learning rates}{8}\protected@file@percent }
 \newlabel{sec:basic_topology}{{4.1}{8}}
-\newlabel{eqn:gb_init}{{19}{8}}
+\newlabel{eqn:gb_init}{{17}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Basic topology with single learning rate}{8}\protected@file@percent }
 \newlabel{sec:basic_topology_uniform}{{4.2}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Our topology}{8}\protected@file@percent }
@@ -92,14 +98,13 @@
 \citation{scellier17}
 \citation{scellier17}
 \citation{mnist1998}
+\@writefile{loa}{\contentsline {algocf}{\numberline {1}{\ignorespaces The procedure by which we modify a network's topology.\relax }}{9}\protected@file@percent }
+\newlabel{alg:gentop}{{1}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tracking the training rates of individual pairs of layers}{9}\protected@file@percent }
-\newlabel{eqn:rms_correction}{{20}{9}}
-\newlabel{eqn:running_avg}{{21}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Tracking the spread of training rates as a scalar}{9}\protected@file@percent }
-\newlabel{eqn:training_sum}{{22}{9}}
-\newlabel{eqn:spread}{{23}{9}}
+\newlabel{eqn:rms_correction}{{18}{9}}
+\newlabel{eqn:running_avg}{{19}{9}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results}{9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with a standard multilayer feedforward topology and a single learning rate. In blue is a network with the same multilayer feedforward topology and unique learning rates for each layer, tuned to promote uniformity in the extent to which each pair of layers trains, as described in \cite  {scellier17}. In green is a network with a multilayer feedforward topology with fully connected layers and $p=7.56\%$.\relax }}{10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section 4.2\hbox {}). In blue is a network with the basic topology and unique learning rates (section 4.1\hbox {}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \cite  {scellier17}. In green is a network with our topology, $p=7.56\%$ (section 4.3\hbox {}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.\relax }}{10}\protected@file@percent }
 \newlabel{fig:mnist_comparison}{{2}{10}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameters of networks tested on MNIST dataset\relax }}{10}\protected@file@percent }
 \newlabel{table:hyperparameters}{{1}{10}}
@@ -111,7 +116,7 @@
 \newlabel{sec:network_performance}{{5.1}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training rates of individual pairs of layers}{11}\protected@file@percent }
 \newlabel{sec:mnist_perlayer}{{5.2}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The training error after one epoch of a network with our topology, as connections are replaced.\relax }}{12}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance of a network with our topology (section 4.3\hbox {}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.\relax }}{12}\protected@file@percent }
 \newlabel{fig:mnist_1epoch}{{4}{12}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Error rate after one epoch as connections are added}{12}\protected@file@percent }
 \newlabel{sec:mnist_1epoch}{{5.3}{12}}
