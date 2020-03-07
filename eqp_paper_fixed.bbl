@@ -45,6 +45,12 @@ John Hopfield.
 \newblock {\em Proceedings of the National Academy of Sciences of the United
   States of America}, 81:3088--92, 06 1984.
 
+\bibitem{humphries2008}
+Mark Humphries and Kevin Gurney.
+\newblock Network ‘small-world-ness’: A quantitative method for determining
+  canonical network equivalence.
+\newblock {\em PloS one}, 3:e0002051, 02 2008.
+
 \bibitem{ioffe2015}
 Sergey Ioffe and Christian Szegedy.
 \newblock Batch normalization: Accelerating deep network training by reducing
@@ -89,8 +95,8 @@ Peter O'Connor, Efstratios Gavves, and Max Welling.
 
 \bibitem{scellier17}
 Benjamin Scellier and Yoshua Bengio.
-\newblock Towards a biologically plausible backprop.
-\newblock {\em CoRR}, abs/1602.05179, 2016.
+\newblock Equilibrium propagation: Bridging the gap between energy-based models
+  and backpropagation, 2016.
 
 \bibitem{shainline2019}
 Jeffrey~M. {Shainline}, Sonia~M. {Buckley}, Adam~N. {McCaughan}, Jeffrey~T.

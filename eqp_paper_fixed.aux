@@ -34,6 +34,7 @@
 \@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \citation{scellier17}
+\citation{scellier17}
 \citation{hopfield1984}
 \citation{bengio2015}
 \citation{scellier17}
@@ -44,28 +45,73 @@
 \newlabel{eqn:hardened_sigmoid}{{1}{2}{Implementation in a continuous Hopfield network}{equation.2.1}{}}
 \newlabel{eqn:cost}{{4}{2}{Implementation in a continuous Hopfield network}{equation.2.4}{}}
 \newlabel{eqn:dynamics}{{6}{2}{Implementation in a continuous Hopfield network}{equation.2.6}{}}
+\newlabel{eqn:weight_correction}{{7}{2}{Implementation in a continuous Hopfield network}{equation.2.7}{}}
 \citation{lillicrap2014}
 \citation{oconnor2018}
 \citation{bullmore2009}
 \citation{scellier17}
 \citation{glorot2010}
-\newlabel{eqn:weight_correction}{{7}{3}{Implementation in a continuous Hopfield network}{equation.2.7}{}}
+\citation{scellier17}
+\citation{watts98}
+\citation{bullmore2009}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.2}Approximation of equation of motion}{3}{subsubsection.2.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.1.3}Applicable methods for enhanced biological-plausibility}{3}{subsubsection.2.1.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Vanishing gradient problem}{3}{subsection.2.2}\protected@file@percent }
 \newlabel{sec:vangrad}{{2.2}{3}{Vanishing gradient problem}{subsection.2.2}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Contribution by approximation of equation of motion}{3}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Small-world networks}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{sec:sw_background}{{2.3}{3}{Small-world networks}{subsection.2.3}{}}
 \citation{watts98}
-\citation{bullmore2009}
-\citation{watts98}
-\citation{watts98}
+\citation{scellier17}
+\citation{scellier17}
+\citation{scellier17}
+\citation{pytorch}
+\citation{scellier17}
+\citation{mnist1998}
+\citation{scellier17}
+\citation{scellier17}
+\citation{glorot2010}
+\citation{scellier17}
+\newlabel{sec:sw_algorithm}{{2.3.1}{4}{Algorithm for generating a small-world network}{subsubsection.2.3.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Algorithm for generating a small-world network}{4}{subsubsection.2.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Implementation}{4}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Basic topology with unique learning rates}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:basic_topology}{{3.1}{4}{Basic topology with unique learning rates}{subsection.3.1}{}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:top_basic}{{1a}{4}{Topology of the basic multilayer network tested in \cite {scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem (section \ref {sec:vangrad}).\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:top_basic}{{a}{4}{Topology of the basic multilayer network tested in \cite {scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem (section \ref {sec:vangrad}).\relax }{figure.caption.4}{}}
+\newlabel{fig:top_sw}{{1b}{4}{Changes we have made to the basic topology to compensate for the vanishing gradient problem (section \ref {sec:vangrad}) while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:top_sw}{{b}{4}{Changes we have made to the basic topology to compensate for the vanishing gradient problem (section \ref {sec:vangrad}) while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \relax }}{4}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:topology_illus}{{1}{4}{\relax }{figure.caption.4}{}}
+\newlabel{eqn:gb_init}{{11}{4}{Basic topology with unique learning rates}{equation.3.11}{}}
+\citation{scellier17}
+\citation{scellier17}
+\citation{mnist1998}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Basic topology with single learning rate}{5}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:basic_topology_uniform}{{3.2}{5}{Basic topology with single learning rate}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Our topology}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:our_topology}{{3.3}{5}{Our topology}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tracking the training rates of individual pairs of layers}{5}{subsection.3.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section \ref  {sec:basic_topology_uniform}). In blue is a network with the basic topology and unique learning rates (section \ref  {sec:basic_topology}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \citep  {scellier17}. In green is a network with our topology, $p=7.56\%$ (section \ref  {sec:our_topology}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.\relax }}{5}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:mnist_comparison}{{2}{5}{Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section \ref {sec:basic_topology_uniform}). In blue is a network with the basic topology and unique learning rates (section \ref {sec:basic_topology}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \cite {scellier17}. In green is a network with our topology, $p=7.56\%$ (section \ref {sec:our_topology}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.\relax }{figure.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameters of networks tested on MNIST dataset\relax }}{5}{table.caption.6}\protected@file@percent }
+\newlabel{table:hyperparameters}{{1}{5}{Hyperparameters of networks tested on MNIST dataset\relax }{table.caption.6}{}}
+\newlabel{eqn:rms_correction}{{12}{5}{Tracking the training rates of individual pairs of layers}{equation.3.12}{}}
+\newlabel{eqn:running_avg}{{13}{5}{Tracking the training rates of individual pairs of layers}{equation.3.13}{}}
+\citation{scellier17}
+\citation{scellier17}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces **Fix this caption \indent Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref  {fig:mnist_comparison}, and have been averaged as described in (\ref  {eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \citep  {scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and $p=7.56\%$.\relax }}{6}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:mnist_layers}{{3}{6}{**Fix this caption\npar Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref {fig:mnist_comparison}, and have been averaged as described in (\ref {eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite {scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and $p=7.56\%$.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Network performance comparison}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:network_performance}{{4.1}{6}{Network performance comparison}{subsection.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance of a network with our topology (section \ref  {sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.\relax }}{6}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:mnist_1epoch}{{4}{6}{Performance of a network with our topology (section \ref {sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Training rates of individual pairs of layers}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:mnist_perlayer}{{4.2}{6}{Training rates of individual pairs of layers}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Error rate after one epoch as connections are added}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:mnist_1epoch}{{4.3}{6}{Error rate after one epoch as connections are added}{subsection.4.3}{}}
 \citation{he2015}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Small-world networks}{4}{subsection.2.3}\protected@file@percent }
-\newlabel{sec:sw_background}{{2.3}{4}{Small-world networks}{subsection.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1}Small-world metrics}{4}{subsubsection.2.3.1}\protected@file@percent }
-\newlabel{eqn:charpathlength}{{15}{4}{Small-world metrics}{equation.2.15}{}}
-\newlabel{eqn:clustcoeff}{{16}{4}{Small-world metrics}{equation.2.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Small-world metrics have little correlation with network performance}{4}{subsubsection.2.3.2}\protected@file@percent }
 \citation{he2015,ioffe2015}
 \citation{lee2015}
 \citation{xie2003}
@@ -85,53 +131,11 @@
 \citation{ioffe2015}
 \citation{glorot2010}
 \citation{???}
-\citation{scellier17}
-\citation{scellier17}
-\citation{scellier17}
-\citation{pytorch}
-\citation{scellier17}
-\citation{mnist1998}
-\citation{scellier17}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Nonlinearities learning residuals}{5}{subsection.2.4}\protected@file@percent }
-\newlabel{sec:residuals}{{2.4}{5}{Nonlinearities learning residuals}{subsection.2.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Related work}{5}{section.3}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:top_basic}{{1a}{5}{Topology of the basic multilayer network tested in \cite {scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem (section \ref {sec:vangrad}).\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:top_basic}{{a}{5}{Topology of the basic multilayer network tested in \cite {scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem (section \ref {sec:vangrad}).\relax }{figure.caption.4}{}}
-\newlabel{fig:top_sw}{{1b}{5}{Changes we have made to the basic topology to compensate for the vanishing gradient problem (section \ref {sec:vangrad}) while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:top_sw}{{b}{5}{Changes we have made to the basic topology to compensate for the vanishing gradient problem (section \ref {sec:vangrad}) while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \relax }}{5}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:topology_illus}{{1}{5}{\relax }{figure.caption.4}{}}
-\citation{scellier17}
-\citation{glorot2010}
-\citation{scellier17}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{6}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Basic topology with unique learning rates}{6}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:basic_topology}{{4.1}{6}{Basic topology with unique learning rates}{subsection.4.1}{}}
-\newlabel{eqn:gb_init}{{17}{6}{Basic topology with unique learning rates}{equation.4.17}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Basic topology with single learning rate}{6}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:basic_topology_uniform}{{4.2}{6}{Basic topology with single learning rate}{subsection.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Our topology}{6}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:our_topology}{{4.3}{6}{Our topology}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tracking the training rates of individual pairs of layers}{6}{subsection.4.4}\protected@file@percent }
-\newlabel{eqn:rms_correction}{{18}{6}{Tracking the training rates of individual pairs of layers}{equation.4.18}{}}
-\newlabel{eqn:running_avg}{{19}{6}{Tracking the training rates of individual pairs of layers}{equation.4.19}{}}
-\citation{scellier17}
-\citation{scellier17}
-\citation{mnist1998}
-\citation{scellier17}
-\citation{scellier17}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section \ref  {sec:basic_topology_uniform}). In blue is a network with the basic topology and unique learning rates (section \ref  {sec:basic_topology}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \citep  {scellier17}. In green is a network with our topology, $p=7.56\%$ (section \ref  {sec:our_topology}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.\relax }}{7}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:mnist_comparison}{{2}{7}{Comparison of performance of network topologies on MNIST dataset. Dotted lines show test error and solid lines show training error. In red is a network with the basic topology and a single learning rate (section \ref {sec:basic_topology_uniform}). In blue is a network with the basic topology and unique learning rates (section \ref {sec:basic_topology}), tuned to counter the vanishing gradient problem; this is a recreation of the 5-layer network in \cite {scellier17}. In green is a network with our topology, $p=7.56\%$ (section \ref {sec:our_topology}). The network with a basic topology and a single learning rate performs poorly because it suffers from the vanishing gradient problem. The problem can be solved by introducing unique learning rates, or by implementing our topology.\relax }{figure.caption.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Hyperparameters of networks tested on MNIST dataset\relax }}{7}{table.caption.6}\protected@file@percent }
-\newlabel{table:hyperparameters}{{1}{7}{Hyperparameters of networks tested on MNIST dataset\relax }{table.caption.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{7}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Network performance comparison}{7}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:network_performance}{{5.1}{7}{Network performance comparison}{subsection.5.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref  {fig:mnist_comparison}, and have been averaged as described in (\ref  {eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \citep  {scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and $p=7.56\%$.\relax }}{7}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:mnist_layers}{{3}{7}{Observation of extent of training of individual layers for different network topologies. Measurements were taken while running trials shown in figure \ref {fig:mnist_comparison}, and have been averaged as described in (\ref {eqn:layer_averaging}). To the left is a network with a standard multilayer feedforward topology and a single learning rate. In the center is a network with the same multilayer feedforward topology and unique learning rates for each layer, as described in \cite {scellier17}. To the right is a network with a multilayer feedforward topology with fully-connected layers and $p=7.56\%$.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Training rates of individual pairs of layers}{7}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:mnist_perlayer}{{5.2}{7}{Training rates of individual pairs of layers}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Small-world metrics have little correlation with network performance}{7}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Nonlinearities learning residuals}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Related work}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{references}
 \bibcite{bartunov2018}{{1}{}{{}}{{}}}
@@ -141,32 +145,35 @@
 \bibcite{glorot2010}{{5}{}{{}}{{}}}
 \bibcite{he2015}{{6}{}{{}}{{}}}
 \bibcite{hopfield1984}{{7}{}{{}}{{}}}
-\bibcite{ioffe2015}{{8}{}{{}}{{}}}
-\bibcite{krishnan2019}{{9}{}{{}}{{}}}
-\bibcite{mnist1998}{{10}{}{{}}{{}}}
-\bibcite{lee2015}{{11}{}{{}}{{}}}
-\bibcite{lillicrap2014}{{12}{}{{}}{{}}}
-\bibcite{nahmias2013}{{13}{}{{}}{{}}}
-\bibcite{oconnor2018}{{14}{}{{}}{{}}}
-\bibcite{pineda1987}{{15}{}{{}}{{}}}
-\bibcite{scellier17}{{16}{}{{}}{{}}}
-\bibcite{shainline2019}{{17}{}{{}}{{}}}
-\bibcite{simonyan2014}{{18}{}{{}}{{}}}
-\bibcite{srivastava2015tvdn}{{19}{}{{}}{{}}}
-\bibcite{srivastava2015}{{20}{}{{}}{{}}}
-\bibcite{watts98}{{21}{}{{}}{{}}}
-\bibcite{xiaohu2011}{{22}{}{{}}{{}}}
-\bibcite{xie2003}{{23}{}{{}}{{}}}
+\bibcite{humphries2008}{{8}{}{{}}{{}}}
+\bibcite{ioffe2015}{{9}{}{{}}{{}}}
+\bibcite{krishnan2019}{{10}{}{{}}{{}}}
+\bibcite{mnist1998}{{11}{}{{}}{{}}}
+\bibcite{lee2015}{{12}{}{{}}{{}}}
+\bibcite{lillicrap2014}{{13}{}{{}}{{}}}
+\bibcite{nahmias2013}{{14}{}{{}}{{}}}
+\bibcite{oconnor2018}{{15}{}{{}}{{}}}
+\bibcite{pineda1987}{{16}{}{{}}{{}}}
+\bibcite{scellier17}{{17}{}{{}}{{}}}
+\bibcite{shainline2019}{{18}{}{{}}{{}}}
+\bibcite{simonyan2014}{{19}{}{{}}{{}}}
+\bibcite{srivastava2015tvdn}{{20}{}{{}}{{}}}
+\bibcite{srivastava2015}{{21}{}{{}}{{}}}
+\bibcite{watts98}{{22}{}{{}}{{}}}
+\bibcite{xiaohu2011}{{23}{}{{}}{{}}}
+\bibcite{xie2003}{{24}{}{{}}{{}}}
+\citation{watts98}
+\citation{humphries2008}
+\@writefile{toc}{\contentsline {section}{References}{8}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Metrics of a graph's 'small-world-ness'}{8}{appendix.1.A}\protected@file@percent }
+\newlabel{app:sw_metrics}{{A}{8}{Metrics of a graph's 'small-world-ness'}{appendix.1.A}{}}
+\newlabel{eqn:charpathlength}{{14}{8}{Metrics of a graph's 'small-world-ness'}{equation.1.A.14}{}}
+\newlabel{eqn:clustcoeff}{{15}{8}{Metrics of a graph's 'small-world-ness'}{equation.1.A.15}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Influence of approximation of differential equation of motion on vanishing gradient problem}{8}{appendix.1.B}\protected@file@percent }
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
-\newlabel{tocindent1}{4.65pt}
+\newlabel{tocindent1}{6.25499pt}
 \newlabel{tocindent2}{11.49998pt}
 \newlabel{tocindent3}{20.22pt}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Performance of a network with our topology (section \ref  {sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.\relax }}{8}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:mnist_1epoch}{{4}{8}{Performance of a network with our topology (section \ref {sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. It can be seen that there is little improvement for $p<10^{-4}$, rapid improvement for $10^{-4}<p<10^{-2}$ and little improvement for $p>10^{-2}$. The training error after one epoch decreases as pairs of layers train more uniformly with respect to depth.\relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Error rate after one epoch as connections are added}{8}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:mnist_1epoch}{{5.3}{8}{Error rate after one epoch as connections are added}{subsection.5.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{References}{8}{section*.10}\protected@file@percent }
-\newlabel{TotPages}{{8}{8}{}{page.8}{}}
+\newlabel{TotPages}{{9}{9}{}{page.9}{}}
