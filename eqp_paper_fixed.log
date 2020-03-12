@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  12 MAR 2020 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.5.14)  12 MAR 2020 11:40
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -1401,10 +1401,6 @@ _layers.pdf> <./figures/MNIST_one_epoch_performance.pdf
 pdfTeX warning: pdflatex (file ./figures/MNIST_one_epoch_performance.pdf): PDF 
 inclusion: multiple pdfs with page group included in a single page
 >]
-
-Package natbib Warning: Citation `???' on page 7 undefined on input line 332.
-
-
 Overfull \hbox (10.82417pt too wide) in paragraph at lines 332--339
 \T1/LinuxLibertineT-TLF/m/n/9 (-20) net-works can train through back-prop-a-ga-
 tion with randomly-initialized
@@ -1418,9 +1414,6 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8.8]
-
-Package natbib Warning: There were undefined citations.
-
 
 Class acmart Warning: Some images may lack descriptions.
 
@@ -1475,7 +1468,7 @@ nts/type1/public/newtx/NewTXMI.pfb><C:/Users/jig/AppData/Local/Programs/MiKTeX
 2.9/fonts/type1/public/newtx/txexs.pfb><C:/Users/jig/AppData/Local/Programs/MiK
 TeX 2.9/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/jig/AppData/Local/Program
 s/MiKTeX 2.9/fonts/type1/public/newtx/txsys.pfb>
-Output written on eqp_paper_fixed.pdf (9 pages, 912905 bytes).
+Output written on eqp_paper_fixed.pdf (9 pages, 912872 bytes).
 PDF statistics:
  696 PDF objects out of 1000 (max. 8388607)
  106 named destinations out of 1000 (max. 500000)
