@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  24 MAR 2020 16:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  25 MAR 2020 14:42
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -1448,18 +1448,18 @@ Overfull \hbox (16.57858pt too wide) in paragraph at lines 176--176
 []$[]$\T1/LinuxLibertineT-TLF/m/n/9 (-20) ; 
  []
 
-<figures/basic_topology_illustration.pdf, id=207, 488.26015pt x 306.65166pt>
+<figures/basic_topology_illustration.pdf, id=207, 819.06pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
  line 191.
-(pdftex.def)             Requested size: 218.71599pt x 137.36496pt.
-<figures/topology_changes_illustration.pdf, id=210, 474.36723pt x 296.72755pt>
+(pdftex.def)             Requested size: 218.71599pt x 135.92311pt.
+<figures/topology_changes_illustration.pdf, id=210, 819.06pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
 ut line 197.
-(pdftex.def)             Requested size: 218.71599pt x 136.81326pt.
+(pdftex.def)             Requested size: 218.71599pt x 135.92311pt.
 
 Overfull \hbox (1.87193pt too wide) in paragraph at lines 190--201
  [][] 
@@ -1478,29 +1478,38 @@ Overfull \hbox (4.11859pt too wide) in paragraph at lines 252--252
 []$[]$\T1/LinuxLibertineT-TLF/m/n/9 (-20) ; 
  []
 
-[4.4 <./figures/basic_topology_illustration.pdf> <./figures/topology_changes_il
-lustration.pdf>]
-<figures/MNIST_network_comparison.pdf, id=318, 1084.05pt x 720.6925pt>
+[4.4 <./figures/basic_topology_illustration.pdf
+
+pdfTeX warning: pdflatex (file ./figures/basic_topology_illustration.pdf): PDF 
+inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
+>); ignored.
+> <./figures/topology_changes_illustration.pdf
+
+pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
+F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
+ay>); ignored.
+>]
+<figures/MNIST_network_comparison.pdf, id=275, 1300.86pt x 860.21375pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
 ne 282.
-(pdftex.def)             Requested size: 241.14749pt x 160.31233pt.
+(pdftex.def)             Requested size: 241.14749pt x 159.45206pt.
 
 
 Class acmart Warning: A possible image without description on input line 285.
 
-<figures/MNIST_individual_layers.pdf, id=333, 1084.05pt x 720.6925pt>
+<figures/MNIST_individual_layers.pdf, id=290, 1084.05pt x 715.67375pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
 e 301.
-(pdftex.def)             Requested size: 241.14749pt x 160.31233pt.
+(pdftex.def)             Requested size: 241.14749pt x 159.19595pt.
 
 Class acmart Warning: A possible image without description on input line 304.
 
 [5.5 <./figures/MNIST_network_comparison.pdf>]
-<figures/MNIST_one_epoch_performance.pdf, id=411, 1084.05pt x 715.67375pt>
+<figures/MNIST_one_epoch_performance.pdf, id=376, 1084.05pt x 715.67375pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
@@ -1542,7 +1551,7 @@ Package rerunfilecheck Info: File `eqp_paper_fixed.out' has not changed.
 Here is how much of TeX's memory you used:
  21942 strings out of 492450
  340075 string characters out of 3120004
- 473721 words of memory out of 3000000
+ 473715 words of memory out of 3000000
  25232 multiletter control sequences out of 15000+200000
  197663 words of font info for 357 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
@@ -1577,9 +1586,9 @@ ype1/public/newtx/NewTXMI.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/public/newtx/txexs.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/jgamm/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/type1/public/newtx/txsys.pfb>
-Output written on eqp_paper_fixed.pdf (8 pages, 941428 bytes).
+Output written on eqp_paper_fixed.pdf (8 pages, 930455 bytes).
 PDF statistics:
- 704 PDF objects out of 1000 (max. 8388607)
+ 690 PDF objects out of 1000 (max. 8388607)
  99 named destinations out of 1000 (max. 500000)
  56542 words of extra memory for PDF output out of 61914 (max. 10000000)
 
