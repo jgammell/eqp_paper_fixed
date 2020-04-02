@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  25 MAR 2020 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.24)  2 APR 2020 15:56
 entering extended mode
 **./eqp_paper_fixed.tex
 (eqp_paper_fixed.tex
@@ -1422,60 +1422,59 @@ LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/it' will be
 (Font)              scaled to size 9.0pt on input line 81.
 LaTeX Font Info:    Font shape `T1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 134.
+(Font)              scaled to size 7.0pt on input line 136.
  [2.2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 16
-5.
+2.
 
 ("C:\Users\jgamm\AppData\Local\Programs\MiKTeX 2.9\tex/latex/inconsolata\t1zi4.
 fd"
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.0pt on input line 165.
+(Font)              scaled to size 9.0pt on input line 162.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `zi4' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 176.
+(Font)              scaled to size 9.0pt on input line 173.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 7.3pt on input line 176.
+(Font)              scaled to size 7.3pt on input line 173.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 5.5pt on input line 176.
+(Font)              scaled to size 5.5pt on input line 173.
 
-Overfull \hbox (16.57858pt too wide) in paragraph at lines 176--176
+Overfull \hbox (16.57858pt too wide) in paragraph at lines 173--173
 []$[]$\T1/LinuxLibertineT-TLF/m/n/9 (-20) ; 
  []
 
-<figures/basic_topology_illustration.pdf, id=207, 819.06pt x 509.0217pt>
+<figures/basic_topology_illustration.pdf, id=206, 819.06pt x 509.0217pt>
 File: figures/basic_topology_illustration.pdf Graphic file (type pdf)
 <use figures/basic_topology_illustration.pdf>
 Package pdftex.def Info: figures/basic_topology_illustration.pdf  used on input
- line 191.
-(pdftex.def)             Requested size: 218.71599pt x 135.92311pt.
-<figures/topology_changes_illustration.pdf, id=210, 819.06pt x 509.0217pt>
+ line 187.
+(pdftex.def)             Requested size: 241.14749pt x 149.86494pt.
+
+Class acmart Warning: A possible image without description on input line 190.
+
+
+Class acmart Warning: \vspace should only be used to provide space above/below 
+surrounding objects on input line 192.
+
+<figures/topology_changes_illustration.pdf, id=209, 819.06pt x 509.0217pt>
 File: figures/topology_changes_illustration.pdf Graphic file (type pdf)
 <use figures/topology_changes_illustration.pdf>
 Package pdftex.def Info: figures/topology_changes_illustration.pdf  used on inp
-ut line 197.
-(pdftex.def)             Requested size: 218.71599pt x 135.92311pt.
+ut line 195.
+(pdftex.def)             Requested size: 241.14749pt x 149.86494pt.
 
-Overfull \hbox (1.87193pt too wide) in paragraph at lines 190--201
- [][] 
- []
-
-
-Overfull \hbox (1.87193pt too wide) in paragraph at lines 190--201
- [] 
- []
-
-
-Class acmart Warning: A possible image without description on input line 203.
+Class acmart Warning: A possible image without description on input line 198.
 
 [3.3]
-Overfull \hbox (4.11859pt too wide) in paragraph at lines 252--252
-[]$[]$\T1/LinuxLibertineT-TLF/m/n/9 (-20) ; 
+Overfull \hbox (33.97603pt too wide) in paragraph at lines 247--247
+[]$[] \LMS/ntxsy/m/n/9 2 
  []
 
 [4.4 <./figures/basic_topology_illustration.pdf
@@ -1483,41 +1482,39 @@ Overfull \hbox (4.11859pt too wide) in paragraph at lines 252--252
 pdfTeX warning: pdflatex (file ./figures/basic_topology_illustration.pdf): PDF 
 inclusion: invalid other resource which is no dict (key 'ProcSets', type <array
 >); ignored.
-> <./figures/topology_changes_illustration.pdf
-
-pdfTeX warning: pdflatex (file ./figures/topology_changes_illustration.pdf): PD
-F inclusion: invalid other resource which is no dict (key 'ProcSets', type <arr
-ay>); ignored.
->]
-<figures/MNIST_network_comparison.pdf, id=275, 1300.86pt x 860.21375pt>
+> <./figures/topology_changes_illustration.pdf>]
+<figures/MNIST_network_comparison.pdf, id=291, 289.08pt x 178.66502pt>
 File: figures/MNIST_network_comparison.pdf Graphic file (type pdf)
 <use figures/MNIST_network_comparison.pdf>
 Package pdftex.def Info: figures/MNIST_network_comparison.pdf  used on input li
-ne 282.
-(pdftex.def)             Requested size: 241.14749pt x 159.45206pt.
+ne 279.
+(pdftex.def)             Requested size: 241.14749pt x 149.0389pt.
 
 
-Class acmart Warning: A possible image without description on input line 285.
+Class acmart Warning: A possible image without description on input line 282.
 
-<figures/MNIST_individual_layers.pdf, id=290, 1084.05pt x 715.67375pt>
+<figures/MNIST_individual_layers.pdf, id=306, 433.62pt x 267.99751pt>
 File: figures/MNIST_individual_layers.pdf Graphic file (type pdf)
 <use figures/MNIST_individual_layers.pdf>
 Package pdftex.def Info: figures/MNIST_individual_layers.pdf  used on input lin
-e 301.
-(pdftex.def)             Requested size: 241.14749pt x 159.19595pt.
+e 298.
+(pdftex.def)             Requested size: 241.14749pt x 149.04297pt.
 
-Class acmart Warning: A possible image without description on input line 304.
+Class acmart Warning: A possible image without description on input line 301.
 
-[5.5 <./figures/MNIST_network_comparison.pdf>]
-<figures/MNIST_one_epoch_performance.pdf, id=376, 1084.05pt x 715.67375pt>
+
+Underfull \vbox (badness 7379) has occurred while \output is active []
+
+ [5.5 <./figures/MNIST_network_comparison.pdf>]
+<figures/MNIST_one_epoch_performance.pdf, id=366, 433.62pt x 267.99751pt>
 File: figures/MNIST_one_epoch_performance.pdf Graphic file (type pdf)
 <use figures/MNIST_one_epoch_performance.pdf>
 Package pdftex.def Info: figures/MNIST_one_epoch_performance.pdf  used on input
- line 315.
-(pdftex.def)             Requested size: 241.14749pt x 159.19595pt.
+ line 312.
+(pdftex.def)             Requested size: 241.14749pt x 149.04297pt.
 
 
-Class acmart Warning: A possible image without description on input line 318.
+Class acmart Warning: A possible image without description on input line 315.
 
 [6.6 <./figures/MNIST_individual_layers.pdf> <./figures/MNIST_one_epoch_perform
 ance.pdf
@@ -1528,10 +1525,7 @@ inclusion: multiple pdfs with page group included in a single page
 Underfull \vbox (badness 3623) has occurred while \output is active []
 
 
-(eqp_paper_fixed.bbl
-Underfull \vbox (badness 1642) has occurred while \output is active []
-
- [7.7])
+(eqp_paper_fixed.bbl [7.7])
 
 Class acmart Warning: Some images may lack descriptions.
 
@@ -1540,22 +1534,22 @@ Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
 
 [8.8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 426.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 426.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 423.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 423.
  (eqp_paper_fixed.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 426.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 426.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 423.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 423.
 Package rerunfilecheck Info: File `eqp_paper_fixed.out' has not changed.
-(rerunfilecheck)             Checksum: 7DEC50C630881031F853CA000D706DF7;5204.
+(rerunfilecheck)             Checksum: BCBDF0E734B6A94F53555AED76C5FAB4;5204.
  ) 
 Here is how much of TeX's memory you used:
- 21942 strings out of 492450
- 340075 string characters out of 3120004
- 473715 words of memory out of 3000000
- 25232 multiletter control sequences out of 15000+200000
- 197663 words of font info for 357 fonts, out of 3000000 for 9000
+ 21927 strings out of 492450
+ 339739 string characters out of 3120004
+ 473056 words of memory out of 3000000
+ 25223 multiletter control sequences out of 15000+200000
+ 196173 words of font info for 352 fonts, out of 3000000 for 9000
  1302 hyphenation exceptions out of 8191
- 63i,16n,100p,1816b,691s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,16n,100p,1816b,590s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/inconsolata
 /i4-t1-4.enc}{C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/
 libertine/lbtn_fygcup.enc}{C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fon
@@ -1585,10 +1579,11 @@ ne/LinLibertineTZ.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9/fonts/t
 ype1/public/newtx/NewTXMI.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/public/newtx/txexs.pfb><C:/Users/jgamm/AppData/Local/Programs/MiKT
 eX 2.9/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/jgamm/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/newtx/txsys.pfb>
-Output written on eqp_paper_fixed.pdf (8 pages, 930455 bytes).
+ms/MiKTeX 2.9/fonts/type1/public/txfonts/txsya.pfb><C:/Users/jgamm/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/newtx/txsys.pfb>
+Output written on eqp_paper_fixed.pdf (8 pages, 905176 bytes).
 PDF statistics:
- 690 PDF objects out of 1000 (max. 8388607)
- 99 named destinations out of 1000 (max. 500000)
- 56542 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 677 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 500000)
+ 54494 words of extra memory for PDF output out of 61914 (max. 10000000)
 

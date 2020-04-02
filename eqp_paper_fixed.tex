@@ -83,11 +83,8 @@ Here we summarize the equations through which a continuous Hopfield network is t
 Consider a network consisting of input, output and hidden layers with activations denoted respectively by $\mtx{x}$, $\mtx{y}$ and $\mtx{h}$, and let $\mtx{s}=\{\mtx{h},\mtx{y}\}$ and $\mtx{u}=\{\mtx{x}, \mtx{h},\mtx{y}\}$. Let $\mtx{W}$ and $\mtx{b}$ denote the network's weights and biases and $\rho$ its activation function; here and in \cite{scellier17}
 \begin{equation}
 \label{eqn:hardened_sigmoid}
-\rho(x)=\begin{cases}0&x<0 \\ x&0\leq x \leq 1 \\ 1&x>1\end{cases}
-\end{equation} is a hardened sigmoid function with
-\begin{equation}
-\rho'(x):=\begin{cases}0&x<0\\1&0\leq x \leq 1\\0&x>1\end{cases}
-\end{equation}
+\rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\} 
+\end{equation} is a hardened sigmoid function
 where $\rho'$ is defined to be 1 at endpoints of its support to avoid saturation.
 \npar
 The behavior of the network is to perform gradient descent on a total energy function $F$. Consider energy function
@@ -187,19 +184,17 @@ Algorithm \ref{alg:sw} was introduced in \cite{watts98} to convert a regimented 
 
 \begin{figure}
   \centering
-  \begin{subfigure}[t]{.48\textwidth}
-    \includegraphics[width=.9\textwidth]{figures/basic_topology_illustration.pdf}
+    \includegraphics[width=\columnwidth]{figures/basic_topology_illustration.pdf}
     \caption{Topology of the basic multilayer network tested in \cite{scellier17}. All pairs of neurons in adjacent layers are connected, and there are no additional connections. The learning rate for weights is reduced by a factor of 4 each time distance from the output decreases by one layer, to compensate for the vanishing gradient problem.}
     \label{fig:top_basic}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[t]{.48\textwidth}
-    \includegraphics[width=.9\textwidth]{figures/topology_changes_illustration.pdf}
+\end{figure}
+\hfill
+\vspace{4mm}
+\begin{figure}
+	\centering
+    \includegraphics[width=\columnwidth]{figures/topology_changes_illustration.pdf}
     \caption{Changes we have made to the basic topology to compensate for the vanishing gradient problem while using a single learning rate for all weights. Red dotted lines denote connections that have been removed and blue lines denote their replacements. Green lines denote added connections within layers (these are also candidates for replacement). In this illustration layers have been made fully connected, and each connection has then been replaced by a random layer-skipping connection with probability $p\approx 8\%$.}
     \label{fig:top_sw}
-  \end{subfigure}
-  \caption{}
-  \label{fig:topology_illus}
 \end{figure}
 
 We implemented
@@ -243,11 +238,11 @@ To provide a point of reference, we ran tests on a network that is identical to 
 }
 \For{$i\leftarrow 1$ \KwTo $n$}
 {
-	$\text{Randomly select edge }e\in N$;\\
-	$\text{Add edge between random unconnected pair of neurons}$;\\
+	$\text{Randomly select connection }c\in N$;\\
+	$\text{Add connection between random unconnected pair of neurons}\in N$;\\
 	\tcp{Do not allow self connections}
 	\tcp{Do not allow connections between two input neurons or between two output neurons}
-	$\text{Remove }e$;
+	$\text{Remove }c$;
 }
 \Return{$N$}
 
@@ -255,7 +250,9 @@ To provide a point of reference, we ran tests on a network that is identical to 
 \label{alg:ourtop}
 \end{algorithm}
 
-To generate a network with our topology, we use algorithm \ref{alg:ourtop}. Note that this algorithm is on average the same as algorithm \ref{alg:sw} with $p=1-(\frac{N-1}{N})^n$, where $N$ is the number of edges in the network; to contextualize the number of replaced connections, we will henceforth describe networks with our topology in terms of $p$ and not $n$. We have also tried adding new connections without removing existing ones, and observed roughly the same performance; in this paper we replace connections to limit the number of parameters added to the network. We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results with $p\approx 8\%$.
+To generate a network with our topology, we use algorithm \ref{alg:ourtop}. The topology is illustrated in figure \ref{fig:top_sw}. For $p\lesssim .2$, algorithm \ref{alg:ourtop} is roughly equivalent to algorithm \ref{alg:sw} with $p=1-(\frac{N_o-1}{N_o})^n$, where $N_o$ is the number of connections in the network
+\footnote{Algorithm \ref{alg:sw} with large $p$ produces more layer-skipping connections than algorithm \ref{alg:ourtop} with large $n$; it can be shown that for any $n$, algorithm \ref{alg:ourtop} is equivalent to algorithm \ref{alg:sw} with ${p=N_l-N_l\sqrt[N_o]{\frac{N_l}{N_o+N_l}+\frac{N_o}{N_o+N_l}(1-\frac{N_o+N_l}{N_oN_l})^n}}$ where $N_l$ is the number of unconnected pairs of neurons that are candidates to share a layer-skipping connection.}
+; to contextualize the number of replaced connections, we will henceforth describe networks with our topology in terms of $p$ and not $n$. We have also tried adding new connections without removing existing ones, and observed roughly the same performance; in this paper we replace connections to limit the number of parameters added to the network. We do not add connections within the input or output layers and we do not allow neurons to connect to themselves. We have seen good results with $p\approx 8\%$.
 \npar
 This topology allows us to train the network with a uniform learning rate of .02 across the entire network. Weights of connections between pairs of neurons in adjacent layers are still initialized based on equation \ref{eqn:gb_init}. Weights of intralayer connections and layer-skipping connections are drawn from the uniform distribution $U[-.05,.05]$, where the value .05 was chosen empirically to optimize network performance.
 
@@ -313,15 +310,15 @@ Notice in the basic network with one learning rate that there is a significant s
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{figures/MNIST_one_epoch_performance.pdf}
-  \caption{Performance of a network with our topology (section \ref{sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. There is little improvement for $p<10^{-3}$ and $p>.7$, and for $10^{-3}<p<.7$ the error rate decreases at a rate that is slightly slower than exponential with $p$. Improvement begins after the training rates of non-output layers converge, and improvement beyond that point is associated with convergence between the rates of the output layer and the non-output layers.}
+  \caption{Performance of a network with our topology (section \ref{sec:our_topology}) with varying $p$. The top graph shows the training error after one epoch. The bottom graph shows the extent to which weights connecting each pair of layers was corrected over the epoch. There is little improvement for $p<10^{-3}$, after which the error rate decreases at a rate that is slightly less than exponential. Improvement begins after the training rates of non-output layers converge, and improvement beyond that point is associated with convergence between the rates of the output layer and the non-output layers.}
   \label{fig:mnist_1epoch}
 \end{figure}
 
 We tracked the training error after one epoch of a network with our topology while varying $p$; the results are shown in figure \ref{fig:mnist_1epoch}.
 \npar
-Three regimes are evident in the figure. For $p<10^{-3}$, there is little improvement in the error rate as $p$ is increased, but there is substantial improvement in the uniformity of the training rates of deep layers. When $10^{-3}<p<.7$, the deep layers are very uniform, and the error rate starts decreasing with $p$ at a rate that is slightly slower than exponential; at this point there is little improvement in the uniformity of deep layers, but the rate of the shallowest layer appears to move closer to those of the deeper layers. For $p>.7$, the error rate and layer training rates stagnate.
+Three regimes are evident in the figure. For $p<10^{-3}$, there is little improvement in the error rate as $p$ is increased, but there is substantial improvement in the uniformity of the training rates of deep layers. When $p>10^{-3}$, the deep layers are very uniform, and the error rate starts decreasing with $p$ at a rate that is slightly slower than exponential; at this point there is little improvement in the uniformity of deep layers, but the rate of the shallowest layer appears to move closer to those of the deeper layers.
 \npar
-We found that our topology performs significantly worse than the basic topology with one learning rate when few connections are replaced. This could be due to a poor weight initialization scheme for the added intralayer connections; we have noticed anecdotally that networks appear to be less-sensitive to their weight initialization scheme as connections are replaced. We have found that networks perform poorly relative to a basic network with one learning rate until $p$ is in the ballpark of 7\%. This experiment suggests that training rate will keep improving until $p\approx 70\%$, but does not show long-term performance or test performance; we suspect that a network's generalization ability will suffer for large $p$ as it loses its regimented nature.
+We found that our topology performs significantly worse than the basic topology with one learning rate when few connections are replaced. This could be due to a poor weight initialization scheme for the added intralayer connections; we have noticed anecdotally that networks appear to be less-sensitive to their weight initialization scheme as connections are replaced. We have found that networks perform poorly relative to a basic network with one learning rate until $p$ is in the ballpark of 7\%. This experiment suggests that training rate will keep improving long after that, but does not show long-term performance or test performance; we suspect that a network's generalization ability will suffer for large $p$ as it loses its regimented nature.
 
 \section{Related work}
 Much research has been done in pursuit of a biologically-plausible deep learning algorithm. \cite{lee2015, xie2003, pineda1987} are other algorithms that approximate the gradient of the cost function locally. \cite{lillicrap2014} demonstrates that networks can train through backpropagation with randomly-initialized feedback weights between neurons; the need for symmetric connection weights is not solved by equilibrium propagation and is not biologically-plausible, so this finding could potentially be applied here as well. \cite{oconnor2018} implements equilibrium propagation using spiking neurons; this type of activation function is believed to be more biologically-plausible than a hardened sigmoid function. \cite{bengio2015} discusses the criteria a biologically-plausible algorithm would need to satisfy. \cite{bartunov2018} surveys promising biologically-motivated algorithms and evaluates their effectiveness on hard datasets.
@@ -368,12 +365,12 @@ There are several directions in which future research could be taken:
 \section{Metrics of a graph's small-worldness}
 \label{app:sw_metrics}
 
-The small-worldness of a graph is typically characterized by two metrics: a characteristic path length $L$ and a clustering coefficient $C$ \cite{watts98}. A graph is small-world if $L$ is small relative to the $L$ of a random network with the same number of vertices and edges and $C$ is not substantially smaller than the $C$ of that random network; this situation can be quantified by a small-world coefficient $\sigma$ \cite{humphries2008}. The characteristic path length is the minimum number of edges in a path joining a pair of vertices, averaged over all pairs of vertices in the network. Specifically, for a graph with $N$ vertices where $l(v_i,v_j)$ denotes the smallest number of edges needed to connect vertex $v_i$ to vertex $v_j$, 
+A graph's small-worldness can be characterized by its characteristic path length $L$ and its clustering coefficient $C$ \cite{watts98}. A graph is small-world if $L$ is small relative to that of a random network with the same number of vertices and edges and $C$ is not substantially smaller than that of the random network; this situation can be quantified by a small-world coefficient $\sigma$ \cite{humphries2008}. The characteristic path length is the minimum number of edges in a path joining a pair of vertices, averaged over all pairs of vertices in the network. For a graph with $N$ vertices where $l(v_i,v_j)$ denotes the smallest number of edges needed to connect vertex $v_i$ to vertex $v_j$, 
 \begin{equation}
 \label{eqn:charpathlength}
 L=\frac{1}{N(N-1)}\sum_{i=1}^{N}\sum_{\substack{j=1\\j\neq i}}^{N}l(v_i,v_j).
 \end{equation}
-The neighborhood of a vertex is the set of vertices with which it shares an edge. The clustering coefficient is the proportion of pairs of vertices in the neighborhood of a given vertex that share an edge, averaged over all vertices in the network. Specifically, for a graph with $N$ vertices, if $\text{N}(v_i)$ denotes the neighborhood of vertex $v_i$ and $c(v_j,v_k)=\begin{cases}1 & v_k\in\text{N}(v_j)\\0 & \text{else}\end{cases}$,
+The neighborhood of a vertex is the set of vertices with which it shares an edge. The clustering coefficient is the proportion of pairs of vertices in the neighborhood of a given vertex that share an edge, averaged over all vertices in the network. For a graph with $N$ vertices, if $\text{N}(v_i)$ denotes the neighborhood of vertex $v_i$ and $c(v_j,v_k)=\begin{cases}1 & v_k\in\text{N}(v_j)\\0 & \text{else}\end{cases}$,
 \begin{equation}
 \label{eqn:clustcoeff}
 C=\frac{1}{N}\sum_{i=1}^{N}\frac{1}{|\text{N}(v_i)|}\sum_{\substack{v_j\in \text{N}(v_i)\\v_k\in\text{N}(v_i)\\j\neq k}}c(v_j,v_k)
@@ -397,21 +394,21 @@ Assume that a typical neuron in the network changes by a small constant amount $
 \approx \frac{\alpha}{\beta}(N^2\delta^2+2s_0N\delta)
 \end{aligned}
 \end{equation}
-and similarly a typical neuron from the deep layer will be corrected by 
+and similarly a typical neuron from a deep layer will be corrected by 
 \begin{equation}
-\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta)
+\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta),
 \end{equation}
-(approximating $N\approx N-1$ and $N-l+1\approx N-l$), so the ratio of these corrections will be
+ so the ratio of these corrections will be
 \begin{equation}
 \begin{aligned}
 \frac{\Delta w^l}{\Delta w^{\text{output}}}&\approx \frac{(N-l)^2\delta^2-2s_0(N-l)\delta}{N^2\delta^2+2s_0N\delta}
 \\&
 =\frac{N-l}{N}\frac{(N-l)\delta+2s_0}{N\delta+2s_0}
 \\&
-\approx 1-\frac{l}{N}
+\approx 1-\frac{l}{N}.
 \end{aligned}
 \end{equation}
-(approximating $\frac{(N-l)\delta +2s_0}{N\delta+2s_0}\approx 1$). We have observed that
+We have observed that
 \begin{equation}
 \frac{\Delta w^l}{\Delta w^{\text{output}}}\sim 4^{-l},
 \end{equation}
