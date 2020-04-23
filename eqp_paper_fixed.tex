@@ -140,7 +140,7 @@ This can be repeated on as many training examples as desired. Training can be do
 
 In analog hardware the dynamics described by equation \ref{eqn:dynamics} could be implemented efficiently using leaky integrator neurons, but on digital hardware it is necessary to discretize and approximate these dynamics; we now describe the approximation used here and in \cite{scellier17}. Let $\mtx{s}[n]$ denote the state of the network after $n$ iterations of the approximation, $N$ denote the total number of iterations and $\epsilon$ the size of each iteration. $\mtx{s}[0]$ is the initial state of the network; here and in \cite{scellier17}, $\mtx{s}[0]=\mtx{0}$ before the first epoch, and in subsequent epochs $\mtx{s}[0]$ is the equilibrium state of the network from the last time it executed a free phase on the same batch. Let 
  \begin{equation}
- s_i[n]=s_i[n-1]-\epsilon \frac{\partial F}{\partial s_i}(\mtx{u},\mtx{y}_d,\beta),\;n=1,\hdots,N
+ s_i[n]=s_i[n-1]-\epsilon \frac{\partial F}{\partial s_i},\;n=1,\hdots,N
  \end{equation}
 (where $\beta=0$ in the free phase); then $\mtx{s}[N]$ approximates the state after time $\epsilon N$ that would be given by equation \ref{eqn:dynamics}.
  We denote the number of iterations in the free and weakly-clamped phases $N_{free}$ and $N_{weakly-clamped}$, respectively. It is only necessary to run the weakly-clamped phase long enough to observe the initial direction in which the network evolves and to allow the perturbation of the output to influence all layers in the network, so typically for a network with $L$ layers, $N_{free}>>N_{weakly-clamped}>L$.
