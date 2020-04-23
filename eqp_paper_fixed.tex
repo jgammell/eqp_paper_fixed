@@ -19,6 +19,7 @@
 \newcommand{\mtx}[1]{\bm{#1}}
 \newcommand{\rms}[1]{<{#1}>}
 \newcommand{\npar}{\\\indent}
+\DeclareMathOperator*{\minimize}{minimize}
 
 \title{Layer-skipping connections facilitate training of layered networks using equilibrium propagation.}
 \author{Jimmy Gammell}
@@ -61,7 +62,13 @@ Equilibrium propagation is a learning framework for energy-based networks that c
 
 \section{Introduction}
 
-The equilibrium propagation learning framework \cite{scellier17} is a method for training a class of energy-based networks, the prototype for which is the continuous Hopfield network \cite{hopfield1984}. It is appealing as a framework that could be implemented in neuromorphic analog hardware because unlike in backpropagation, neurons are required to perform only one type of computation in the prediction and correction phases of training, and the parameters of a neuron can be updated using only the activations of neurons to which it is directly connected - there is no need for feedback paths through which to transmit information about the parameters and states of neurons throughout the entire network. Backpropagation is not biologically plausible, and a major reason is that credit assignment to a given neuron requires precise knowledge of the nonlinearities and derivatives of all neurons in the feedforward path between that neuron and the output\cite{bengio2015}; equilibrium propagation avoids this issue. Another major reason is that it is implausible for the forward and backwards propagation phases to use different computations requiring different computational circuits \cite{scellier17}; equilibrium propagation also avoids this issue.
+The equilibrium propagation learning framework \cite{scellier17} is a method for training a class of energy-based networks, the prototype for which is the continuous Hopfield network \cite{hopfield1984}. It is appealing because it addresses some major issues that prevent backpropagation from being biologically-plausible, and as a side-effect could be implemented in neuromorphic analog hardware more-easily than backpropagation.
+\npar
+A major reason backpropagation is not biologically-plausible is that to implement it in a system lacking an omniscient supervisor (i.e. code that can easily access all parameters and activations in the network), each neuron would require one mechanism by which to pass its activation to shallower neurons during the forward-propagation phase and a second mechanism by which to pass deeper neurons the necessary information to correct their parameters during the backpropagation phase (including precise information about the manner in which their activations are propagated to the network's output) \cite{bengio2015}. In contrast, equilibrium propagation allows a neuron to compute corrections to its parameters using only the activations of neighboring neurons, allowing both the prediction and correction phases of training to be carried out using a single information-transfer mechanism \cite{scellier17}.
+\npar
+Another issue with backpropagation is that neurons are required to perform distinct operations during the forward and backward propagation phases - in the forward propagation phase they pass forward an activation value that is a function of the activations of deeper neurons, whereas in the backward propagation phase they pass backwards an error term that is a different function of error terms from shallower neurons. This implies two distinct sets of computational circuitry in each neuron. In equilibrium propagation the only difference between the prediction and correction phases of training is that in the correction phase output neurons are weakly-clamped towards the target output; the dynamics by which the network evolves are otherwise the same \cite{scellier17}.
+\npar
+Because of these differences, relative to backpropagation, equilibrium propagation could be implemented more-easily in neuromorphic analog hardware, and it is more-plausible that it could be carried out by observed architecture in biological brains.
 \npar
 It has been demonstrated \cite{scellier17} that a continuous Hopfield network with a basic layered topology can be trained on MNIST \cite{mnist1998} through the equilibrium propagation framework. However, previous implementations encountered a vanishing gradient problem (section \ref{sec:vangrad}) that significantly impedes training of networks with several hidden layers. Given that network depth is critical for performance on difficult datasets \cite{simonyan2014, srivastava2015tvdn}, and that convergence to a low error rate on MNIST is a low bar for a network to meet, this is a nontrivial issue. It has been demonstrated \cite{scellier17} that the problem can be solved by using a unique learning rate for parameters at different depths in the network, with deeper parameters trained with larger learning rates to counteract gradient attenuation with depth. This approach is unappealing because (1) it introduces additional hyperparameters that must be tuned, (2) it would be inconvenient to implement and tune unique learning rates in analog hardware, and (3) it has not been observed in biological systems.
 \npar
@@ -80,37 +87,41 @@ Equilibrium propagation \cite{scellier17} is a learning framework for energy-bas
 
 Here we summarize the equations through which a continuous Hopfield network is trained using equilibrium propagation; this summary is based on the more-thorough and more-general treatment in \cite{scellier17}.
 \npar
-Consider a network consisting of input, output and hidden layers with activations denoted respectively by $\mtx{x}$, $\mtx{y}$ and $\mtx{h}$, and let $\mtx{s}=\{\mtx{h},\mtx{y}\}$ and $\mtx{u}=\{\mtx{x}, \mtx{h},\mtx{y}\}$ be vectors containing the activations of, respectively, the set of free and weakly-clamped (non-input) neurons and the set of all neurons in the network. Let $\mtx{W}$ and $\mtx{b}$ denote the network's weights and biases and $\rho$ its activation function; here and in \cite{scellier17}
+Consider a network with $n$ neurons organized into an input layer with $p$ neurons, hidden layers with $q$ neurons and an output layer with $r$ neurons. Let the activations of these neurons be denoted by vectors $\mtx{x}\in\mathbb{R}^{p}$, $\mtx{y}\in\mathbb{R}^{q}$ and $\mtx{h}\in\mathbb{R}^{r}$, and let $\mtx{s}=(\mtx{h}^{T},\mtx{y}^{T})^{T}\in\mathbb{R}^{q+r}$ and $\mtx{u}=(\mtx{x}^{T}, \mtx{s}^{T})^{T}\in\mathbb{R}^{n}$ be vectors of, respectively, the activations of non-fixed (non-input) neurons and of all neurons in the network. Let $\mtx{W}\in\mathbb{R}^{n\times n}$ and $\mtx{b}\in\mathbb{R}^{n}$ denote the network's weights and biases where $w_{ij}$ is the connection weight between neurons $i$ and $j$ and $b_i$ is the bias for neuron $i$ ($\forall i \;w_{ii}=0$ to prevent self-connections), and let $\rho$ denote its activation function; here and in \cite{scellier17},
 \begin{equation}
 \label{eqn:hardened_sigmoid}
-\rho(x)=\text{Max}\{0, \text{Min}\{x, 1\}\} 
-\end{equation} is a hardened sigmoid function
-where $\rho'$ is defined to be 1 at endpoints of its support to avoid saturation.
+\rho(x)=\begin{cases}0&x<0\\x&0\leq x\leq 1\\1&x>1\end{cases} 
+\end{equation} \sloppy is a hardened sigmoid function
+where $\rho'(0)=\rho'(1)$ is defined to be 1 to avoid neuron saturation. Let $\mtx{\rho}((x_1,\hdots, x_n)^T)=(\rho(x_1),\hdots,\rho(x_n))^T$.
 \npar
-The behavior of the network is to perform gradient descent on a total energy function $F$. Consider energy function
+The behavior of the network is to perform gradient descent on a total energy function $F$ that is modified by a training example $(\mtx{x}_d,\mtx{y}_d)$. Consider energy function $E:\mathbb{R}^n\to\mathbb{R}$,
 \begin{equation}
-E(\mtx{u})=\frac{1}{2}\sum_iu_i^2-\frac{1}{2}\sum_{i\neq j}W_{ij}\rho(u_i)\rho(u_j)-\sum_ib_i\rho(u_i).
+E(\mtx{u}; \mtx{W}, \mtx{b})=\frac{1}{2}\mtx{u}^T\mtx{u}-\frac{1}{2}\mtx{\rho}(\mtx{u})^T \mtx{W} \mtx{\rho}(\mtx{u})-\mtx{b}^T\mtx{u}
 \end{equation}
-and arbitrary cost function $C(\mtx{u}, \mtx{W}, \mtx{b}, \mtx{y}_d)$; here and in \cite{scellier17} it is a quadratic cost function given by
+and arbitrary cost function $C:\mathbb{R}^r\to\mathbb{R}_{+}$; here and in \cite{scellier17} it is a quadratic cost function given by
 \begin{equation}
 \label{eqn:cost}
-C(\mtx{y},\mtx{y}_d)=\frac{1}{2}||\mtx{y}-\mtx{y}_d||_2^2.
+C(\mtx{y})=\frac{1}{2}||\mtx{y}-\mtx{y}_d||_2^2,
 \end{equation}
-The total energy function is given by
+though the framework still works for cost functions incorporating a regularization term dependent on $\mtx{W}$ and $\mtx{b}$. The total energy function $F:\mathbb{R}^n\to\mathbb{R}$ is given by
 \begin{equation}
-F(\mtx{u},\mtx{y}_d, \beta)=E(\mtx{u})+\beta C(\mtx{y},\mtx{y}_d)
+F(\mtx{u}; \beta, \mtx{W}, \mtx{b})=E(\mtx{u};\mtx{W}, \mtx{b})+\beta C(\mtx{y})
 \end{equation}
-where the clamping factor $\beta$ is a small constant. Gradient descent on $F$ is defined by an equation of motion
+where the clamping factor $\beta$ is a small constant. $\mtx{s}$ evolves over time $t$ as
 \begin{equation}
 \label{eqn:dynamics}
-\frac{d\mtx{s}}{dt}=-\frac{\partial F}{\partial \mtx{s}};
+\frac{d\mtx{s}}{dt}\propto -\frac{\partial F}{\partial \mtx{s}}.
 \end{equation}
-equilibrium has been reached when the network is at a local minimum of $F$.
+Equilibrium has been reached when $\frac{\partial F}{\partial \mtx{s}} \approx 0$. This can be viewed as solving the optimization problem
+\begin{equation}
+	\minimize_{\mtx{s}\in\mathbb{R}^{q+r}}F((\mtx{x}_d^T,\mtx{s}^T)^T; \beta, \mtx{W}, \mtx{b}) 
+\end{equation}
+by using gradient descent to find a local minimum of $F$.
 \npar
-The procedure for training on an input-output pair $(\mtx{x}_d,\mtx{y}_d)$ is as follows:
+The procedure for training on a single input-output pair $(\mtx{x}_d,\mtx{y}_d)$ is as follows:
 \begin{enumerate}
-\item Clamp $\mtx{x}$ to $\mtx{x}_d$ and perform the free-phase evolution: evolve to equilibrium on the energy function $F(\mtx{u}, \mtx{y}_d, 0)$ in a manner dictated by equation \ref{eqn:dynamics}. Record the equilibrium state $\mtx{u}^0$.
-\item Perform the weakly-clamped evolution: evolve to equilibrium on the energy function $F(\mtx{u},\mtx{y}_d,\beta)$ using $\mtx{u}^0$ as a starting point. Record the equilibrium state $\mtx{u}^{\beta}$.
+\item Clamp $\mtx{x}$ to $\mtx{x}_d$ and perform the free-phase evolution: evolve to equilibrium on the energy function $F(\mtx{u}; 0, \mtx{W}, \mtx{b})$ in a manner dictated by equation \ref{eqn:dynamics}. Record the equilibrium state $\mtx{u}^0$.
+\item Perform the weakly-clamped evolution: evolve to equilibrium on the energy function $F(\mtx{u}; \beta, \mtx{W}, \mtx{b})$ using $\mtx{u}^0$ as a starting point. Record the equilibrium state $\mtx{u}^{\beta}$.
 \item Compute the correction to each weight in the network: 
 \begin{equation}
 \label{eqn:weight_correction}
@@ -123,7 +134,7 @@ Adjust the weights using $W_{ij}\leftarrow W_{ij}+\alpha\Delta W_{ij}$ where the
 \end{equation}
 and adjust the biases using $b_i\leftarrow b_i+\alpha\Delta b_i$.
 \end{enumerate}
-Training can be done on batches by computing $\Delta W_{ij}$ and $\Delta b_i$ for each input-output pair in the batch, and correcting using the averages of these values. Note that the correction to a weight is computed using only the activations of neurons it directly affects, and the correction to a bias is computed using only the activation of the neuron it directly affects. This contrasts with backpropagation, where to correct a weight or bias $l$ layers from the output it is necessary to know the activations, derivatives and weights of all neurons between $0$ and $l-1$ layers from the output.
+This can be repeated on as many training examples as desired. Training can be done on batches by computing $\Delta W_{ij}$ and $\Delta b_i$ for each input-output pair in the batch, and correcting using the averages of these values. Note that the correction to a weight is computed using only the activations of neurons it directly affects, and the correction to a bias is computed using only the activation of the neuron it directly affects. This contrasts with backpropagation, where to correct a weight or bias $l$ layers from the output it is necessary to know the activations, derivatives and weights of all neurons between $0$ and $l-1$ layers from the output.
 
 \subsubsection{Approximation of equation of motion}
 
@@ -137,13 +148,11 @@ In analog hardware the dynamics described by equation \ref{eqn:dynamics} could b
 \subsection{Vanishing gradient problem}
 \label{sec:vangrad}
 
-It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem whereby the rate of training of a weight decreases approximately exponentially with the number of layers between that weight and the output layer. This is problematic because it dramatically increases the time needed to train a network, and gradients spanning several orders of magnitude could be hard to represent in analog implementations of the framework with limited bit depth. The vanishing gradient problem is familiar in the context of conventional networks trained through backpropagation, where the composition of many layers can impede training by amplifying or attenuating the effect of changes to deep neurons as these changes propagate to the output layer, leading to a vanishing or exploding gradient. For those networks the problem can be effectively addressed by initializing weights to make activation variances and backpropagated gradient variances approximately uniform with respect to depth as described in \cite{glorot2010}, and by using activation functions with derivatives that do not cause neurons to saturate \cite{schmidhuber2015}, such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids (equation \ref{eqn:hardened_sigmoid}). Batch normalization \cite{ioffe2015} is another effective technique for promoting uniform training in a network; inputs to each layer are whitened (the input distribution $\bf{X}$ to each layer is transformed to have $E[\bf{X}]=0$ and $Var[\bf{X}]=1$) during each batch to prevent changes to deep parameters from changing the input distribution to shallower layers and requiring adjustment to compensate.
+It has been observed \cite{scellier17} that energy-based networks with a layered topology trained using equilibrium propagation suffer from a vanishing gradient problem whereby the rate of training of a weight decreases approximately exponentially with the number of layers between that weight and the output layer. This is problematic because it has been observed to increase the time needed to train a network, and gradients spanning several orders of magnitude could be hard to represent in analog implementations of the framework with limited bit depth. The vanishing gradient problem is familiar in the context of conventional networks trained through backpropagation, where the composition of many layers can impede training by amplifying or attenuating the effect of changes to deep neurons as these changes propagate to the output layer, leading to a vanishing or exploding gradient. For those networks the problem can be effectively addressed by initializing weights to make activation variances and backpropagated gradient variances approximately uniform with respect to depth as described in \cite{glorot2010}, and by using activation functions with derivatives that do not cause neurons to saturate \cite{schmidhuber2015}, such as rectified linear units $\rho(x)=\text{Max}\{0, x\}$ or hardened sigmoids (equation \ref{eqn:hardened_sigmoid}). Batch normalization \cite{ioffe2015} is another effective technique for promoting uniform training in a network; inputs to each layer are whitened (the input distribution $\bf{X}$ to each layer is transformed to have $E[\bf{X}]=0$ and $Var[\bf{X}]=1$) during each batch to prevent changes to deep parameters from changing the input distribution to shallower layers and requiring adjustment to compensate.
 \npar
-The weight initialization scheme from \cite{glorot2010} and the use of hardened sigmoid activation functions do not solve the vanishing gradient problem in the context of equilibrium propagation. Batch normalization has not been tried in this context, but is not biologically-plausible. That the former two methods are ineffective suggests that the cause of the vanishing gradient problem is different than that in a conventional network. The situation in energy-based networks is more-complicated because there is no straightforward causal relationship between the activations of two given neurons; instead, neurons evolve as a coupled dynamical system.
+The weight initialization scheme from \cite{glorot2010} and the use of hardened sigmoid activation functions do not solve the vanishing gradient problem in the context of equilibrium propagation. Batch normalization has not been tried in this context, but is not biologically-plausible. This suggests that the cause of the vanishing gradient problem here is different than in a conventional network. The situation in energy-based networks is more-complicated because there is no straightforward relationship between the activations of two given neurons; instead, neurons evolve as a coupled dynamical system.
 \npar
-In \cite{scellier17} the vanishing gradient problem was solved by using unique learning rates for each layer, chosen to make the magnitudes of corrections to neurons' parameters uniform regardless of depth in the network. While this method is effective, it is unappealing because it seems unlikely to take place in a biological brain, it would add complexity to an analog implementation of the framework, and it introduces more hyperparameters that must be tuned to train a network. Our topology solves the problem without these unappealing characteristics.
-\npar
-A possible contributor to the vanishing gradient problem is the nature of the discrete approximation of a network's equation of motion; in appendix \ref{app:discrete_vangrad} we describe this issue and why we do not believe it to be the primary cause.
+In \cite{scellier17} the vanishing gradient problem was addressed by using unique learning rates for each layer, chosen to make the magnitudes of corrections to neurons' parameters uniform regardless of depth in the network. While this method is effective, it is unappealing because it seems unlikely to take place in a biological brain, it would add complexity to an analog implementation of the framework, and it introduces more hyperparameters that must be tuned to train a network. Our topology effectively addresses the problem without these unappealing characteristics.
 
 
 \subsection{Small-world networks}
@@ -202,7 +211,7 @@ We implemented
 \footnote{\url{https://github.com/jgammell/Equilibrium_Propagation_mobile.git}}
  the equilibrium propagation learning framework \cite{scellier17} using the Pytorch library, and verified that we could recreate the experiments ran in \cite{scellier17}. We follow the procedure described in section \ref{sec:eqp_formulation}; we use a hardened sigmoid activation function (equation \ref{eqn:hardened_sigmoid}) and a squared-error cost function with no regularization term (equation \ref{eqn:cost}). Testing was done on the MNIST dataset \cite{mnist1998} with input-output pairs grouped into batches of 20; training was done on the 50,000 training pairs and testing on the 10,000 validation pairs.
 \npar
-We use two performance-boosting techniques described in \cite{scellier17}. We randomize the sign of $\beta$ at the outset of each batch, which provides a regularization effect. We use persistent particles: after the first epoch, before training on a batch the network's state is initialized to its free equilibrium state from the last time it trained on the same batch. This reduces computational resources needed for training by reducing the number of iterations of equation \ref{eqn:dynamics} needed to reach equilibrium, and would be unnecessary in an analog implementation; note that training and test error rates during early epochs are artificially inflated as a result of this technique.
+We use two performance-boosting techniques described in \cite{scellier17}. We randomize the sign of $\beta$ at the outset of each batch, which provides a regularization effect (note that parameter corrections are divided by $\beta$, so are changed to minimize cost regardless of its sign). We use persistent particles: after the first epoch, before training on a batch the network's state is initialized to its free equilibrium state from the last time it trained on the same batch. This reduces computational resources needed for training by reducing the number of iterations of equation \ref{eqn:dynamics} needed to reach equilibrium, and would be unnecessary in an analog implementation; note that training and test error rates during early epochs are artificially inflated as a result of this technique.
 
 \subsection{Layered topology with unique learning rates}
 \label{sec:basic_topology}
@@ -384,38 +393,6 @@ The small-worldness of a graph can be quantified by a small-world coefficient
 \sigma=\frac{C/C_r}{L/L_r}
 \end{equation}
 where $C_r$ and $L_r$ are the expected clustering coefficient and characteristic path length of a random graph with the same number of vertices and edges as the graph under consideration.
-
-\section{Influence of approximation of equation of motion on vanishing gradient problem}
-\label{app:discrete_vangrad}
-
-One likely contributor to the vanishing gradient problem is that when the output layer is perturbed at the beginning of the weakly-clamped phase, it takes $n$ additional iterations of the approximation of equation \ref{eqn:dynamics} to influence the $n^{th}$ layer behind the output. We do not believe this factor to be a significant contributor to the vanishing gradient problem, and have observed that increasing $N_{weakly-clamped}$ does not significantly affect network performance.
-\npar
-Assume that a typical neuron in the network changes by a small constant amount $\delta$ after each iteration of equation \ref{eqn:dynamics}, and that the typical neuron is in state $s_0$ at the end of the free phase. After $N$ iterations, a neuron in the output layer will have changed by $N\delta$ and one in a deep layer $l$ layers from the output will have changed by $(N-l)\delta$. Assume further that $s_0$ is in the middle of the support of $\rho'$ where $\rho$ is the hardened sigmoid function from equation \ref{eqn:hardened_sigmoid}, so that we can replace $\rho(x)$ by $x$. Then it follows from equation \ref{eqn:weight_correction} that a typical neuron in the output layer will be corrected by 
-\begin{equation}
-\begin{aligned}
-\Delta w^\text{output}&=\frac{\alpha}{\beta}((N\delta + s_0)((N-1)\delta + s_0)-s_0^2)
-\\&
-\approx \frac{\alpha}{\beta}(N^2\delta^2+2s_0N\delta)
-\end{aligned}
-\end{equation}
-and similarly a typical neuron from a deep layer will be corrected by 
-\begin{equation}
-\Delta w^l\approx \frac{\alpha}{\beta}((N-l)^2\delta^2+2s_0(N-l)\delta),
-\end{equation}
- so the ratio of these corrections will be
-\begin{equation}
-\begin{aligned}
-\frac{\Delta w^l}{\Delta w^{\text{output}}}&\approx \frac{N-l}{N}\frac{(N-l)\delta+2s_0}{N\delta+2s_0}
-\\&
-\approx 1-\frac{l}{N}.
-\end{aligned}
-\end{equation}
-We have observed that
-\begin{equation}
-\frac{\Delta w^l}{\Delta w^{\text{output}}}\sim 4^{-l},
-\end{equation}
-for the type of networks we tested, so it seems unlikely that this phenomenon is a primary cause of the vanishing gradient problem.
-
 
 
 \end{appendices}
